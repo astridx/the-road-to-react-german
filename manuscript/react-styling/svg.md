@@ -75,10 +75,10 @@ Regardless of the styling approach you are using, you can give your SVG icon in 
 
 The create-react-app project makes using SVGs straightforward, with no extra configuration needed. This is different if you create a React project from scratch with build tools like Webpack, because you have to take care of it yourself. Anyway, SVGs make your application more approachable, so use them whenever it suits you.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-in-React-SVG).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/CSS-in-React...hs/CSS-in-React-SVG?expand=1).
-* Read more about [SVGs in create-react-app](https://create-react-app.dev/docs/adding-images-fonts-and-files).
-* Read more about [SVG background patterns in React](https://www.robinwieruch.de/react-svg-patterns).
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-in-React-SVG).
+  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/CSS-in-React...hs/CSS-in-React-SVG?expand=1).
+* Lese mehr zum Thema [SVGs in create-react-app](https://create-react-app.dev/docs/adding-images-fonts-and-files).
+* Lese mehr zum Thema [SVG background patterns in React](https://www.robinwieruch.de/react-svg-patterns).
 * Add another SVG icon in your application.
