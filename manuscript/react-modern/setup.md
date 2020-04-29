@@ -1,22 +1,21 @@
 ## Setting up a React Project
 
-In the Road to React, we'll use [create-react-app](https://github.com/facebook/create-react-app) to bootstrap your application. It's an opinionated yet zero-configuration starter kit for React introduced by Facebook in 2016, which is [recommended for beginners by 96% of React users](https://twitter.com/dan_abramov/status/806985854099062785). In *create-react-app*, the tools and configurations evolve in the background, while the focus remains on the application's implementation.
+In Road to React verwenden wir die [create-react-app](https://github.com/facebook/create-react-app), um unsere Anwendung für den Start einzurichten. Es handelt sich um ein von Facebook im Jahr 2016 eingeführtes Starter-Kit für React, das keine Konfiguration enthält. Es wird [von 96% der React-Benutzer für Anfänger empfohlen](https://twitter.com/dan_abramov/status/806985854099062785). *create-react-app* installiert die für die Entwicklung notwendigen Werkzeuge für dich und erledigt die Konfiguration, während du deinen Fokus auf der Implementierung der Anwendung legst.
 
-After installing Node and npm, use the command line to type the following command in a dedicated folder for your project. We'll refer to this project as *hacker-stories*, but you may choose any name you like:
+Öffne die Befehlszeile, nachdem du Node und npm installiert hast. Lege danach ein Verzeichnis für dein Beispielprojekt an. Gibt in diesem Verzeichnis den folgenden Befehl ein. Ich werde dieses Projekt *hacker-stories* nennen. Unabhängig davon kannst du für dein Projekt natürlich jeden anderen beliebigen Namen wählen:
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 npx create-react-app hacker-stories
 ~~~~~~~
 
-Navigate into your new folder after the setup has finished:
+Navigiere nach Abschluss des Setups in den neuen Ordner:
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 cd hacker-stories
 ~~~~~~~
-
-Now we can open the application in an editor or IDE. For Visual Studio Code, you can simply type `code .` on the command line. The following folder structure, or a variation of it depending on the *create-react-app* version, should be presented:
+Öffne jetzt die Anwendung in einem Editor oder einer IDE oder, gib `code .` in die Befehlszeile ein, wenn du Visual Studio Code nutzt. Die folgende Ordnerstruktur wird dargestellt – oder eine Variation davon in Abhängigkeit von der verwendeten Version von *create-react-app*:
 
 {title="Project Structure",lang="text"}
 ~~~~~~~
@@ -36,7 +35,7 @@ hacker-stories/
 --README.md
 ~~~~~~~
 
-This is a breakdown of the most important folders and files:
+Dies sind die wichtigsten Ordner und Dateien:
 
 * **README.md:** The *.md* extension indicates the file is a markdown file. Markdown is a lightweight markup language with plain text formatting syntax. Many source code projects come with a *README*.md file that gives instructions and useful information about the project. When we push projects to platforms like GitHub, the *README.md* file usually displays information about the content contained in its repositories. Because you used create-react-app, your *README.md* should be the same as the official [create-react-app GitHub repository](https://github.com/facebook/create-react-app).
 * **node_modules/:** This folder contains all node packages that have been installed via npm. Since we used create-react-app, a couple of node modules are already installed. We'll not touch this folder, since node packages are usually installed and uninstalled with npm via the command line.
@@ -45,7 +44,7 @@ This is a breakdown of the most important folders and files:
 * **.gitignore:** This file displays all files and folders that shouldn't be added to your git repository when using git, as such files and folders should be located only in your local project. The *node_modules/* folder is one example. It is enough to share the *package.json* file with others, so they can install dependencies on their end with `npm install` without your entire dependency folder.
 * **public/:** This folder holds development files, such as *public/index.html*. The index file is displayed on *localhost:3000* when the app is in development or on a domain that is hosted elsewhere. The default setup handles relating this *index.html* with all the JavaScript from *src/*.
 
-In the beginning, everything you need is located in the *src/* folder. The main focus lies on the *src/App.js* file which is used to implement React components. It will be used to implement your application, but later you might want to split up your components into multiple files, where each file maintains one or more components on its own.
+Am Anfang findest du alles, was du brauchst, im Ordner *src/*. Das Hauptaugenmerk liegt auf der Datei *src/App.js*, die eine React-Komponente implementiert. Später teilst du deine Komponente unter Umständen in mehrere Dateien auf. Dann verwaltet jede einzelne Datei eine oder mehrere Komponenten.
 
 Additionally, you will find a *src/App.test.js* file for your tests, and a *src/index.js* as an entry point to the React world. You will get to know both files intimately in later sections. There is also a *src/index.css* and a *src/App.css* file to style your general application and components, which comes with the default style when you open them. You will modify them later as well.
 
@@ -80,17 +79,17 @@ npm test
 npm run build
 ~~~~~~~
 
-Another command from the previous npm scripts called `eject` shouldn't be used for this learning experience. It's a one way operation. Once you eject, you can't go back. Essentially this command is only there to make all the build tool and configuration from create-react-app accessible if you are not satisfied with the choices or if you want to change something. Here we will keep all the defaults though.
+Ein anderer Befehl aus den vorhandenen npm-Skripten mit dem Namen `eject` bleibt hier außen vor. Es ist eine Eingabe, der keine Wiederherstellung erlaubt. Sobald du `eject` ausgeführt hast, gibt es kein Zurück. Im Wesentlichen ist dieser Befehl dazu da, das gesamte Build-Tool und die Konfiguration der create-react-app zu bearbeiten, falls du mit den standardmäßig gesetzten Einstellungen nicht zufrieden bist. Hier werden wir alle Standardeinstellungen beibehalten.
 
-### Exercises:
+### Übungen:
 
 * Read a bit more through React's [create-react-app documentation](https://github.com/facebook/create-react-app) and [getting started guide](https://create-react-app.dev/docs/getting-started).
-  * Read more about [the supported JavaScript features in create-react-app](https://create-react-app.dev/docs/supported-browsers-features).
-* Read more about [the folder structure in create-react-app](https://create-react-app.dev/docs/folder-structure).
+  * Lese mehr zum Thema [the supported JavaScript features in create-react-app](https://create-react-app.dev/docs/supported-browsers-features).
+* Lese mehr zum Thema [the folder structure in create-react-app](https://create-react-app.dev/docs/folder-structure).
   * Go through all of your React project's folders and files one by one.
-* Read more about [the scripts in create-react-app](https://create-react-app.dev/docs/available-scripts).
+* Lese mehr zum Thema [the scripts in create-react-app](https://create-react-app.dev/docs/available-scripts).
   * Start your React application with `npm start` on the command line and check it out in the browser.
     * Exit the command on the command line by pressing `Control + C`.
-  * Run the `npm test` script.
+  * Führe das Skript `npm test` aus.
   * Run the `npm run build` script and verify that a *build/* folder was added to your project (you can remove it afterward). Note that the build folder can be used later on to [deploy your application](https://www.robinwieruch.de/deploy-applications-digital-ocean/).
 * Every time we change something in our code throughout the coming learning experience, make sure to check the output in your browser for getting visual feedback.
