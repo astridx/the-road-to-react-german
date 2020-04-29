@@ -26,4 +26,4 @@ npm --version
 *vXX.YY.ZZ
 ~~~~~~~
 
-If you have already installed Node and npm, make sure that your installation is the most recent version. If you're new to npm or need a refresher, this [npm crash course](https://www.robinwieruch.de/npm-crash-course) I created will get you up to speed.
+Stelle sicher, dass die neueste Version von Node und npm auf deinem Rechner installiert ist. Kennst du npm noch nicht oder wünscht du dir einen kurzen Überblick? In diesem Fall bringt dich mein [npm-Crashkurs] (https://www.robinwieruch.de/npm-crash-course) auf den neuesten Stand.
