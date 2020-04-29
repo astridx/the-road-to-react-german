@@ -19,7 +19,7 @@ const storiesReducer = (state, action) => {
 
 A reducer `action` is often associated with a `type`. If this type matches a condition in the reducer, do something. If it isn't covered by the reducer, throw an error to remind yourself the implementation isn't covered. The `storiesReducer` function covers one `type, and then returns the `payload` of the incoming action without using the current state to compute the new state. The new state is simply the `payload`.
 
-In the App component, exchange `useState` for `useReducer` for managing the `stories`. The new hook receives a reducer function and an initial state as arguments and returns an array with two items. The first item is the *current state*; the second item is the *state updater function* (also called *dispatch function*):
+In the App component, exchange `useState` for `useReducer` for managing the `stories`. The new hook receives a reducer function and an initial state as arguments and returns an array with two items. The first item is the *current state*; the second item is the *Statusaktualisierungsfunktion* (also called *dispatch function*):
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -37,7 +37,7 @@ const App = () => {
 };
 ~~~~~~~
 
-The new dispatch function can be used instead of the `setStories` function, which was returned from `useState`. Instead of setting state explicitly with the state updater function from `useState`, the `useReducer` state updater function dispatches an action for the reducer. The action comes with a `type` and an optional payload:
+The new dispatch function can be used instead of the `setStories` function, which was returned from `useState`. Instead of setting state explicitly with the Statusaktualisierungsfunktion from `useState`, the `useReducer` Statusaktualisierungsfunktion dispatches an action for the reducer. The action comes with a `type` and an optional payload:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -144,9 +144,9 @@ What we've covered is a minimal version of a reducer in JavaScript. It covers tw
 
 To fully grasp the concept of reducers in JavaScript and the usage of React's useReducer Hook, visit the linked resources in the exercises.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Advanced-State).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Conditional-Rendering...hs/React-Advanced-State?expand=1).
-* Read more about [reducers in JavaScript](https://www.robinwieruch.de/javascript-reducer).
-* Read more about reducers and useReducer in React ([0](https://www.robinwieruch.de/react-usereducer-hook), [1](https://reactjs.org/docs/hooks-reference.html#usereducer)).
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Advanced-State).
+  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Conditional-Rendering...hs/React-Advanced-State?expand=1).
+* Lese mehr zum Thema [reducers in JavaScript](https://www.robinwieruch.de/javascript-reducer).
+* Lese mehr zum Thema reducers and useReducer in React ([0](https://www.robinwieruch.de/react-usereducer-hook), [1](https://reactjs.org/docs/hooks-reference.html#usereducer)).
