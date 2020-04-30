@@ -96,17 +96,12 @@ const Search = ({ search, onSearch }) => (
 # leanpub-end-insert
 ~~~~~~~
 
-React's `props` are rarely used in components by themselves; rather, all the information that is contained in the `props` object is used. By destructuring the `props` object right away in the function signature, we can conveniently access all information without dealing with its `props` container. This should be the basic lesson learned from this section, however, we can take this one step further with the following advanced lessons.
+`props` werden selten nur innerhalb der eigenen Komponente verwendet. Stattdessen werden alle Informationen verwendet, die im Objekt `props` enthalten sind. Indem wir das Objekt `props` sofort in der Funktionssignatur destrukurieren, ist es möglich, bequem auf alle Informationen zuzugreifen, ohne das „props“-Objekt vorher zu bearbeiten. Das Erkennen und Verinnerlichen dieser Vereinfachung ist das Lernziel dieses Abschnitts. Im Weiteren werden wir hierauf aufbauen und die Art und Weise, wie wir destrukturieren verbessern. 
 
-Let's check out another scenario to dive deeper into advanced props handling in React: In order to prepare for this scenario, we will extract a new Item component from the List component with the previous lesson learned about object destructuring for React's `props` object:
+Schauen wir uns ein anderes Szenario an, und tauchen dabei tiefer in die Welt der `props` in React ein: Hierzu erstellen wir als erstes eine neue Item-Komponente. Dann nutzen wir unser gelerntes Wissen und setzen diese destrukturiert in der List-Komponente ein:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
-# leanpub-start-insert
-const List = ({ list }) =>
-  list.map(item => <Item key={item.objectID} item={item} />);
-# leanpub-end-insert
-
 # leanpub-start-insert
 const Item = ({ item }) => (
   <div>
@@ -119,11 +114,16 @@ const Item = ({ item }) => (
   </div>
 );
 # leanpub-end-insert
+
+# leanpub-start-insert
+const List = ({ list }) =>
+  list.map(item => <Item key={item.objectID} item={item} />);
+# leanpub-end-insert
 ~~~~~~~
 
-Now, the incoming `item` in the Item component has something in common with the previously discussed `props`: they are both JavaScript objects. Also, even though the `item` object has already been destructured from the `props` in the Item component's function signature, it isn't directly used in the Item component. The `item` object only passes its information (object properties) to the elements.
+`item` in der Itemkomponente hat etwas mit den zuvor besprochenen `props` gemeinsam: Beide sind JavaScript-Objekte. Das Objekt `item` wurde aus den `props` in der Funktionssignatur der Item-Komponente destrukturiert. Es wird trotzdem  nicht direkt in der Item-Komponente verwendet. Das Objekt `item` gibt seine Informationen (Objekteigenschaften) einzig und allein an andere Elemente weiter.
 
-The shown solution is fine as you will see in the ongoing discussion. However, I want to show you two more variations of it, because there are many things to learn about JavaScript objects here. Let's get started with *nested destructuring* and how it works:
+Wie du im Folgen feststellen wirst, ist diese Lösung bestens. Dessen ungeachtet zeige ich dir zwei weitere Variationen, da du so nebenbei Vieles über JavaScript-Objekte lernst und es meiner Meinung nach nie schadet über den Tellerrand zu schauen. Sehen wir uns zunächst die *verschachtelte Destrukturierung* an:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -153,7 +153,7 @@ console.log(firstName + ' has a pet called ' + name);
 // "Robin has a pet called Trixi"
 ~~~~~~~
 
-Nested destructuring helps us to access properties from objects which are deeply nested (e.g. the pet's name of a user). Now, in our Item components, because the `item` object is never directly used in the Item component's JSX elements, we can perform a *nested destructuring* in the component's function signature too:
+Die verschachtelte Destrukturierung hilft uns, auf Eigenschaften von Objekten zuzugreifen, die – wie der Name schon sagt – tiefer verschachtelt sind. Im Beispiel wäre dies der Name des Haustiers. Da das Objekt „item“ in unserer Item-Komponente niemals direkt verwendet wird, führen wir in der Funktionssignatur der Komponente eine *verschachtelte Destrukturierung* durch:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -185,9 +185,9 @@ const Item = ({
 );
 ~~~~~~~
 
-The nested destructuring helps us to gather all the needed information of the `item` object in the function signature for its immediate usage in the component's elements. However, nested destructuring introduces lots of clutter through indentations in the function signature. While it's here not the most readable option, it can be useful in other scenarios though.
+Die verschachtelte Destrukturierung hilft uns, alle erforderlichen Informationen des Objekts „item“ in der Funktionssignatur zu sammeln, um diese sofort in den Elementen der Komponente zu verwendet werden. Verschachtelte Destrukturierung führt unter Umständen zu Unordnung durch Einrückungen in der Funktionssignatur. Obwohl dies hier nicht die am besten lesbare Option ist, gibt es Szenarien, in denen sie nützlich ist.
 
-Let's take another approach with JavaScript's spread and rest operators. In order to prepare for it, we will refactor our List and Item components to the following implementation. Rather than passing the item as object from List to Item component, we are passing every property of the `item` object:
+Lassen Sie uns einen anderen Ansatz mit den [Spread-](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Spread_syntax) und [Rest](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Functions/rest_parameter)-Operatoren in JavaScript verfolgen. Um unser Beispiel darauf vorzubereiten, werden wir unsere Listen- und Item-Komponenten umgestalten. Anstatt das Element als Objekt von der Liste an die Itemkomponente zu übergeben, übergeben wir alle Eigenschaften des Objekts `item`:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -221,8 +221,7 @@ const Item = ({ title, url, author, num_comments, points }) => (
   </div>
 );
 ~~~~~~~
-
-Now, even though the Item component's function signature is more concise, the clutter ended up in the List component instead, because every property is passed to the Item component individually. We can improve this approach using [JavaScript's spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax):
+Obwohl die Funktionssignatur der Item-Komponente jetzt präziser ist, ist List-Komponente unübersichtlicher, da jede Eigenschaft einzeln an die Item-Komponente übergeben wird. Verbessern wir dies mithilfe des [JavaScript-Spread-Operators](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Spread_syntax):
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -254,7 +253,7 @@ console.log(user);
 // }
 ~~~~~~~
 
-JavaScript's spread operator allows us to literally spread all key/value pairs of an object to another object. This can also be done in React's JSX. Instead of passing each property one at a time via props from List to Item component as before, we can use JavaScript's spread operator to pass all the object's key/value pairs as attribute/value pairs to a JSX element:
+Mit dem Spread-Operator von JavaScript verteilen wir alle Schlüssel/Wert-Paare eines Objekts auf ein anderes Objekt. Dies ist ebenfalls mithilfe von Reacts JSX möglich. Anstatt, wie zuvor, jede Eigenschaft einzeln über props von der Liste an die Elementkomponente zu übergeben, verwenden wir den Spread-Operator von JavaScript, um alle Schlüssel/Wert-Paare des Objekts als Attribut/Wert-Paare an ein JSX-Element zu übergeben:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -278,7 +277,7 @@ const Item = ({ title, url, author, num_comments, points }) => (
 );
 ~~~~~~~
 
-This refactoring made the process of passing the information from List to Item component more concise. Finally, we'll use [JavaScript's rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters) as the icing on the cake. The JavaScript rest operator happens always as the last part of an object destructuring:
+Durch dieses Refactoring wurde die Übergabe der Informationen von der Liste an die Elementkomponente präziser. Wir verwenden [JavaScript-Restparameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters) als Sahnehäubchen. Der JavaScript-Restoperator tritt immer als letzter Teil einer Objekt Destrukturierung auf:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -305,9 +304,9 @@ console.log(city);
 // "Berlin"
 ~~~~~~~
 
-Even though both have the same syntax (three dots), the rest operator shouldn't be mistaken with the spread operator. Whereas the rest operator happens on the right side of an assignment, the spread operator happens on the left side. The rest operator is always used to separate an object from some of its properties.
+Obwohl beide dieselbe Syntax haben (drei Punkte), unterscheidet der Restoperator sich vom Spread-Operator. Während der Restoperator auf der rechten Seite einer Zuweisung steht, wird der Spread-Operator auf der linken Seite eingefügt. Der Restoperator wird immer verwendet, um ein Objekt von einigen seiner Eigenschaften zu trennen.
 
-Now it can be used in our List component to separate the `objectID` from the item, because the `objectID` is only used as `key` and isn't used in the Item component. Only the remaining (rest) item gets spread as attribute/value pairs into the Item component (as before):
+Jetzt kann es in unserer Listenkomponente verwendet werden, um die `objectID` vom Element zu trennen, da die `objectID` nur als `key` und nicht in der Element-Komponente verwendet wird. Nur das verbleibende (Rest-) Element wird als Attribut/Wert-Paar in die Elementkomponente (wie zuvor) verteilt:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -330,9 +329,10 @@ const Item = ({ title, url, author, num_comments, points }) => (
 );
 ~~~~~~~
 
-In this final variation, the rest operator is used to destructure the `objectID` from the rest of the `item` object. Afterward, the `item` is spread with its key/values pairs into the Item component. While this final variation is very concise, it comes with  advanced JavaScript features that may be unknown to some.
+In dieser letzten Variante wird der Restoperator verwendet, um die `objectID` vom Rest des `item` -Objekts zu destruktuieren. Anschließend wird das `item` mit seinen Schlüssel/Wert-Paaren in die Item-Komponente verteilt. Diese letzte Variante ist die prägnanteste, enthält dabei aber erweiterte JavaScript-Funktionen, die relativ unbekannt sind.
 
-In this section, we have learned about JavaScript object destructuring which can be used commonly for the `props` object, but also for other objects like the `item` object. We have also seen how nested destructuring can be used (Variation 1), but also how it didn't add any benefits in our case, because it just made the component bigger. In the future you will find more likely use cases for nested destructuring which are beneficial. Last but not least, you have learned about JavaScript's spread and rest operators, which shouldn't be confused with each other, to perform operations on JavaScript objects and to pass the `props` object from one component to another component in the most concise way. In the end, I want to point out the initial version again which we will keep over the next chapters:
+
+In diesem Abschnitt haben wir etwas über die Destrukturieung von JavaScript-Objekten gelernt, die häufig für das Objekt `props`, aber auch für andere Objekte wie das `item`-Objekt verwendet werden kann. Wir haben gesehen, wie verschachtelte Destrukturierung verwendet wird (Variante 1), dabei hat sie in unserem Fall keine Vorteile gebracht. Sie hat die Komponente nur vergrößert. In Zukunft werden Sie wahrscheinlich Anwendungsfälle für verschachtelte Destrukturierungen finden, die von Vorteil sind. Last but not least hast du die Spread- und Rest-Operatoren von Javascript kennengelernt, die nicht miteinander zu verwechselt sind. Sie werden verwendet um Operationen an JavaScript-Objekten auszuführen und das Objekt `props` auf präzise Weise von einer Komponente an eine andere Komponente zu übergeben. Am Ende komme ich auf die ursprüngliche Version des Codes zu unserer Anwendung zurück, auf die wir in den nächsten Kapiteln aufbauen werden:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -351,7 +351,7 @@ const Item = ({ item }) => (
 );
 ~~~~~~~
 
-It may not be the most concise, but it is the easiest to reason about. Variation 1 with its nested destructuring didn't add much benefit and variation 2 may add too many advanced JavaScript features (spread operator, rest operator) which are not familiar to everyone. After all, all these variations have their pros and cons. When refactoring a component, always aim for readability, especially when working in a team of people, and make sure make sure they're using a common React code style.
+Diese Version ist nicht die prägnanteste, aber die einfachsten. Variante 1 mit ihrer verschachtelten Destrukturierung hat keinen Nutzen gebracht, und Variante 2 fügt zu viele erweiterte JavaScript-Funktionen (Spread-Operator, Rest-Operator) hinzu, die nicht jedem bekannt sind. Alle haben ihre Vor- und Nachteile. Achte beim Refactoring einer Komponente immer auf Lesbarkeit, insbesondere wenn du in einem Team arbeiten, und stelle sicher, dass diese einen gemeinsamen React-Code-Stil verwenden.
 
 ### Übungen:
 
