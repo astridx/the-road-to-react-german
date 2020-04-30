@@ -121,7 +121,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Jetzt ist es möglich, nach „eact“, „React“ oder „react“ zu suchen und eine von zwei angezeigten Elementen zu sehen. Du hast deiner Anwendung eine interaktive Funktion hinzugefügt.
+Jetzt ist es möglich, nach „eact“, „React“ oder „react“ zu suchen und eine von zwei angezeigten Elementen zu sehen. Du kannst stolz auf dich sein.: Du hast deiner Anwendung eine interaktive Funktion hinzugefügt.
 
 Der verbleibende Abschnitt enthält nichts Neues. Er beinhaltet der Überarbeitung des aktuellen Codes. Wir werden am Ende die überarbeitete Version verwenden, daher ist es sinnvoll, diese Schritte nachzuvollziehen und sie zu verstehen. Zunächst präzisieren wir die Funktion mithilfe einer JavaScript-Pfeilfunktion:
 
