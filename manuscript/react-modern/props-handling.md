@@ -1,10 +1,10 @@
-## Props Handling (Advanced)
+## Umgang mit Eigenschaften (Props)
 
-Props are passed from parent to child down the component tree. Since we use props to transport information from component to component frequently, and sometimes via other components which are in between, it is useful to know a few tricks to make passing props more convenient.
+Eigenschaften (Props) werden im Komponentenbaum von oben nach unten übergeben. Da wir Props verwenden, um Informationen von Komponente zu Komponente und manchmal mithilfe anderer dazwischen liegender Komponenten zu transportieren, ist es hilfreich, einige Tricks zu kennen, die das Übergeben von Props bequemer gestalten.
 
-*Note: The following refactorings are recommended for you to learn different JavaScript/React patterns, though you can still build complete React applications without them. Consider this advanced React techniques that will make your source code more concise.*
+*Hinweis: Die nachfolgenden Tipps zur Überarbeitung zeige ich dir, damit du verschiedene JavaScript/React-Muster kennenlernst. Zum Erstellen einer React-Anwendungen sind diese keine Voraussetzung. Betrachte sie als fortgeschrittene React-Techniken, die deinen Quellcode verbessern.*
 
-React props are a JavaScript object, else we couldn't access `props.list` or `props.onSearch` in React components. Since `props` is an object which just passes information from one component to another component, we can apply a couple JavaScript tricks to it. For example, accessing an object's properties with modern [JavaScript object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
+Eigenschaften (Props) in React sind ein JavaScript-Objekt, andernfalls wäre es nicht möglich, in einer React-Komponente auf `props.list` oder `props.onSearch` zuzugreifen. Da `props` ein Objekt ist, das nur Informationen von einer Komponente an eine andere weitergibt, ist es möglich JavaScript-Tricks darauf anwenden. Beispiel: Zugriff auf die Eigenschaften eines Objekts mithilfe von moderner [JavaScript-Objekt Destrukturierung](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -13,21 +13,21 @@ const user = {
   lastName: 'Wieruch',
 };
 
-// without object destructuring
+// Ohne destrukturierende Zuweisung
 const firstName = user.firstName;
 const lastName = user.lastName;
 
 console.log(firstName + ' ' + lastName);
 // "Robin Wieruch"
 
-// with object destructuring
+// Mit destrukturierender Zuweisung
 const { firstName, lastName } = user;
 
 console.log(firstName + ' ' + lastName);
 // "Robin Wieruch"
 ~~~~~~~
 
-If we need to access multiple properties of an object, using one line of code instead of multiple lines is often simpler and more elegant. That's why object destructuring is already widely used in JavaScript. Let's transfer this knowledge to the React props in our Search component. First, we have to refactor the Search component's arrow function from concise body into block body:
+Wenn wir auf mehrere Eigenschaften eines Objekts zugreifen, ist die Verwendung einer Codezeile anstelle von mehreren Zeilen eleganter. Aus diesem Grund wird die Objekt- Destrukturierung in JavaScript gerne und häufig verwendet. Übertragen wir dieses Wissen auf die React-Eigenschaften (props) in unserer Suchkomponente. Dazu verwandeln wir zuerst die Pfeilfunktion der Suchkomponente vom prägnanten knappen Körper in den gewöhnlichen Blockkörper:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -50,7 +50,7 @@ const Search = props => {
 # leanpub-end-insert
 ~~~~~~~
 
-And second, we can apply the destructuring of the `props` object in the component's function body:
+Danach ist es möglich die Destrukturierung des `props`-Objekts im Funktionskörper der Komponente anzuwenden:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -75,7 +75,7 @@ const Search = props => {
 };
 ~~~~~~~
 
-That's a basic destructuring of the `props` object in a React component, so that the object's properties can be used conveniently in the component. However, we also had to refactor the Search component's arrow function from concise body into block body to access the properties of `props` with the object destructuring in the function's body. This would happen quite often if we followed this pattern, and it wouldn't make things easier for us, because we would constantly have to refactor our components. We can take all this one step further by destructuring the `props` object right away in the function signature of our component, omitting the function's block body of the component again:
+Dies ist eine grundlegende Destrukturierung des `props`-Objekts in einer React-Komponente. Auf diese Weise ist es möglich, die Eigenschaften des Objekts bequem in der Komponente zu verwenden. Unumgänglich ist es, die Pfeilfunktion der Suchkomponente vom knappen prägnanten Körper in den gewöhnlichen Blockkörper umgestalten, um auf die Eigenschaften von `props` mithilfe der Destrukturierung zuzugreifen. Eine große Vereinfachung ist dies somit nicht, da wir unsere Komponenten ständig umgestalten. Gehen wir deshalb einen Schritt weiter, indem wir das `props`- Objekt sofort in der Funktionssignatur unserer Komponente destrukturieren und den Blockkörper erneut weglassen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
