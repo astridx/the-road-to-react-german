@@ -1,8 +1,8 @@
-## Den Status in React in der Hierarchie nach oben verschieben
+## Den Status in der Hierarchie nach oben verschieben
 
-Die Suchkomponente hat ihren internen Status. Wir haben zwar einen Callback-Handler eingerichtet, um Informationen an die App-Komponente weiterzuleiten, verwenden diesen aktuell jedoch nicht. Zunächst ist es wichtig, herauszufinden, wie der Status der Suchkomponente für mehrere Komponenten freigegeben wird.
+Die Suchkomponente in der Beispiel-Anwendung verwaltet bisher ihren internen Status. Wir haben im letzten Abschnitt einen Callback-Handler eingerichtet, um Informationen an die App-Komponente weiterzuleiten, verwenden diesen bisher noch nicht für die Filterung der Liste. Hierfür ist es wichtig, herauszufinden, wie der Status der Suchkomponente für mehrere Komponenten freizugänglich ist.
 
-Der Suchbegriff wird in der App benötigt, um die Liste zu filtern, bevor sie als Eigenschaft (Props) an die List-Komponente übergeben wird. Es ist erforderlich, den Status von der Suchkomponente zur App-Komponente zu verlegen, ergo: **in der Hierarchie nach oben zu setzen**, um den Status für weitere Komponenten freizugeben.
+Der Suchbegriff wird in der App benötigt, um die Liste zu filtern, bevor diese als Eigenschaft (props) an die List-Komponente übergeben wird. Damit die App-Komponente auf den Status – und folglich auf die gefilterte Liste – Zugriff hat, ist es erforderlich, diesen von der Suchkomponente zur App-Komponente zu verschieben, ergo: **diesen in der Hierarchie nach oben rücken**.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -42,9 +42,9 @@ const Search = props => (
 );
 ~~~~~~~
 
-Wir haben uns im vorherigen Abschnitt die Rückruffunktion angesehen. Diese unterstützt uns dabei, einen offenen Kommunikationskanal von der Such- zur App-Komponente aufrechtzuerhalten. Die Suchkomponente verwaltet den Status nicht mehr, sondern leitet das Ereignis erst an die App-Komponente weiter, nachdem Text in das Eingabefeld eingegeben wurde. Mithilfe einer Rückruffunktion ist es dir außerdem möglich den `searchTerm` zusätzlich in der App-Komponente oder der Suchkomponente anzuzeigen, indem du ihn als Eigenschaft (Prop) weitergibst.
+Wir haben uns im vorherigen Abschnitt die Rückruffunktion angesehen. Diese unterstützt uns dabei, eine Verbindung von der Such- zur App-Komponente zu erstellen. Jetzt verwaltet die Suchkomponente den Status nicht mehr. Diese Aufgabe hat die App-Komponente übernommen. Nachdem Text in das Eingabefeld eingegeben wurde, gibt die Suchkomponente diese Information an die App-Komponente weiter. Es ist weiterhin möglich den `searchTerm` in der App-Komponente oder der Suchkomponente anzuzeigen, indem du ihn als Eigenschaft (props) weitergibst.
 
-Always manage the state at a component where every component that's interested in it is one that either manages the state (using information directly from state) or a component below the managing component (using information from props). If a component below needs to update the state, pass a callback handler down to it (see Search component). If a component needs to use the state (e.g. displaying it), pass it down as props.
+Verwalte den Status immer mithilfe einer Komponente, die entweder selbst am Inhalt interessiert ist oder der alle anderen, die den Status verwenden, in der Hierarchie folgen. Im ersten Fall liest die Komponente den Status direkt aus, im zweiten Fall holt sie alle Informationen aus den Eigenschaften (props) die übergeben werden. Damit es möglich ist, dass eine untergeordnete Komponente den Status aktualisiert, übergibst du einen Rückruf-Handler an sie (siehe Suchkomponente). Wenn diese den Status nicht ändert, sondern ausschließlich verwendet, zum Beispiel für die Anzeige am Bildschirm, reicht die Übergabe als Eigenschaft (Props) aus.
 
 Mithilfe des Suchfunktionsstatus in der App-Komponente filtern wir die Liste mit dem statusbehafteten `searchTerm`, bevor wir `list` an die Listenkomponente übergeben:
 
@@ -81,7 +81,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Here, the [JavaScript array's built-in filter function](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) is used to create a new filtered array. The filter function takes a function as an argument, which accesses each item in the array and returns true or false. If the function returns true, meaning the condition is met, the item stays in the newly created array; if the function returns false, it's removed:
+Hier verwenden wir die [integrierte Filterfunktion des JavaScript-Arrays](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), um eine gefilterte Liste zu erstellen. Die Filterfunktion verwendet eine Funktion als Argument, die auf jedes Element im Array zugreift und `true` oder `false` zurückgibt. Wenn diese `true` erwidert, was bedeutet, dass die Bedingung erfüllt ist, bleibt das Element im neu erstellten Array. Antwortet sie mit `false`, wird es entfernt:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -102,7 +102,7 @@ console.log(filteredWords);
 // ["exuberant", "destruction", "present"]
 ~~~~~~~
 
-The filter function checks whether the `searchTerm` is present in our story item's title, but it's still too opinionated about the letter case. If we search for "react", there is no filtered "React" story in your rendered list. To fix this problem, we have to lower case the story's title and the `searchTerm`.
+Die Filterfunktion prüft, ob `searchTerm` im Titel unseres Story-Elements vorkommt. Dabei ist Groß- und Kleinschreibung eine Besonderheit. Wenn wir nach „react“ suchen, bleibt die Ergebnisliste leer. Um dieses Problem zu beheben, konvertieren wir den Titel der Geschichte und den `searchTerm` in Kleinbuchstaben. So ist die Schreibweise egal, für die Suche gibt es ausschließlich kleine Buchstaben.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -121,9 +121,9 @@ const App = () => {
 };
 ~~~~~~~
 
-Now you should be able to search for "eact", "React", or "react" and see one of two displayed stories. You have just added an interactive feature to your application.
+Jetzt ist es möglich, nach „eact“, „React“ oder „react“ zu suchen und eine von zwei angezeigten Elementen zu sehen. Du hast deiner Anwendung eine interaktive Funktion hinzugefügt.
 
-The remaining section shows a couple of refactoring steps. We will be using the final refactored version in the end, so it makes sense to understand these steps and keep them. As learned before, we can make the function more concise using a JavaScript arrow function:
+Der verbleibende Abschnitt enthält nichts Neues. Er beinhaltet der Überarbeitung des aktuellen Codes. Wir werden am Ende die überarbeitete Version verwenden, daher ist es sinnvoll, diese Schritte nachzuvollziehen und sie zu verstehen. Zunächst präzisieren wir die Funktion mithilfe einer JavaScript-Pfeilfunktion:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -142,7 +142,7 @@ const App = () => {
 };
 ~~~~~~~
 
-In addition, we could turn the return statement into an immediate return, because no other task (business logic) happens before the return:
+Darüber hinaus könnten wir die return-Anweisung in eine sofortige Rückgabe umwandeln, da vorher keine andere Aufgabe anfällt:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -159,9 +159,9 @@ const App = () => {
 };
 ~~~~~~~
 
-So weit zur Überarbeitung der Filterfunktion. Es gibt viele unterschiedliche Herangehensweisen – und es ist nicht immer trivial zu entscheiden, wie das Gleichgewicht zwischen Übersichtlichkeit und Genauigkeit am besten umzusetzen ist. Ich tendiere dazu, den Code möglichst kurz zu belassen. Meiner Meinung nach bleibt er so ebenfalls lesbar.
+So weit zur Überarbeitung der Filterfunktion. Es gibt viele unterschiedliche Herangehensweisen – und es ist nicht immer trivial zu entscheiden, wie das Gleichgewicht zwischen Übersichtlichkeit und Genauigkeit am besten ist. Ich tendiere dazu, den Code möglichst kurz zu belassen. Meiner Meinung nach bleibt er so ebenfalls lesbar.
 
-Now we can manipulate state in React, using the Search component's callback handler in the App component to update it. The current state is used as a filter for the list. With the callback handler, we used information from the Search component in the App component to update the shared state and indirectly in the List component for the filtered list.
+Jetzt verwalten wir den Status über den Callback-Handler der Suchkomponente in der App-Komponente. Der aktuelle Status wird als Filter für die Liste verwendet. Mit dem Callback-Handler verwenden wir Informationen aus der Suchkomponente in der App-Komponente, um den gemeinsam genutzten Status zu verändern. Indirekt nutzen wir die Informationen in der Listenkomponente, um die gefilterte Liste auf dem neuesten Stand zu halten.
 
 ### Übungen:
 
