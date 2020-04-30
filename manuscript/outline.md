@@ -1,6 +1,6 @@
 # Ausblick
 
-Wir sind am Ende des Weges angekommen. Ich hoffe, du hattest Spaß beim Lesen und hast dir dabei gleichzeitig die React-Grundlagen angeeignet. Wenn dir das Buch gefallen hat, freue ich mich, wenn du es mit deinen Freunden teilst – mit denen, die wie du an React interessiert sind. Eine Rezension bei [Amazon](https://amzn.to/2JHlP42) ToDo oder [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react) hilft mir, in Zukunft bessere Inhalte basierend auf deinem Feedback anzubieten.
+Wir sind am Ende des Weges angekommen. Ich hoffe, du hattest Spaß beim Lesen und hast dir dabei gleichzeitig die React-Grundlagen angeeignet. Wenn dir das Buch gefallen hat, freue ich mich, wenn du es mit deinen Freunden teilst – mit denen, die wie du an React interessiert sind. Eine Rezension bei [Amazon](https://amzn.to/2JHlP42) oder [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react) hilft mir, in Zukunft bessere Inhalte basierend auf deinem Feedback anzubieten.
 
 Von hier aus empfehle ich dir, die Beispiel-Anwendung zu erweitern. Erstelle dein eigenes React-Projekt bevor du ein weiteres Buch, einen anderen Kurs oder ein zusätzliches Tutorial in Angriff nimmst. Probieren das Gelernte eine Woche lang aus und bringe es in die Produktion, indem du es veröffentlichst. Wende dich gerne an mich oder andere, um es zu präsentieren. Ich bin immer daran interessiert zu sehen, was meine Leser entwickelt haben und wie ich sie bestmöglich unterstütze.
 
