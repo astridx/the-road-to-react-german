@@ -169,4 +169,4 @@ Wenn du die Herausforderung annimmst und dich in das Thema benutzerdefinierte Ho
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Custom-Hooks).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Side-Effects...hs/React-Custom-Hooks?expand=1).
-* Lese mehr zum Thema [React Hooks](https://www.robinwieruch.de/react-hooks). Hooks sind das A und O in Komponenten, daher ist es wichtig, das Konzept zu verstehen ([0](https://de.reactjs.org/docs/hooks-overview.html), [1](https://de.reactjs.org/docs/hooks-custom.html)).
+* Lese mehr zum Thema [React Hooks](https://www.robinwieruch.de/react-hooks). Hooks sind das A und O in Funktionskomponenten, daher ist es wichtig, das Konzept zu verstehen ([0](https://de.reactjs.org/docs/hooks-overview.html), [1](https://de.reactjs.org/docs/hooks-custom.html)).
