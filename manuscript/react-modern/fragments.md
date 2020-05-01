@@ -1,6 +1,6 @@
 ## React Fragments
 
-Ein Manko in JSX ist es, dass für benachbarte JSX-Elemente in ein umschließendes HTML-Tag zum Rendern notwendig ist:
+Ein Manko in JSX ist es, dass für benachbarte JSX-Elemente ein umschließendes HTML-Tag zum Rendern notwendig ist. Unter Umständen führt dies sogar dazu, dass das resultierende HTML ungültig ist.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -39,7 +39,7 @@ const Search = ({ search, onSearch }) => [
 ];
 ~~~~~~~
 
-Das vorausgehende Beispiel ist eine Möglichkeit, mehrere Elemente in JSX zu verwenden. Aufgrund des zusätzlichen Schlüsselattributs leidet die Übersichtlichkeit. **Fragmente** lösen dieses Problem:
+Das vorausgehende Beispiel ist eine Möglichkeit, mehrere Elemente in JSX zu verwenden. Aufgrund des zusätzlichen Schlüsselattributs leidet die Übersichtlichkeit. **React Fragmente** lösen dieses Problem:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
