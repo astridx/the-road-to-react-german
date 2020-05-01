@@ -1,6 +1,6 @@
-## React Component Composition
+## Komponenten Komposition in React
 
-Now we'll discover how to use a React element in the same fashion as an HTML element, with an opening and closing tag:
+In diesem Abschnitt lernst du, wie du ein React-Element auf dieselbe Weise wie ein HTML-Element mit einem öffnenden und schließenden Tag verwendest. Sieh dir dazu zunächst den folgenden Code an:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -27,7 +27,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Instead of using the `label` prop from before, we inserted the text "Search:" between the component's element's tags. In the InputWithLabel component, you have access to this information via **React's children** prop. Instead of using the `label` prop, use the `children` prop to render everything that has been passed down from above where you want it:
+Im obigen Beispiel fügen wir den Text „Search:“ jetzt direkt zwischen die Tags der Komponente ein. In der InputWithLabel-Komponente hast du inzwischen über die Eigenschaft **children** Zugriff auf diese Information. Verwende anstelle von `label` die Eigenschaft `children`, um alles, was von oben weitergegeben wird, an der gewünschten Stelle anzuzeigen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -55,7 +55,7 @@ const InputWithLabel = ({
 );
 ~~~~~~~
 
-Now the React component's elements behave similar to native HTML. Everything that's passed between a component's elements can be accessed as `children` in the component and be rendered somewhere. Sometimes when using a React component, you want to have more freedom from the outside what to render in the inside of a component:
+Jetzt verhalten sich die Elemente der React-Komponente ähnlich wie natives HTML. Alles, was innerhalb der Komponente eingefügt ist, ist als Kind `children` verwendbar und somit renderbar. Du wirst sehen, du freust dich bei der Verwendung einer React-Komponente oft über Einflussmöglichkeiten auf das, was in ihr gerendert wird:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -82,11 +82,11 @@ const App = () => {
 };
 ~~~~~~~
 
-With this React feature, we can compose React components into each other. We've used it with a JavaScript string and with a string wrapped in an HTML `<strong>` element, but it doesn't end here. You can pass components via React children as well.
+Mit diesem Feature ist es möglich React-Komponenten je nach Wunsch zusammenzustellen. Im Beispiel nutzen wir einen JavaScript-String und einen String, der in ein HTML-Element `<strong>` eingeschlossen ist. Dies ist nur ein kleiner Ausblick auf das Machbare. Es ist möglich ganze Komponenten mithilfe von React-`children` zu übergeben.
 
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Component-Composition).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Reusable-React-Component...hs/React-Component-Composition?expand=1).
-* Lese mehr zum Thema React Component Composition ([0](https://www.robinwieruch.de/react-component-composition), [1](https://reactjs.org/docs/composition-vs-inheritance.html)).
-* Create a simple text component that renders a string and passes it as `children` to the InputWithLabel component.
+* Lese mehr über die Komponenten Komposition in React ([0](https://www.robinwieruch.de/react-component-composition), [1](https://de.reactjs.org/docs/composition-vs-inheritance.html)).
+* Erstelle eine Textkomponente, die einen String rendert und übergib diese mittels `children` an die InputWithLabel-Komponente.
