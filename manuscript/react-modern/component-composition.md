@@ -1,6 +1,6 @@
 ## Komponenten Komposition in React
 
-In diesem Abschnitt lernst du, wie du ein React-Element auf dieselbe Weise wie ein HTML-Element mit einem öffnenden und schließenden Tag verwendest. Sieh dir dazu zunächst den folgenden Code an:
+In diesem Abschnitt lernst du, wie du ein React-Element auf dieselbe Weise wie ein HTML-Element mit einem öffnenden und schließenden Tag verwendest:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -55,7 +55,7 @@ const InputWithLabel = ({
 );
 ~~~~~~~
 
-Jetzt verhalten sich die Elemente der React-Komponente ähnlich wie natives HTML. Alles, was innerhalb der Komponente eingefügt ist, ist als Kind `children` verwendbar und somit renderbar. Du wirst sehen, du freust dich bei der Verwendung einer React-Komponente oft über Einflussmöglichkeiten auf das, was in ihr gerendert wird:
+Jetzt verhalten sich die Elemente der React-Komponente ähnlich wie natives HTML. Alles, was innerhalb der Komponente eingefügt ist, ist als Kind `children` verwendbar und somit renderbar. Du wirst sehen, du freust dich bei der Verwendung einer React-Komponente oft über Einflussmöglichkeiten auf das, was in ihr passiert:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -88,5 +88,5 @@ Mit diesem Feature ist es möglich React-Komponenten je nach Wunsch zusammenzust
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Component-Composition).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Reusable-React-Component...hs/React-Component-Composition?expand=1).
-* Lese mehr über die Komponenten Komposition in React ([0](https://www.robinwieruch.de/react-component-composition), [1](https://de.reactjs.org/docs/composition-vs-inheritance.html)).
+* Lese mehr über die Komposition von Komponenten in React ([0](https://www.robinwieruch.de/react-component-composition), [1](https://de.reactjs.org/docs/composition-vs-inheritance.html)).
 * Erstelle eine Textkomponente, die einen String rendert und übergib diese mittels `children` an die InputWithLabel-Komponente.
