@@ -1,8 +1,8 @@
-## Reusable React Component
+## Wiederverwendebare React Komponenten
 
-Have a closer look at the Search component. The label element has the text "Search: "; the id/htmlFor attributes have the `search` identifier; the value is called `search`; and the callback handler is called `onSearch`. The component is very much tied to the search feature, which makes it less reusable for the rest of the application and non search-related tasks. It also risks introducing bugs if two of these Search components are rendered side by side, because the htmlFor/id combination is duplicated, breaking the focus when one of the labels is clicked by the user.
+Schaue dir die Suchkomponente genauer an. Das Label-Element hat den Text "Search: ". Das `id/htmlFor-Attribut` hat die Kennung `search`. Der Wert heißt `search` und der Callback-Handler heißt `onSearch`. Die Komponente ist in hohem Maße mit der Suchfunktion gekoppelt. Das macht sie für den Rest der Anwendung und für nichtsuchbezogene Aufgaben wertlos. Außerdem besteht die Gefahr, dass Fehler auftreten, wenn zwei dieser Suchkomponenten nebeneinander gerendert werden, da die Kombination aus `htmlFor` und `id` dupliziert wird. Im Übrigen wird der Fokus nicht immer korrekt gesetzt, wenn der Benutzer auf eines der Labels klickt.
 
-Since the Search component doesn't have any actual "search" functionality, it takes little effort to generalize other search domain properties to make the component reusable for the rest of the application. Let's pass an additional `id` and `label` prop to the Search component, rename the actual value and callback handler to something more abstract, and rename the component accordingly:
+Da die Suchkomponente keine tatsächliche "Such"-Funktionalität hat, ist sie leicht verallgemeinerbar. In einer allgemeineren Form wäre sie für den Rest der Anwendung verwendbar. Deshalb übergeben wir der Suchkomponente zusätzlich die Eigenschaften (props) `id` und `label`, geben dem Wert und dem Callback-Handler einen allgemeineren Namen und benennen die Komponente um:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -51,7 +51,7 @@ const InputWithLabel = ({ id, label, value, onInputChange }) => (
 );
 ~~~~~~~
 
-It's not fully reusable yet. If we want an input field for data like a number (`number`) or phone number (`tel`), the `type` attribute of the input field needs to be accessible from the outside too:
+Unsere Komponente ist nicht vollständig wiederverwendbar. Falls wir ein Eingabefeld für [Daten](https://developer.mozilla.org/de/docs/Web/HTML/Element/input#Arten_des_%3Cinput%3E-Elements) wie eine E-Mail-Adresse (`email`) oder eine Telefonnummer (`tel`) wünschen, ist es notwendig, dass das Attribut `type` des Eingabefelds von außen zugänglich ist:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -79,13 +79,13 @@ const InputWithLabel = ({
 );
 ~~~~~~~
 
-From the App component, no `type` prop is passed to the InputWithLabel component, so it is not specified from the outside. The [default parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters) from the function signature takes over for the input field.
+Von der App-Komponente wird keine `type`-Eigenschaft (props) an die InputWithLabel-Komponente übergeben, sodass dies nicht von außen festgelegt ist. Das Eingabefeld übernimmt den  [Standardparameter](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Functions/Default_parameters) aus der Funktionssignatur.
 
-With just a few changes we turned a specialized Search component into a more reusable component. We generalized the naming of the internal implementation details and gave the new component a larger API surface to provide all the necessary information from the outside. We aren't using the component elsewhere, but we increased its ability to handle the task if we do.
+Mit nur wenigen Änderungen haben wir eine spezialisierte Suchkomponente in eine wiederverwendbarere Komponente verwandelt. Wir haben Namen verallgemeinert und die API erweitert. So werden alle erforderlichen Informationen von außen bereitgestellt. Wir verwenden die Komponente bisher an keiner anderen Stelle. Ab jetzt wäre dies unkompliziert möglich, weil alle notwendigen Voraussetzungen gegeben sind.
 
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Reusable-React-Component).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Fragments...hs/Reusable-React-Component?expand=1).
 * Lese mehr zum Thema [Reusable React Components](https://www.robinwieruch.de/react-reusable-components).
-* Before we used the text "Search:" with a ":". How would you deal with it now? Would you pass it with `label="Search:"` as prop to the InputWithLabel component or hardcode it after the `<label htmlFor={id}>{label}:</label>` usage in the InputWithLabel component? We will see how to cope with this later.
+* Ist es dir aufgefallen: Bisher haben wir den Text "Search:" mit einem ":" verwendet. Welche Möglichkeiten haben wir jetzt? Würdest du `label="Search:"` als Eigenschaft (props) an die InputWithLabel-Komponente übergeben oder den Doppelpunkt in der InputWithLabel-Komponente mit `<label htmlFor={id}>{label}:</label>` fest codieren? Wir werden diese Frage später im Buch erneut aufgreifen und beantworten.
