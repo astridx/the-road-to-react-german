@@ -1,6 +1,6 @@
 ## React Fragments
 
-One caveat with JSX, especially when we create a dedicated Search component, is that we must introduce a wrapping HTML element to render it:
+Ein Manko in JSX ist es, dass für benachbarte JSX-Elemente in ein umschließendes HTML-Tag zum Rendern notwendig ist:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -21,7 +21,7 @@ const Search = ({ search, onSearch }) => (
 );
 ~~~~~~~
 
-Normally the JSX returned by a React component needs only one wrapping top-level element. To render multiple top-level elements side-by-side, we have to wrap them into an array instead. Since we're working with a list of elements, we have to give every sibling element React's `key` attribute:
+Normalerweise benötigt der von einer React-Komponente zurückgegebene JSX-Code ein umhüllendes Element. Mit Hilfe eines Arrays ist es möglich, mehrere Elemente nebeneinander zu rendern. Wenn wir mit einer Liste von Elementen arbeiten, ist es unumgänglich, dass wir jedem Geschwisterelement einen Schlüssel `key` zuweisen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -39,7 +39,7 @@ const Search = ({ search, onSearch }) => [
 ];
 ~~~~~~~
 
-This is one way to have multiple top-level elements in your JSX. It doesn't turn out very readable, though, as it becomes verbose with the additional key attribute. Another solution is to use a **React fragment**:
+Das vorausgehende Beispiel ist eine Möglichkeit, mehrere Elemente in JSX zu verwenden. Aufgrund des zusätzlichen Schlüsselattributs leidet die Übersichtlichkeit. **Fragmente** lösen dieses Problem:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -60,10 +60,10 @@ const Search = ({ search, onSearch }) => (
 );
 ~~~~~~~
 
-A fragment wraps other elements into a single top-level element without adding to the rendered output. Both Search elements should be visible in your browser now, with input field and label. So if you prefer to omit the wrapping `<div>` or `<span>` elements, substitute them with an empty tag that is allowed in JSX, and doesn't introduce intermediate elements in our rendered HTML.
+Ein Fragment gruppiert Kindelementen, ohne dem DOM einen zusätzlichen Knoten hinzuzufügen. Beide Suchelemente sind jetzt in deinem Browser mit Eingabefeld und Label sichtbar. Wenn du es bevorzugst, die umschließenden Elemente `<div>` oder `<span>` im resultierenden HTML nicht auszugeben, ersetze sie durch ein leeres Tag. Dies ist in JSX zulässig.
 
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Fragments).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Custom-Hooks...hs/React-Fragments?expand=1).
-* Lese mehr zum Thema [React fragments](https://reactjs.org/docs/fragments.html).
+* Lese mehr zum Thema [React Fragments](https://de.reactjs.org/docs/fragments.html).
