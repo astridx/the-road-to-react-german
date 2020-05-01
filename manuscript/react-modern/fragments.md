@@ -1,6 +1,6 @@
 ## React Fragments
 
-Ein Manko in JSX ist es, dass für benachbarte JSX-Elemente ein umschließendes HTML-Tag zum Rendern notwendig ist. Unter Umständen führt dies sogar dazu, dass das resultierende HTML ungültig ist.
+Ein Manko in JSX ist es, dass für benachbarte JSX-Elemente ein umschließendes HTML-Tag zum Rendern notwendig ist:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
