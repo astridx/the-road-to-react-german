@@ -1,8 +1,8 @@
 ## Wiederverwendebare React Komponenten
 
-Schaue dir die Suchkomponente genauer an. Das Label-Element hat den Text "Search: ". Das `id/htmlFor-Attribut` hat die Kennung `search`. Der Wert heißt `search` und der Callback-Handler heißt `onSearch`. Die Komponente ist in hohem Maße mit der Suchfunktion gekoppelt. Das macht sie für den Rest der Anwendung und für nichtsuchbezogene Aufgaben wertlos. Außerdem besteht die Gefahr, dass Fehler auftreten, wenn zwei dieser Suchkomponenten nebeneinander gerendert werden, da die Kombination aus `htmlFor` und `id` dupliziert wird. Im Übrigen wird der Fokus nicht immer korrekt gesetzt, wenn der Benutzer auf eines der Labels klickt.
+Schaue dir die Suchkomponente genauer an. Das Label-Element hat den Text "Search: ". Das `id/htmlFor-Attribut` hat die Kennung `search`. Der Wert heißt `search` und der Callback-Handler heißt `onSearch`. Du siehst: Die Komponente ist in hohem Maße mit der Suchfunktion gekoppelt. Das macht sie für den Rest der Anwendung und für nichtsuchbezogene Aufgaben wertlos. Außerdem besteht die Gefahr, dass Fehler auftreten, wenn zwei dieser Suchkomponenten nebeneinander gerendert werden, da die Kombination aus `htmlFor` und `id` dupliziert wird. Im Übrigen wird der Fokus nicht immer korrekt gesetzt, wenn der Benutzer auf eines der Labels klickt.
 
-Da die Suchkomponente keine tatsächliche "Such"-Funktionalität hat, ist sie leicht verallgemeinerbar. In einer allgemeineren Form wäre sie für den Rest der Anwendung verwendbar. Deshalb übergeben wir der Suchkomponente zusätzlich die Eigenschaften (props) `id` und `label`, geben dem Wert und dem Callback-Handler einen allgemeineren Namen und benennen die Komponente um:
+Da die Suchkomponente keine tatsächliche "Such"-Funktionalität hat, ist sie leicht verallgemeinerbar. In einer allgemeineren Form wäre sie für den Rest der Anwendung besser wiederverwendbar. Deshalb geben wir der Suchkomponente zusätzlich die Eigenschaften (props) `id` und `label` und benennen den Wert, den Callback-Handler und die Komponente um. Wir geben allen einen allgemeineren Namen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -81,7 +81,7 @@ const InputWithLabel = ({
 
 Von der App-Komponente wird keine `type`-Eigenschaft (props) an die InputWithLabel-Komponente übergeben, sodass dies nicht von außen festgelegt ist. Das Eingabefeld übernimmt den  [Standardparameter](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Functions/Default_parameters) aus der Funktionssignatur.
 
-Mit nur wenigen Änderungen haben wir eine spezialisierte Suchkomponente in eine wiederverwendbarere Komponente verwandelt. Wir haben Namen verallgemeinert und die API erweitert. So werden alle erforderlichen Informationen von außen bereitgestellt. Wir verwenden die Komponente bisher an keiner anderen Stelle. Ab jetzt wäre dies unkompliziert möglich, weil alle notwendigen Voraussetzungen gegeben sind.
+Mit nur wenigen Änderungen haben wir eine spezialisierte Suchkomponente in eine wiederverwendbarere Komponente verwandelt. Wir haben die Namen verallgemeinert und die API erweitert. So werden alle erforderlichen Informationen von außen bereitgestellt. Wir verwenden die Komponente bisher an keiner anderen Stelle. Ab jetzt wäre dies unkompliziert möglich, weil alle notwendigen Voraussetzungen gegeben sind.
 
 ### Übungen:
 
