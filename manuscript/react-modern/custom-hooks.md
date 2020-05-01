@@ -1,10 +1,10 @@
-## React Custom Hooks (Advanced)
+## Benutzerdefinierte React Hooks (fortgeschrittene Kenntnisse)
 
-Thus far we've covered the two most popular hooks in React: useState and useEffect. useState is used to make your application interactive; useEffect is used to opt into the lifecycle of your components.
+Bisher haben wir die beiden beliebtesten Hooks in React behandelt: `useState` und `useEffect`. Mithilfe von `useState` wird die Anwendung interaktiv – wechselseitig beeinflussend. Mit `useEffect` nimmst du Einfluss auf den Lebenszyklus deiner Komponente.
 
-We'll eventually cover more hooks that come with React -- in this volume and in other resources -- though we won't cover all of them here. Next we'll tackle **React custom Hooks**; that is, building a hook yourself.
+Sei gespannt, in diesem Buch wirst du weitere React Hooks kennenlernen. Als Nächstes befassen wir uns mit **Reacts Custom Hooks**. Anhand des Namens vermutest du es sicher schon: Wir entwickeln selbst einen Hook.
 
-We will use the two hooks we already possess to create a new custom hook called `useSemiPersistentState`, named as such because it manages state yet synchronizes with the local storage. It's not fully persistent because clearing the local storage of the browser deletes relevant data for this application. Start by extracting all relevant implementation details from the App component into this new custom hook:
+Wir erstellen einen benutzerdefinierten Hook. Diesen nennen wir `useSemiPersistentState`. Dabei bauen wir auf den beiden vorhandenen Hooks auf. Seine Aufgabe wird es sein, den Status zu verwaltet und den lokalen Speicher zu synchronisieren. Da durch das Löschen des Browser-Caches relevante Daten gelöscht werden ist der lokale Speicher nicht vollständig persistent. Verschiebe als Erstes alle wichtigen Inhalte von der App-Komponente in den neuen Hook:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -25,7 +25,7 @@ const App = () => {
 };
 ~~~~~~~
 
-So far, it's just a function around our previously in the App component used `useState` and `useEffect` hooks. Before we can use it, let's return the values that are needed in our App component from this custom hook:
+Bisher enthält der neue Hook nichts anderes als `useState` und `useEffect`. Um ihn zu nutzen geben wir die Werte zurück, die in unserer App-Komponente von diesem erwartet werden:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -44,7 +44,7 @@ const useSemiPersistentState = () => {
 };
 ~~~~~~~
 
-We are following two conventions of React's built-in hooks here. First, the naming convention which puts the "use" prefix in front of every hook name; second, the returned values are returned as an array. Now we can use the custom hook with its returned values in the App component with the usual array destructuring:
+Wir befolgen hier zwei Konventionen in React. Erstens die Namenskonvention, bei der das Präfix "use" vor jedem Hook-Namen steht. Zweitens werden die Werte als Array zurückgegeben. Im nächsten Beispiel verwenden wir den benutzerdefinierten Hook in der App-Komponente. Hierbei nutzen wir die Array-Destrukturierung:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -69,7 +69,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Another goal of a custom hook should be reusability. All of this custom hook's internals are about the search domain, but the hook should be for a value that's set in state and synchronized in local storage. Let's adjust the naming therefore:
+Ein weiteres Ziel eines benutzerdefinierten Hooks ist die Wiederverwendbarkeit. Die Variablennamen in diesem Hooks beziehen sich auf die Suchfunktion. Der Hook ist besser wiederverwendbar, wenn er neutrale Namen verwendet. Deshalb optimieren wir im nächsten Schritt die Benennung. Im Hook beziehen wir uns nachfolgend auf einen neutralen Wert, der im Status festgelegt ist und über den lokalen Speicher synchronisiert wird:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -92,9 +92,9 @@ const useSemiPersistentState = () => {
 };
 ~~~~~~~
 
-We handle an abstracted "value" within the custom hook. Using it in the App component, we can name the returned current state and Statusaktualisierungsfunktion anything domain-related (e.g. `searchTerm` and `setSearchTerm`) with array destructuring.
+Wir nutzen den abstrahierten Wert "value" innerhalb des benutzerdefinierten Hooks. Wenn wir diesen in der App-Komponente verwenden, ist es möglich, den zurückgegebenen aktuellen Status und die Statusaktualisierungsfunktion für alle Elemente (zum Beispiel `searchTerm` and `setSearchTerm`) mit Array-Destrukturierung verwenden.
 
-There is still one problem with this custom hook. Using the custom hook more than once in a React application leads to an overwrite of the "value"-allocated item in the local storage. To fix this, pass in a key:
+Unser Hook ist weiterhin verbesserungsfähig. Die mehrmalige Verwendung des benutzerdefinierten Hooks in der React-Anwendung führt zu einem Überschreiben des mit „Wert“ zugewiesenen Elements im lokalen Speicher. Dies korrigieren wir mithilfe eines Schlüssels:  
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -129,9 +129,9 @@ const App = () => {
 };
 ~~~~~~~
 
-Since the key comes from outside, the custom hook assumes that it could change, so it needs to be included in the dependency array of the `useEffect` hook. Without it, the side-effect may run with an outdated key (also called *stale*) if the key changed between renders.
+Da der Schlüssel von außen stammt, nimmt der benutzerdefinierte Hook an, dass er sich ändert. Er wird daher in das Abhängigkeitsarray des Hooks `useEffect` aufgenommen. Ohne dies ist der Seiteneffekt mit einem veralteten Schlüssel (*stale*) machbar, wenn dieser zwischen den Renderings geändert wird.
 
-Another improvement is to give the custom hook the initial state we had from the outside:
+Eine weitere Verbesserung besteht darin, dem benutzerdefinierten Hook den Ausgangszustand mitzugeben:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -161,12 +161,12 @@ const App = () => {
 };
 ~~~~~~~
 
-You've just created your first custom hook. If you're not comfortable with custom hooks, you can revert the changes and use the `useState` and `useEffect` hook as before, in the App component.
+Glückwunsch! Du hast deinen ersten benutzerdefinierten Hook erstellt. Mach die Änderungen rückgängig, wenn du mit dieser Art Hook nicht vertraut bist. Verwende dann weiterhin `useState` und `useEffect`.
 
-However, knowing more about custom hooks gives you lots of new options. A custom hook can encapsulate non-trivial implementation details that should be kept away from a component; can be used in more than one React component; and can even be open-sourced as an external library. Using your favorite search engine, you'll notice there are hundreds of React hooks that could be used in your application without worry over implementation details.
+Wenn du die Herausforderung annimmst und dich in das Thema benutzerdefinierte Hooks einarbeitest, öffnen sich dir viele neue Optionen. Es ist möglich, komplizierte Implementierungen umzusetzen und diese gleichzeitig von deiner Komponente fernzuhalten (abzukapseln). Der Code ist dabei in mehreren Komponenten wiederverwendbar. Und nicht nur das, er ist als externe Bibliothek in einer Open-Source-Version für andere nutzbar. Wenn du in der Suchmaschine deines Vertrauens eine Suche startest, wirst du eine Menge React-Hooks finden. Jeder einzelne ist in React-Anwendungen verwendbar. Dabei ist es nicht notwendig, dass man die Implementierungsdetails kennt.
 
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Custom-Hooks).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Side-Effects...hs/React-Custom-Hooks?expand=1).
-* Lese mehr zum Thema [React Hooks](https://www.robinwieruch.de/react-hooks) to get a good understanding of them. They are the bread and butter in React function components, so it's important to really understand them ([0](https://reactjs.org/docs/hooks-overview.html), [1](https://reactjs.org/docs/hooks-custom.html)).
+* Lese mehr zum Thema [React Hooks](https://www.robinwieruch.de/react-hooks). Hooks sind das A und O in Komponenten, daher ist es wichtig, das Konzept zu verstehen ([0](https://de.reactjs.org/docs/hooks-overview.html), [1](https://de.reactjs.org/docs/hooks-custom.html)).
