@@ -17,7 +17,8 @@ const storiesReducer = (state, action) => {
 # leanpub-end-insert
 ~~~~~~~
 
-Eine Reduktionsaktion wird oft mit `type` assoziiert. Wenn dieser Typ einer Bedingung im Reduzierer entspricht, dann führe eine Aktion aus. Wenn dies nicht so ist, dann gib einen Fehler aus. So erinnerst du dich selbst daran, dass hier die Implementierung lückenhaft ist. Die Funktion `storiesReducer` deckt einen „Typ“ ab und gibt dann die „Nutzlast“ der eingehenden Aktion zurück, ohne den aktuellen Status zur Berechnung des neuen Status zu verwenden. Der neue Zustand ist die „Nutzlast“.
+Eine Reduktionsaktion wird oft mit `type` assoziiert. Wenn dieser Typ einer Bedingung im Reduzierer entspricht, dann führe eine Aktion aus. Wenn dies nicht so ist, dann gib einen Fehler aus. So erinnerst du dich selbst daran, dass hier die Implementierung lückenhaft ist. Die Funktion `storiesReducer` deckt einen `type` ab und gibt dann die `Nutzlast` der eingehenden Aktion zurück, ohne den aktuellen Status zur Berechnung des neuen Status zu verwenden. Der neue Zustand ist die `Nutzlast`.
+
 A reducer `action` is often associated with a `type`. If this type matches a condition in the reducer, do something. If it isn't covered by the reducer, throw an error to remind yourself the implementation isn't covered. The `storiesReducer` function covers one `type, and then returns the `payload` of the incoming action without using the current state to compute the new state. The new state is simply the `payload`.
 
 In the App component, exchange `useState` for `useReducer` for managing the `stories`. The new hook receives a reducer function and an initial state as arguments and returns an array with two items. The first item is the *current state*; the second item is the *Statusaktualisierungsfunktion* (also called *dispatch function*):
