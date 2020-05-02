@@ -1,16 +1,16 @@
 # Styling in React
 
-There are many ways to style a React application, and there are lengthy debates about the best **styling strategy** and **styling approach**. We'll go over a few of these approaches without giving them too much weight. There will be some pro and con arguments, but it's mostly a matter of what fits best for developers and teams.
+Es gibt viele Möglichkeiten, eine React-Anwendung zu gestalten, und es gibt ausgiebige Debatten über die beste **Styling-Strategie** und den besten **Styling-Ansatz**. Wir werden einige dieser Ansätze durchgehen. Wie überall im Leben gibt es für jede Sichtweise Vor- und Nachteile. Hier gehe ich darauf ein, wie Entwickler und Teams herausfinde, was für sie am besten passt.
 
-We will begin React styling with common CSS in React, but then explore two alternatives for more advanced **CSS-in-CSS** (**CSS Modules**) and **CSS-in-JS** (**Styled Components**) strategies. CSS Modules and Styled Components are only two approaches out of many in both groups of strategies. We'll also cover how to include scalable vector graphics (SVGs), such as a logo or icons, in our React application.
+Wir beginnen mit allgemeinem CSS und sehen uns dann fortgeschrittene Alternativen an:  **CSS-in-CSS** (**CSS Modules**) und **CSS-in-JS** (**Styled Components**). CSS-Module und Styled Components sind nur zwei von vielen Ansätzen in beiden Gruppen. Außerdem lernst du, wie du skalierbare Vektorgrafiken (SVGs), wie zum Beispiel ein Logo oder Icons, in deine React-Anwendung integrierst.
 
-If you don't want to build common UI components (e.g. button, dialog, dropdown) from scratch, you can always pick a [popular UI library suited for React](https://www.robinwieruch.de/react-libraries), which provides these components by default. However, it is better for learning React if you try building these components before using a pre-built solution. As a result, we won't use any of the UI component libraries.
+Wenn du planst allgemeine UI-Komponenten (z. B. Schaltfläche, Dialog, Dropdown) nicht selbst einzufügen, ist es möglich, eine [beliebte React-Bibliothek für React] auszuwählen(https://www.robinwieruch.de/react-libraries). Du befindest dich aber auf einer soliden Basis, wenn du React lernst und diese Komponenten selbst erstellst, bevor du eine vorgefertigte Lösung verwendst. Daher werden wir hier im Buch keine der UI-Komponentenbibliotheken nutzen.
 
-The following styling approaches and SVGs are pre-configured in `create-react-app`. If you're in control of the build tools (e.g. Webpack), they might need to be configured to import CSS or SVG files. Since we are using create-react-app, we can use these files as assets right away.
+Die nachfolgenden Ansätze für das Styling sind in der `create-react-app` vorkonfiguriert. Wenn du die Build-Tools (beispielsweise Webpack) selbst verwaltest, sind unter Umständen Konfigurationsschritte auf deiner Seite erforderlich. Da wir die `create-react-app` verwenden, nutzen wir alles als Assets.
 
 ## CSS in React
 
-Common CSS in React is similar to the standard CSS you may have already learned. Each web application gives HTML elements a `class` (in React it's `className`) attribute that is styled in a CSS file later.
+Allgemeines CSS in React ähnelt dem Standard-CSS, das du gelernt hast. Jede Webanwendung gibt HTML-Elementen ein Attribut `class` (in React ist es `className`), das später in einer CSS-Datei mit Eigenschaften konkretisiert wird.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -41,7 +41,7 @@ const App = () => {
 };
 ~~~~~~~
 
-The `<hr />` was removed because the CSS handles the border in the next steps. We'll import the CSS file, which is done with the help of the create-react-app configuration:
+Das HTML-Element `<hr />` wurde entfernt, da CSS sich zukünftig um die Randbereich kümmern wird. Wir importieren die CSS-Datei mithilfe von `create-react-app`:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
