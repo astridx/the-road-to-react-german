@@ -1,8 +1,8 @@
 ## React Advanced State
 
-All state management in this application makes heavy use of React's useState Hook. More sophisticated state management gives you **React's useReducer Hook**, though. Since the concept of reducers in JavaScript splits the community in half, we won't cover it extensively here, but the exercises at the end of this section should give you plenty of practice.
+Das gesamte Statusmanagement in unserer Anwendung verwendet den useState Hook von React. Eine ausgefeiltere Statusverwaltung nutzt zusätzlich **Reacts useReducer Hook**. Da sich beim Konzept der Reduzierungen in JavaScript die Geister scheiden, werden ich hier nicht ausführlich darauf eingehen. Unbeachtet lasse ich das Thema aber nicht. Die Übungen am Ende dieses Abschnitts gibt dir genug Material, um dir deine eigene Meinung zu bilden.
 
-We'll move the `stories` state management from the `useState` hook to a new `useReducer` hook. First, introduce a reducer function outside of your components. A reducer function always receives `state` and `action`. Based on these two arguments, a reducer always returns a new state:
+Wir werden die Statusverwaltung der `stories` vom `useState`-Hook in einen neuen `useReducer`-Hook verschieben. Führe zunächst eine Reduzierfunktion außerhalb deiner Komponenten ein. Eine solche Funktion empfängt immer einen `state` und eine `action`. Basierend auf diesen beiden Argumenten gibt ein Reduzierer einen neuen Status zurück:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -17,6 +17,7 @@ const storiesReducer = (state, action) => {
 # leanpub-end-insert
 ~~~~~~~
 
+Eine Reduktionsaktion wird oft mit `type` assoziiert. Wenn dieser Typ einer Bedingung im Reduzierer entspricht, dann führe eine Aktion aus. Wenn dies nicht so ist, dann gib einen Fehler aus. So erinnerst du dich selbst daran, dass hier die Implementierung lückenhaft ist. Die Funktion `storiesReducer` deckt einen „Typ“ ab und gibt dann die „Nutzlast“ der eingehenden Aktion zurück, ohne den aktuellen Status zur Berechnung des neuen Status zu verwenden. Der neue Zustand ist die „Nutzlast“.
 A reducer `action` is often associated with a `type`. If this type matches a condition in the reducer, do something. If it isn't covered by the reducer, throw an error to remind yourself the implementation isn't covered. The `storiesReducer` function covers one `type, and then returns the `payload` of the incoming action without using the current state to compute the new state. The new state is simply the `payload`.
 
 In the App component, exchange `useState` for `useReducer` for managing the `stories`. The new hook receives a reducer function and an initial state as arguments and returns an array with two items. The first item is the *current state*; the second item is the *Statusaktualisierungsfunktion* (also called *dispatch function*):
@@ -149,4 +150,4 @@ To fully grasp the concept of reducers in JavaScript and the usage of React's us
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Advanced-State).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Conditional-Rendering...hs/React-Advanced-State?expand=1).
 * Lese mehr zum Thema [reducers in JavaScript](https://www.robinwieruch.de/javascript-reducer).
-* Lese mehr zum Thema reducers and useReducer in React ([0](https://www.robinwieruch.de/react-usereducer-hook), [1](https://reactjs.org/docs/hooks-reference.html#usereducer)).
+* Lese mehr zum Thema reducers and useReducer in React ([0](https://www.robinwieruch.de/react-usereducer-hook), [1](https://de.reactjs.org/docs/hooks-reference.html#usereducer)).
