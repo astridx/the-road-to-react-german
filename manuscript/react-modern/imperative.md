@@ -9,7 +9,7 @@ React ist von Natur aus deklarativ. Das gilt für JSX genauso wie für die Hooks
   * Übergänge einstellen.
   * Übergängen aufeinander abstimmen.
 * Integration von Bibliotheken von Drittanbietern:
-  * [D3] (https://d3js.org/) ist eine beliebte imperative Bibliothek für das Erstellen von Diagrammen.
+  * [D3] (https://d3js.org/) ist eine beliebte imperative Bibliothek zur Bearbeitung von Diagrammen.
 
 Die imperative Programmierung in React ist ausführlich und nicht immer intuitiv. In diesem Abschnitt durchdenken wir ein kleines Beispiel. Ziel ist es, den Fokus eines Eingabefelds zu setzen. Bei der deklarativen Methode reicht es auf den ersten Blick aus, das Autofokus-Attribut des Eingabefelds festzulegen:
 
@@ -24,7 +24,7 @@ const InputWithLabel = ({ ... }) => (
       type={type}
       value={value}
 # leanpub-start-insert
-        
+      autoFocus
 # leanpub-end-insert
       onChange={onInputChange}
     />
