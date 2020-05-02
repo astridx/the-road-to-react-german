@@ -1,8 +1,8 @@
-## React Conditional Rendering
+## Bedingte Darstellung in React
 
-Handling asynchronous data in React leaves us with conditional states: with data and without data. This case is already covered, though, because our initial state is an empty list rather than `null`. If it was null, we'd have to handle this issue in our JSX. However, since it's `[]`, we `filter()` over an empty array for the search feature, which leaves us with an empty array. This leads to rendering nothing in the List component's `map()` function.
+Das Arbeiten mit asynchronen Daten in React führt zu bedingten Zustände: Die Daten sind abrufbar oder es liegen keine Daten `null` vor. Da der Ausgangszustand in unserer Anwendung eine leere Liste ist und nicht `null`, betrifft der letzte Fall uns nicht. Wenn `null` möglich wäre, müssten wir dieses Problem in JSX lösen. Da es sich um `[]` handelt, filtern wir ein leeres Array in der Suchfunktion `filter()`. Übrig bleibt wie erwartet ein leeres Array. Dies führt dazu, dass in der Funktion `map()` der List-Komponente nichts angezeigt wird.
 
-In a real world application, there are more than two conditional states for asynchronous data, though. Consider showing users a loading indicator when data loading is delayed:
+In einer realen Anwendung gibt es mehr als zwei bedingte Zustände bei asynchrone Daten. Zum Beispiel `schwebend oder pending`. In diesem Falle blendest du idealerweise einen Ladeindikator ein:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -31,7 +31,7 @@ const App = () => {
 };
 ~~~~~~~
 
-With [JavaScript's ternary operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator), we can inline this conditional state as a **conditional rendering** in JSX:
+Mit [dem ternären Operator von JavaScript](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) binden wir diesen als **bedingte Darstellung** in JSX ein:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -61,7 +61,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Asynchronous data comes with error handling, too. It doesn't happen in our simulated environment, but there could be errors if we start fetching data from another third-party API. Introduce another state for error handling and solve it in the promise's `catch()` block when resolving the promise:
+Asynchrone Daten kommen zusammen mit Datenübertragungsfehlern. In unserer simulierten Umgebung tritt dies nicht auf. In der Realität sind Fehler unvermeidbar. Insbesondere dann, wenn Daten von der API eines Drittanbieters abgerufen werden. Führe deshalb einen eigenen Status für die Fehlerbehandlung ein und fange Fehler im Block `catch()` des Promis Objektes ab:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -91,7 +91,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Next, give the user feedback in case something went wrong with another conditional rendering. This time, it's either rendering something or nothing. So instead of having a ternary operator where one side returns `null`, use the logical `&&` operator as shorthand:
+Gib den Benutzern als nächstes ein Feedback, falls ein Fehler aufgetreten ist. Dieses Mal wird entweder etwas oder nichts gerendert. Verwende anstelle eines ternären Operators, bei dem eine Seite `null` zurückgibt, den logischen Operator `&&` als Kurzform:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -118,14 +118,14 @@ const App = () => {
 };
 ~~~~~~~
 
-In JavaScript, a `true && 'Hello World'` always evaluates to 'Hello World'. A `false && 'Hello World'` always evaluates to false. In React, we can use this behaviour to our advantage. If the condition is true, the expression after the logical `&&` operator will be the output. If the condition is false, React ignores it and skips the expression.
+In JavaScript wird `true && 'Hallo Welt'` immer als `'Hallo Welt'` ausgewertet. `false && 'Hallo Welt'` wird immer mit `false` bewertet. In React nutzen wir dieses Verhalten zu unserem Vorteil. Wenn die erste Bedingung erfüllt ist, wird der Ausdruck nach dem logischen Operator `&&` ausgegeben. Im Falle von `false` überspringt React den Ausdruck.
 
-Conditional rendering is not just for asynchronous data though. The simplest example of conditional rendering is a boolean flag state that's toggled with a button. If the boolean flag is true, render something, if it is false, don't render anything.
+Bedingtes Rendern ist nicht nur für asynchrone Daten sinnvoll. Das einfachste Beispiel ist eine boolesche Variable, die mit einer Schaltfläche umgeschaltet wird. Wenn die Variable `true` ist, wird etwas gerendert. Ist sie mit `false` belegt, bleibt die Anzeige leer.
 
-This feature can be quite powerful, because it gives you the ability to conditionally render JSX. It's yet another tool in React to make your UI more dynamic. And as we've discovered, it's often necessary for more complex control flows like asynchronous data.
+Dieses Feature ist insbesondere deshalb leistungsfähig, weil es JSX bedingt rendert. Es handelt sich um ein weiteres Tool in React, um die Benutzeroberfläche dynamisch zu gestalten. Und, wie wir festgestellt haben, ist dies für komplexere Steuerungsabläufe wie asynchronen Daten unerlässlich.
 
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Conditional-Rendering).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Asynchronous-Data...hs/React-Conditional-Rendering?expand=1).
-* Lese mehr zum Thema [conditional rendering in React](https://www.robinwieruch.de/conditional-rendering-react/).
+* Lese mehr über die bedingte Darstellung in React([0](https://www.robinwieruch.de/conditional-rendering-react/), [1](https://de.reactjs.org/docs/conditional-rendering.html)).
