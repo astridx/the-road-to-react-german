@@ -20,7 +20,7 @@ Derzeit arbeite ich als selbstständiger Software-Ingenieur und Trainer. Es erf�
 
 **Wie bekomme ich Updates?**
 
-Ich habe zwei Kanäle, in denen ich Updates zu meinen Inhalten teile. Abonniere [Updates per E-Mail](https://www.getrevue.co/profile/rwieruch) oder folge [mir auf Twitter](https://twitter.com/rwieruch). Unabhängig vom Kanal ist es mein Ziel, nur qualitativ hochwertige Inhalte zu teilen. Sobald du eine Benachrichtigung erhalten hast, dass sich das Buch geändert hat, ist es dir möglich, eine neue Version von meiner Website herunterzuladen.
+Ich informiere auf zwei Arten über Aktualisierungen zu meinen Inhalten. Erfahre Neues per E-Mail, indem du [den Newsletter abonnierst](https://www.getrevue.co/profile/rwieruch) oder folge [mir auf Twitter](https://twitter.com/rwieruch). Unabhängig vom Kanal ist es mein Ziel, qualitativ hochwertige Inhalte zu teilen. Sobald du eine Benachrichtigung über eine Änderung erhalten hast, ist es dir möglich, eine neue Version von meiner Website herunterzuladen.
 
 **Ist das Lernmaterial aktuell?**
 
