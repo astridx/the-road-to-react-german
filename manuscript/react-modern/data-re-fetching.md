@@ -1,8 +1,8 @@
-## Data Re-Fetching in React
+## Erneutes Abrufen von Daten in React
 
-So far, the App component fetches a list of stories once with a predefined query (`react`). After that, users can search for stories on the client-side. Now we'll move this feature from client-side to server-side searching, using the actual `searchTerm` as a dynamic query for the API request.
+Bisher ruft die App-Komponente eine Liste über ein hartcodiertes Suchwort ab (`react`). Danach ist es möglich, dass Benutzer clientseitigen die Suchfunktion nutzen. Jetzt verschieben wir diese Funktion vom Client zum Server. Dabei verwenden wir `searchTerm` als dynamisches Suchwort bei der API-Anfrage.
 
-First, remove `searchedStories`, because we will receive the stories searched from the API. Pass only the regular stories to the List component:
+Tausche zuerst `searchedStories` gegen `stories.data`, da wir ohnehin die Suchergebnisse von der API abfragen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -25,7 +25,7 @@ const App = () => {
 };
 ~~~~~~~
 
-And second, instead of using a hardcoded search term like before, use the actual `searchTerm` from the component's state. If `searchTerm` is an empty string, do nothing:
+Im zweiten Schritt stellst du sicher, dass anstelle des hartcodierten Suchwortes `searchTerm` aus dem Status der App-Komponente für die Anfrage verwendet wird. Wenn `searchTerm` eine leere Zeichenfolge ist, geschieht keine Abfrage:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -60,6 +60,8 @@ const App = () => {
 
 The initial search respects the search term now, so we'll implement data refetching. If the `searchTerm` changes, run the side-effect for the data fetching again. If `searchTerm` is not present (e.g. null, empty string, undefined), do nothing (as a more generalized condition):
 
+Die anfängliche Suche berücksichtigt jetzt den Suchbegriff für den Status der Liste. Daher implementieren wir das erneute Abrufen von Daten, indem wir `searchTerm` in den  bisher leeren Array im zweiten Argument der Funktion `useEffect` einfügen. Wenn sich `searchTerm` ändert, wird somit der Seiteneffekt aufgerufen. Außerdem verallgemeinern wir den Umgang mit einem problematischen Suchwort: Wenn `searchTerm` nicht vorhanden ist (null, leere Zeichenfolge, undefiniert), passiert nichts:
+
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
 const App = () => {
@@ -91,9 +93,9 @@ const App = () => {
 };
 ~~~~~~~
 
-We changed the feature from a client-side to server-side search. Instead of filtering a predefined list of stories on the client, the `searchTerm` is used to fetch a server-side filtered list. The server-side search happens for the initial data fetching, but also for data fetching if the `searchTerm` changes. The feature is fully server-side now.
+Wir haben die Funktion von einer clientseitigen auf eine serverseitige Suche geändert. Anstatt eine vordefinierte Liste auf dem Client zu filtern, wird mit `searchTerm` eine serverseitig gefilterte abgerufen. Das anfängliche und das Abrufen von Daten, wenn sich das `searchTerm` ändert, geschieht serverseitig. Die Funktion ist jetzt vollständig serverseitig.
 
-Re-fetching data each time someone types into the input field isn't optimal, so we'll correct that soon. Because this implementation stresses the API, you might experience errors if you use requests too often.
+Das erneute Abrufen von Daten bei jeder Eingabe in das Eingabefeld ist nicht optimal. Wir werden dies daher bald korrigieren. Da diese Implementierung die API belastet, treten Fehler auf, wenn die Anfragen verdichtet eingehen.
 
 ### Übungen:
 
