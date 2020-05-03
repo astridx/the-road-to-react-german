@@ -64,7 +64,7 @@ Das Buch verbindet eine Gemeinschaft von Lernenden, die sich gegenseitig helfen 
 
     **JavaScript-Enthusiasten**
 
-    JavaScript-Enthusiasten mit Kenntnissen in anderen modernen SPA-Frameworks: Wenn du Erfahrungen mit Angular oder Vue gesammelt hast, wirst du zu Beginn vieles sehen, was anders ist. Aber: Alle diese Frameworks haben dieselben Grundlagen --- JavaScript und HTML. Nach einer Änderung der Denkweise wirst du dich schnell in React einarbeiten.
+    JavaScript-Enthusiasten mit Kenntnissen in anderen modernen SPA-Frameworks: Wenn du Erfahrungen mit Angular oder Vue gesammelt hast, wirst du zu Beginn vieles sehen, was anders ist. Aber: Alle diese Frameworks bauen auf derselben Grundlage auf, JavaScript und HTML. Nach einer Änderung der Denkweise wirst du dich schnell in React zurechtfinden.
 
     **Nicht-JavaScript-Entwickler**
 
@@ -72,7 +72,7 @@ Das Buch verbindet eine Gemeinschaft von Lernenden, die sich gegenseitig helfen 
 
     **Designer und UI/UX-Enthusiasten**
 
-    Wenn dein Hauptberuf im Bereich Design, Benutzerinteraktion oder Benutzererfahrung liegt, zögere nicht, dieses Buch in die Hand zu nehmen. Wenn du mit HTML und CSS vertraut bist, ist dies vorteilhaft. Nachdem du einige JavaScript-Grundlagen durchgearbeitet hast, wirst du die Inhalte dieses Buch verstehen. Heutzutage rücken UI/UX näher an die Implementierungsdetails heran. Es bringt dir sicher Vorteile, wenn du weißt, wie die Dinge im Code funktionieren.
+    Arbeitest du im Bereich Design, Benutzerinteraktion oder Benutzererfahrung? Dann zögere nicht, dieses Buch in die Hand zu nehmen. Wenn du mit HTML und CSS vertraut bist, ist dies vorteilhaft. Nachdem du einige JavaScript-Grundlagen durchgearbeitet hast, wirst du die Inhalte dieses Buch verstehen. Heutzutage rücken UI und UX näher an die Implementierungsdetails heran. Es bringt dir Vorteile, wenn du weißt, wie die Dinge im Code funktionieren.
 
     **Teamleiter oder Produktmanager**
 
