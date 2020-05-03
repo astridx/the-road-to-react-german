@@ -32,48 +32,48 @@ Erst nachdem du das Buch bei Amazon gekauft hast, hast du festgestellt, dass das
 
 Wenn du ein gedrucktes Buch gekauft hast, notiere bitte deine Lernschritte im Buch. Es war meine Absicht, die Printausgabe groß zu halten, um größeren Codefragmenten genügend Platz zu geben, und um dir ausreichend Spielraum zum Arbeiten einzuräumen.
 
-**Wie kann ich beim Lesen des Buches Hilfe bekommen?    **
+**Wie kann ich beim Lesen des Buches Hilfe bekommen?**
 
-Das Buch verbindet eine Gemeinschaft von Lernenden, die sich gegenseitig helfen und  Menschen, die mitlesen. Tritt dieser Community gerne bei. So erhältst du Hilfe oder du hilfst anderen. Denn die Unterstützung anderer hilft dir dabei, dein eigenes Verständnis zu verinnerlichen. Folge der Navigation zu meinen Kursen auf meiner [Website](https://www.robinwieruch.de/), melde dich dort an und navigieren Sie zur Community.
+Das Buch verbindet eine Gemeinschaft von Lernenden, die sich gegenseitig helfen und  Menschen, die mitlesen. Tritt dieser Community gerne bei. So erhältst du Hilfe oder du hilfst anderen. Denn die Unterstützung anderer hilft dir dabei, dein eigenes Verständnis zu verinnerlichen. Folge der Navigation zu meinen Kursen auf meiner [Website](https://www.robinwieruch.de/), melde dich dort an und navigiere zur Community.
 
-    **Kann ich helfen, den Inhalt zu verbessern?**
+**Kann ich helfen, den Inhalt zu verbessern?**
 
-    Wenn du Feedback hast, schreibe mir gerne eine E-Mail und ich werde deine Vorschläge berücksichtigen. Erwarte bitte keine Antwort von mir, denn das ist Aufgabe der Community.
+Wenn du Feedback hast, schreibe mir gerne eine E-Mail und ich werde deine Vorschläge berücksichtigen. Erwarte bitte keine Antwort von mir, denn das ist Aufgabe der Community.
 
-    **Wie und wo melde ich  einen Fehler?**
+**Wie und wo melde ich einen Fehler?**
 
-    Wenn du einen Fehler im Code findest, melde dies bitte über Github. Am Ende jedes Abschnitts findest du eine URL zum aktuellen GitHub-Projekt. Bitte eröffne hier ein Issue. Ich bin dankbar für deine Hilfe!
+Wenn du einen Fehler im Code findest, melde dies bitte über Github. Am Ende jedes Abschnitts findest du eine URL zum aktuellen GitHub-Projekt. Bitte eröffne hier ein Issue. Ich bin dankbar für deine Hilfe!
 
-    **Wie unterstütze ich das Projekt idealerweise?**
+**Wie unterstütze ich das Projekt idealerweise?**
 
-    Du findest meine Lektionen nützlich und möchtest einen Beitrag leisten? Dann suche bitte auf der [About-Seite meiner Website](https://www.robinwieruch.de/about/) nach Informationen darüber, welche Möglichkeiten es gibt, mich zu unterstützen. Es ist hilfreich für meine Leser, wenn du darüber informierst, wie meine Bücher dir geholfen haben. Wenn ich über einen der bereitgestellten Kanäle einen Beitrag veröffentliche, habe ich die Freiheit, ausführliche Kurse zu erstellen und weiterhin kostenloses Material anzubieten.
+Du findest meine Lektionen nützlich und möchtest einen Beitrag leisten? Dann suche bitte auf der [About-Seite meiner Website](https://www.robinwieruch.de/about/) nach Informationen darüber, welche Möglichkeiten es gibt, mich zu unterstützen. Es ist hilfreich für meine Leser, wenn du darüber informierst, wie meine Bücher dir geholfen haben. Wenn ich über einen der bereitgestellten Kanäle einen Beitrag veröffentliche, habe ich die Freiheit, ausführliche Kurse zu erstellen und weiterhin kostenloses Material anzubieten.
 
-    **Was ist deine Motivation hinter dem Buch?**
+**Was ist deine Motivation hinter dem Buch?**
 
-    Mir ist es wichtig, über aktuelle Themen zu berichten. Ich stoße oft auf online Materialien, die nicht aktualisiert werden oder nur einen kleinen Teil eines Themas abdecken. Manchmal haben Menschen Schwierigkeiten, Lernmaterial zu finden. Ich biete aktuelles Lernmaterial und hoffe, dass ich Menschen mit meinen Projekten unterstütze, indem ich ihnen Inhalte kostenlos zur Verfügung stelle oder [anderes](https://www.robinwieruch.de/giving-back-by-learning-react/).
+Mir ist es wichtig, über aktuelle Themen zu berichten. Ich stoße oft auf online Materialien, die nicht aktualisiert werden oder nur einen kleinen Teil eines Themas abdecken. Manchmal haben Menschen Schwierigkeiten, Lernmaterial zu finden. Ich biete aktuelles Lernmaterial und hoffe, dass ich Menschen mit meinen Projekten unterstütze, indem ich ihnen Inhalte kostenlos zur Verfügung stelle oder [anderes](https://www.robinwieruch.de/giving-back-by-learning-react/).
 
-    ## Für wen ist dieses Buch?
+## Für wen ist dieses Buch?
 
-    **JavaScript-Anfänger**
+**JavaScript-Anfänger**
 
-    JavaScript-Anfänger mit Grundkenntnissen in JS, CSS und HTML: Wenn du die Webentwicklung während einer Ausbildung lernst und ein grundlegendes Verständnis für JS, CSS und HTML hast, biete dir dieses Buch dir alles, was du zum Erlernen von React benötigst. Wenn du dich wackelig fühlst und der Meinung bist, dass dein JavaScript-Wissen lückenhaft ist, zögere nicht, diese Lücke zu schließen, bevor du mit dem Buch fortfährst. Du wirst im Buch zusätzlich viele Hinweise und Links zu grundlegendem Wissen finden.
+JavaScript-Anfänger mit Grundkenntnissen in JS, CSS und HTML: Wenn du die Webentwicklung während einer Ausbildung lernst und ein grundlegendes Verständnis für JS, CSS und HTML hast, biete dir dieses Buch dir alles, was du zum Erlernen von React benötigst. Wenn du dich wackelig fühlst und der Meinung bist, dass dein JavaScript-Wissen lückenhaft ist, zögere nicht, diese Lücke zu schließen, bevor du mit dem Buch fortfährst. Du wirst im Buch zusätzlich viele Hinweise und Links zu grundlegendem Wissen finden.
 
-    **JavaScript-Veteranen**
+**JavaScript-Veteranen**
 
-    jQuery-JavaScript-Veteranen: Wenn du JavaScript früher ausgiebig mit jQuery, MooTools und Dojo verwendet hast, scheint die neue JavaScript-Ära überwältigend zu sein. Das grundlegende Wissen hat sich nicht geändert, es ist nach wie vor JavaScript und HTML unter der Haube --- daher hilft dieses Buch dir beim Einstieg in React.
+jQuery-JavaScript-Veteranen: Wenn du JavaScript früher ausgiebig mit jQuery, MooTools und Dojo verwendet hast, scheint die neue JavaScript-Ära überwältigend zu sein. Das grundlegende Wissen hat sich nicht geändert, es ist nach wie vor JavaScript und HTML unter der Haube --- daher hilft dieses Buch dir beim Einstieg in React.
 
-    **JavaScript-Enthusiasten**
+**JavaScript-Enthusiasten**
 
-    JavaScript-Enthusiasten mit Kenntnissen in anderen modernen SPA-Frameworks: Wenn du Erfahrungen mit Angular oder Vue gesammelt hast, wirst du zu Beginn vieles sehen, was anders ist. Aber: Alle diese Frameworks bauen auf derselben Grundlage auf, JavaScript und HTML. Nach einer Änderung der Denkweise wirst du dich schnell in React zurechtfinden.
+JavaScript-Enthusiasten mit Kenntnissen in anderen modernen SPA-Frameworks: Wenn du Erfahrungen mit Angular oder Vue gesammelt hast, wirst du zu Beginn vieles sehen, was anders ist. Aber: Alle diese Frameworks bauen auf derselben Grundlage auf, JavaScript und HTML. Nach einer Änderung der Denkweise wirst du dich schnell in React zurechtfinden.
 
-    **Nicht-JavaScript-Entwickler**
+**Nicht-JavaScript-Entwickler**
 
-    Wenn du vorher eine andere Programmiersprache gelernt hast, bist du mit den verschiedenen Aspekten der Programmierung vertraut. Nachdem Sie die Grundlagen zu JavaScript und HTML gelernt hast, wirst du React zusammen mit mir schnell lernen.
+Wenn du vorher eine andere Programmiersprache gelernt hast, bist du mit den verschiedenen Aspekten der Programmierung vertraut. Nachdem Sie die Grundlagen zu JavaScript und HTML gelernt hast, wirst du React zusammen mit mir schnell lernen.
 
-    **Designer und UI/UX-Enthusiasten**
+**Designer und UI/UX-Enthusiasten**
 
-    Arbeitest du im Bereich Design, Benutzerinteraktion oder Benutzererfahrung? Dann zögere nicht, dieses Buch in die Hand zu nehmen. Wenn du mit HTML und CSS vertraut bist, ist dies vorteilhaft. Nachdem du einige JavaScript-Grundlagen durchgearbeitet hast, wirst du die Inhalte dieses Buch verstehen. Heutzutage rücken UI und UX näher an die Implementierungsdetails heran. Es bringt dir Vorteile, wenn du weißt, wie die Dinge im Code funktionieren.
+Arbeitest du im Bereich Design, Benutzerinteraktion oder Benutzererfahrung? Dann zögere nicht, dieses Buch in die Hand zu nehmen. Wenn du mit HTML und CSS vertraut bist, ist dies vorteilhaft. Nachdem du einige JavaScript-Grundlagen durchgearbeitet hast, wirst du die Inhalte dieses Buch verstehen. Heutzutage rücken UI und UX näher an die Implementierungsdetails heran. Es bringt dir Vorteile, wenn du weißt, wie die Dinge im Code funktionieren.
 
-    **Teamleiter oder Produktmanager**
+**Teamleiter oder Produktmanager**
 
-    Wenn du Teamleiter oder Produktmanager einer Entwicklungsabteilung bist, bietet dir dieses Buch eine Übersicht über alle wesentlichen Teile einer React-Anwendung. In jedem Abschnitt wird ein Konzept, ein Muster oder eine Technik erläutert. So wird Schritt für Schritt die Gesamtarchitektur aufgebaut und verbessert. Ergebnis ist eine fertige Anwendung, die alle wesentlichen Aspekte von React behandelt.
+Wenn du Teamleiter oder Produktmanager einer Entwicklungsabteilung bist, bietet dir dieses Buch eine Übersicht über alle wesentlichen Teile einer React-Anwendung. In jedem Abschnitt wird ein Konzept, ein Muster oder eine Technik erläutert. So wird Schritt für Schritt die Gesamtarchitektur aufgebaut und verbessert. Ergebnis ist eine fertige Anwendung, die alle wesentlichen Aspekte von React behandelt.
