@@ -1,6 +1,6 @@
-## Memoized Handler in React (Advanced)
+## Memoized Handler in React (Fortgeschrittene Anleitung)
 
-The previous sections have taught you about handlers, callback handlers, and inline handlers. Now we'll introduce a **memoized handler**, which can be applied on top of handlers and callback handlers. For the sake of learning, we will move all the data fetching logic into a standalone function outside the side-effect (A); wrap it into a `useCallback` hook (B); and then invoke it in the `useEffect` hook (C):
+In den vorherigen Abschnitten hast du einiges über Handler allgemein, Callback-Handler und Inline-Handler erfahren. In diesem Abschnitt stelle ich dir **Memoized Handler** vor, die auf Handler und Callback-Handler angewendet werden. [Memoisation](https://de.wikipedia.org/wiki/Memoisation) ist eine Technik zur Beschleunigung von Software, indem Rückgabewerte von Funktionen zwischengespeichert anstatt neu berechnet werden. Zu Lernzwecken verschieben wir die gesamte Datenabruflogik in eine eigenständige Funktion außerhalb des Seiteneffekts (A). Umgeben diese mit einem `useCallback`-Hook (B) und rufe sie im `useEffect`-Hook (C) auf:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -9,7 +9,7 @@ const App = () => {
 
   // A
 # leanpub-start-insert
-  const handleFetchStories = React.useCallback(() => {
+  const handleFetchStories = React.useCallback(() => { // B
 # leanpub-end-insert
     if (!searchTerm) return;
 
@@ -40,9 +40,10 @@ const App = () => {
 };
 ~~~~~~~
 
-The application behaves the same; only the implementation logic has been refactored. Instead of using the data fetching logic anonymously in a side-effect, we made it available as a function for the application.
+Das Verhalten der Anwendung ändert sich nicht. Ausschließlich die Implementierungslogik wurde überarbeitet. Vorher war die Datenabruflogik anonym als Seiteneffekt implementiert. Jetzt ist sie als Funktion für die Anwendung verfügbar.
 
 Let's explore  why React's `useCallback` Hook is needed here. This hook creates a memoized function every time its dependency array (E) changes. As a result, the `useEffect` hook runs again (C) because it depends on the new function (D):
+Untersuchen wir als Nächstes, ob der `useCallback`-Hook weiterhin benötigt wird. Dieser Hook erstellt jedes Mal eine `memoized`-Funktion, wenn sich das Abhängigkeitsarray (E) ändert. Als Folge dessen wird der `useEffect`-Hook erneut aufgerufen (C), da er von der neuen Funktion (D) abhängt:
 
 {title="Visualization",lang="javascript"}
 ~~~~~~~
@@ -51,7 +52,7 @@ Let's explore  why React's `useCallback` Hook is needed here. This hook creates 
 3. run: side-effect
 ~~~~~~~
 
-If we didn't create a memoized function with React's `useCallback` Hook, a new `handleFetchStories` function would be created with each App component is rendered. The `handleFetchStories` function would be created each time, and would be executed in the `useEffect` hook to fetch data. The fetched data is then stored as state in the component. Because the state of the component changed, the component re-renders and creates a new `handleFetchStories` function. The side-effect would be triggered to fetch data, and we'd be stuck in an endless loop:
+Wenn wir mit dem `useCallback`-Hook keine `memoized`-Funktion erstellten, würde mit jeder App-Komponente eine neue `handleFetchStories`-Funktion erstellt und im `useEffect`-Hook aufgerufen, um Daten abzurufen. Die abgerufenen Daten werden dann als Status in der Komponente gespeichert. Da sich der Status der Komponente geändert hat, wird diese neu gerendert und eine neue Funktion `handleFetchStories` erstellt. Der Seiteneffekt würde ausgelöst, um Daten abzurufen, und wir finden uns in einer Endlosschleife wieder:
 
 {title="Visualization",lang="javascript"}
 ~~~~~~~
@@ -64,12 +65,12 @@ If we didn't create a memoized function with React's `useCallback` Hook, a new `
 ...
 ~~~~~~~
 
-The `useCallback` hook changes the function only when the search term changes. That's when we want to trigger a re-fetch of the data, because the input field has new input and we want to see the new data displayed in our list.
+Der `useCallback`-Hook erstellt nur dann eine neue `memoized`-Funktion, wenn sich der Suchbegriff ändert. In diesem Fall ist es uns wichtig, dass die Daten erneut abgerufen werden, damit die gerenderte Liste jederzeit zum Suchwort passt.
 
-By moving the data fetching function outside the `useEffect` hook, it becomes reusable for other parts of the application. We won't use it just yet, but it is a way to understand the `useCallback` hook. Now the `useEffect` hook runs implicitly when the `searchTerm` changes, because the `handleFetchStories` is re-defined each time the `searchTerm` changes. Since the `useEffect` hook depends on the `handleFetchStories`, the side-effect for data fetching runs again.
+Durch Verschieben der Datenabruffunktion `handleFetchStories` an eine Stelle außerhalb des `useEffect`-Hook ist diese für andere Teile der Anwendung wiederverwendet. Wir verwenden sie bisher nicht, aber es wäre möglich. Der `useEffect`-Hook wird implizit aufgerufen, wenn sich `searchTerm` ändert, da `handleFetchStories` immer dann neu definiert wird. Da der `useEffect`-Hook von `handleFetchStories` abhängt, wird der Nebeneffekt bei jedem Datenabruf aufgerufen.
 
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Memoized-Handler-in-React).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Data-Re-Fetching-in-React...hs/Memoized-Handler-in-React?expand=1).
-* Lese mehr zum Thema [React's useCallback Hook](https://reactjs.org/docs/hooks-reference.html#usecallback).
+* Lese mehr über [Reacts useCallback Hook](https://de.reactjs.org/docs/hooks-reference.html#usecallback).
