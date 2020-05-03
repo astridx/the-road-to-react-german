@@ -1,8 +1,8 @@
-## React Impossible States
+## Nicht mögliche Status
 
-Perhaps you've noticed a disconnect between the single states in the App component, which seem to belong together because of the `useState` hooks. Technically, all the states related to the asynchronous data belong together, which doesn't only include the stories as actual data, but also their loading and error states.
+Hast du eine Trennung zwischen den einzelnen Zuständen in der App-Komponente bemerkt? Diese scheinen aufgrund der `useState`-Hooks eine Einheit zu bilden. Technisch gesehen gehören alle Zustände, die sich auf die asynchronen Daten beziehen, zusammen. Wobei ich nicht nur die `stories` als Echtdaten, sondern ebenfalls ihre Lade- und Fehlerzustände meine.
 
-There is nothing wrong with multiple `useState` hooks in one React component. Be wary once you see multiple Statusaktualisierungsfunktions in a row, however. These conditional states can lead to **impossible states**, and undesired behavior in the UI. Try changing your pseudo data fetching function to the following to simulate the error handling:
+Mehrere `useState`-Hooks in einer React-Komponente stellen grundsätzlich kein Problem dar. Sei aber vorsichtig, wenn du mehrere Statusaktualisierungsfunktionen hintereinander siehst. Diese bedingten Zustände führen unter Umständen zu **nicht möglichen Status** und unerwünschtem Verhalten in der Benutzeroberfläche. Ändere die Funktion zum Abrufen von Pseudodaten wie folgt, um die Fehlerbehandlung zu simulieren:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -10,9 +10,9 @@ const getAsyncStories = () =>
   new Promise((resolve, reject) => setTimeout(reject, 2000));
 ~~~~~~~
 
-The impossible state happens when an error occurs for the asynchronous data. The state for the error is set, but the state for the loading indicator isn't revoked. In the UI, this would lead to an infinite loading indicator and an error message, though it may be better to show the error message only and hide the loading indicator. Impossible states are not easy to spot, which makes them infamous for causing bugs in the UI.
+Ein nicht mögliche Zustand tritt im Falle eines Fehlers beim Abruf der asynchronen Daten auf. Der Status für die Fehlermeldung wird festgelegt, aber der Status für die Ladeanzeige wird nicht widerrufen. In der Benutzeroberfläche führt dies zu einer unendliche langen Anzeige der Ladeinfo bei gleichzeitigem Einblenden des Fehlerhinweises. Korrekt wäre es, die Ladeanzeige auszublenden, wenn die Fehlermeldung eingeblendet wird. Nicht mögliche Zustände sind schwer zu erkennen. Deshalb verursachen sie nicht selten Fehler im Bereich der Benutzeroberfläche.
 
-Fortunately, we can improve our chances by moving states that belong together from multiple `useState` and `useReducer` hooks into a single `useReducer` hook. Take the following `useState` hooks:
+Glücklicherweise vermeiden wir viele Fehler, indem wir Zustände, die aus mehreren `useState`- und `useReducer`-Hooks bestehen, in einem einzigen `useReducer`-Hook vereinen. Sieh dir diesbezüglich den nachfolgenden `useState`-Hook:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -30,7 +30,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Merge them into one `useReducer` hook for a unified state management and a more complex state object:
+Vereine die beiden `useState`-Hooks im `useReducer`-Hook. So erreichst du eine einheitliche Statusverwaltung und verfügst über ein komplexes Status-Objekt:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -48,7 +48,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Everything related to asynchronous data fetching must use the new dispatch function for state transitions:
+Alles, was mit dem asynchronen Datenabruf zusammenhängt, verwendet die Dispatch-Funktion für Statusübergänge:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -85,7 +85,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Since we introduced new types for state transitions, we must handle them in the `storiesReducer` reducer function:
+Da wir neue Typen für Zustandsübergänge eingeführt haben, müssen wir diese in der Reduzier-Funktion `storiesReducer` behandeln:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -125,9 +125,9 @@ const storiesReducer = (state, action) => {
 };
 ~~~~~~~
 
-For every state transition, we return a *new state* object which contains all the key/value pairs from the *current state* object (via JavaScript's spread operator) and the new overwriting properties. For example, `STORIES_FETCH_FAILURE` resets the `isLoading`, but sets the `isError` boolean flags yet keeps all the other state intact (e.g. `stories`). That's how we get around the bug introduced earlier, since an error should remove the loading state.
+In er jetzigen Version unserer Anwendung geben wir für jeden Statusübergang ein *neues Status*-Objekt zurück. Dieses enthält alle Schlüssel/Wert-Paare des *aktuellen Status*-Objekts (über den [Spread-Operator](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Spread_operator) von Javascript) und die neuen Möglichkeiten Eigenschaften zu überschreiben. Zum Beispiel setzt `STORIES_FETCH_FAILURE` die Variable `isLoading` zurück. Im Gegensatz dazu behält die booleschen Variable `isError` alle Zustände bei (zum Beispiel `stories`). So umgehen wir den zuvor eingeführten Mangel, bei dem der Ladeindikator im Fehlerfall weiterhin angezeigt wurde.
 
-Observe how the `REMOVE_STORY` action changed as well. It operates on the `state.data` , not longer just the plain `state`. The state is a complex object with data, loading and error states rather than just a list of stories. This has to be solved in the remaining code too:
+Beachte, wie sich die Aktion `REMOVE_STORY` geändert hat. Sie nutzt `state.data`, anstelle von `state`. Der Status ist jetzt ein komplexes Objekt mit Daten-, Lade- und Fehlerzuständen. Vorher enthielt er nichts weiter als die Liste von Storys. Überarbeiten wir den restlichen Code im Hinblick auf diese Änderung:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -184,5 +184,5 @@ We moved from unreliable state transitions with multiple `useState` hooks to pre
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Impossible-States).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Advanced-State...hs/React-Impossible-States?expand=1).
-* Read over the previously linked tutorials about reducers in JavaScript and React.
+* Lese die zuvor verlinkten Tutorials zu Reduzierern in JavaScript und React.
 * Lese mehr zum Thema [when to use useState or useReducer in React](https://www.robinwieruch.de/react-usereducer-vs-usestate).
