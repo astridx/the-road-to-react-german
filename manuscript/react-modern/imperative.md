@@ -1,6 +1,6 @@
 ## Imperative React
 
-React ist von Natur aus deklarativ. Das gilt für JSX genauso wie für die Hooks. In JSX teilen wir React mit, *was* gerendert wird und nicht *wie* es gerendert wird. Mit einem React-Seiteneffekts (useEffect) drücken wir aus, *was* statt *wie* etwas erreicht wird. Es gibt Szenarien, in denen wir gerne auf imperative Art und Weise auf ein Element zugreifen. zum Beispiel:
+React ist von Natur aus deklarativ. Das gilt für JSX genauso wie für die Hooks. In JSX teilen wir React mit, *was* gerendert wird und nicht *wie* es gerendert wird. Mit einem React-Seiteneffekts (useEffect) drücken wir aus, *was* statt *wie* etwas erreicht wird. Es gibt Szenarien, in denen wir gerne auf imperative Art und Weise auf ein Element zugreifen. Zum Beispiel:
 
 * Lese- / Schreibzugriff auf Elemente über die DOM-API:
   * Messen (Lesen) der Breite oder Höhe eines Elements
