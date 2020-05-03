@@ -178,11 +178,11 @@ const getAsyncStories = () =>
   new Promise((resolve, reject) => setTimeout(reject, 2000));
 ~~~~~~~
 
-We moved from unreliable state transitions with multiple `useState` hooks to predictable state transitions with React's useReducer Hook. The state object managed by the reducer encapsulates everything related to the stories, including loading and error state, but also implementation details like removing a story from the list of stories. We didn't get fully rid of impossible states, because it's still possible to leave out a crucial boolean flag like before, but we moved one step closer towards more predictable state management.
+Wir haben unsere Anwendung insofern verbessert, dass wir unzuverlässige Zustandsübergänge mit mehreren `useState`-Hooks in vorhersehbaren mit Reacts useReducer Hook abgeändert haben. Das vom Reduzierer verwaltete Statusobjekt kapselt alles, was mit den Storys zusammenhängt, einschließlich Lade- und Fehlerstatus und Implementierungsdetails wie das Entfernen eines Elements aus der Liste. Wir haben nicht alle Zustände behandelt. Die Liste dieser ist unendlich. Aber wir sind unserem Ziel einen Schritt näher gekommen und haben ein vorhersehbares Ereignis im Zustandsmanagement aufgenommen.
 
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Impossible-States).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Advanced-State...hs/React-Impossible-States?expand=1).
 * Lese die zuvor verlinkten Tutorials zu Reduzierern in JavaScript und React.
-* Lese mehr zum Thema [when to use useState or useReducer in React](https://www.robinwieruch.de/react-usereducer-vs-usestate).
+* Lese mehr zum Thema ["Wann sollte `useState` oder `useReducer` in React verwendet werden?"](https://www.robinwieruch.de/react-usereducer-vs-usestate).
