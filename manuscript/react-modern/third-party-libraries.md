@@ -1,8 +1,8 @@
-## Third-Party Libraries in React
+## Bibliotheken von Drittanbietern in React
 
-We previously introduced the native fetch API to complete requests to the Hacker News API, which the browser provides. Not all browsers support this, however, especially the older ones. Also, once you start testing your application in a [headless browser environment](https://en.wikipedia.org/wiki/Headless_browser), issues can arise with the fetch API. There are a couple of ways to make fetch work in older browsers ([polyfills](https://en.wikipedia.org/wiki/Polyfill_(programming))) and in tests (isomorphic fetch), but these concepts are a bit off-task for the purpose of this learning experience.
+Wir haben zuvor die native Fetch-API eingeführt, um die Hacker News-API abzufragen. Diese wird nicht von allen Browsern unterstützt. Sobald du deine Anwendung in einer [Headless-Browser-Umgebung](https://en.wikipedia.org/wiki/Headless_browser) testest, werden Probleme mit der Fetch-API auftreten. Es gibt verschiedene Möglichkeiten, das Abrufen in älteren Browsern mithilfe von ([Polyfills](https://de.wikipedia.org/wiki/Polyfill)) und in Tests (somorphic fetch) zum Laufen zu bringen. Die genauere Erklärung der Konzepte würde den Rahmen dieses Buchs sprengen.
 
-One alternative is to substitute the native fetch API with a stable library like [axios](https://github.com/axios/axios), which performs asynchronous requests to remote APIs. In this section, we will discover how to substitute a library--a native API of the browser in this case--with another library from the npm registry. First, install axios on the command line:
+Eine Alternative besteht darin, die native Fetch-API durch eine stabile Bibliothek wie [axios](https://github.com/axios/axios) zu ersetzen, welche asynchrone Anforderungen an Remote-APIs ausführt. In diesem Abschnitt lernst du, wie du eine Bibliothek - in unserem Fall eine native API des Browsers - durch ein Node.js-Module ersetzt. Installiere zunächst axios mithilfe der Befehlszeile:
 
 {title="Command Line",lang="text"}
 ~~~~~~~
@@ -10,6 +10,7 @@ npm install axios
 ~~~~~~~
 
 Second, import axios in your App component's file:
+Importieren danach Axios in deine App-Komponente:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -60,6 +61,6 @@ We can see with these examples that axios is a powerful library for performing r
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Third-Party-Libraries-in-React).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Explicit-Data-Fetching-with-React...hs/Third-Party-Libraries-in-React?expand=1).
-* Lese mehr zum Thema [popular libraries in React](https://www.robinwieruch.de/react-libraries).
-* Lese mehr zum Thema [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter).
+* Informiere dich über [beliebte Bibliotheken in React](https://www.robinwieruch.de/react-libraries).
+* Lese [warum Frameworks wichtig sind](https://www.robinwieruch.de/why-frameworks-matter).
 * Lese mehr zum Thema [axios](https://github.com/axios/axios).
