@@ -1,6 +1,6 @@
 ## Bibliotheken von Drittanbietern in React
 
-Wir haben zuvor die native Fetch-API eingeführt, um die Hacker News-API abzufragen. Diese wird nicht von allen Browsern unterstützt. Sobald du deine Anwendung in einer [Headless-Browser-Umgebung](https://en.wikipedia.org/wiki/Headless_browser) testest, werden Probleme mit der Fetch-API auftreten. Es gibt verschiedene Möglichkeiten, das Abrufen in älteren Browsern mithilfe von ([Polyfills](https://de.wikipedia.org/wiki/Polyfill)) und in Tests (somorphic fetch) zum Laufen zu bringen. Die genauere Erklärung der Konzepte würde den Rahmen dieses Buchs sprengen.
+Wir haben zuvor die native Fetch-API eingeführt, um die Hacker News-API abzufragen. Diese wird leider nicht von allen Browsern zuverlässig unterstützt. Insbesonere bei alten Versionen und dem Internet Explorer ist die [Browserkompatibilität](https://developer.mozilla.org/de/docs/Web/API/Fetch_API#Browserkompatibilit%C3%A4t) lückehaft. Spätestens sobald du deine Anwendung in einer [Headless-Browser-Umgebung](https://en.wikipedia.org/wiki/Headless_browser) testest, werden Probleme mit der Fetch-API auftreten. Es gibt verschiedene Möglichkeiten, das Abrufen in älteren Browsern mithilfe von ([Polyfills](https://de.wikipedia.org/wiki/Polyfill)) und die Ausführung in Tests (somorphic fetch) zum Laufen zu bringen. Die genauere Erklärung der Konzepte würde den Rahmen dieses Buchs sprengen.
 
 Eine Alternative besteht darin, die native Fetch-API durch eine stabile Bibliothek wie [axios](https://github.com/axios/axios) zu ersetzen, welche asynchrone Anforderungen an Remote-APIs ausführt. In diesem Abschnitt lernst du, wie du eine Bibliothek - in unserem Fall eine native API des Browsers - durch ein Node.js-Module ersetzt. Installiere zunächst axios mithilfe der Befehlszeile:
 
@@ -9,8 +9,7 @@ Eine Alternative besteht darin, die native Fetch-API durch eine stabile Biblioth
 npm install axios
 ~~~~~~~
 
-Second, import axios in your App component's file:
-Importieren danach Axios in deine App-Komponente:
+Importieren danach Axios in deine Anwendung:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
