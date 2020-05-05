@@ -61,5 +61,5 @@ We can see with these examples that axios is a powerful library for performing r
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Third-Party-Libraries-in-React).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Explicit-Data-Fetching-with-React...hs/Third-Party-Libraries-in-React?expand=1).
 * Informiere dich über [beliebte Bibliotheken in React](https://www.robinwieruch.de/react-libraries).
-* Lese [warum Frameworks wichtig sind](https://www.robinwieruch.de/why-frameworks-matter).
+* Lese [warum Frameworks unerlässlich sind](https://www.robinwieruch.de/why-frameworks-matter).
 * Lese mehr zum Thema [axios](https://github.com/axios/axios).
