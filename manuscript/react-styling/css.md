@@ -1,16 +1,16 @@
 # Styling in React
 
-Es gibt viele Möglichkeiten, eine React-Anwendung zu gestalten, und es gibt ausgiebige Debatten über die beste **Styling-Strategie** und den besten **Styling-Ansatz**. Wir werden einige dieser Ansätze durchgehen. Wie überall im Leben gibt es für jede Sichtweise Vor- und Nachteile. Hier gehe ich darauf ein, wie Entwickler und Teams herausfinde, was für sie am besten passt.
+Es gibt viele Möglichkeiten, eine React-Anwendung zu gestalten, und es gibt ausgiebige Debatten über die effektivste **Styling-Strategie** und den unübertrefflichsten **Styling-Ansatz**. Wir werden einige dieser Strategien und Ansätze durchgehen. Wie überall im Leben gibt es für jede Sichtweise Vor- und Nachteile. Hier gehe ich darauf ein, wie Entwickler und Teams herausfinde, was für sie am besten passt.
 
-Wir beginnen mit allgemeinem CSS und sehen uns dann fortgeschrittene Alternativen an:  **CSS-in-CSS** (**CSS Modules**) und **CSS-in-JS** (**Styled Components**). CSS-Module und Styled Components sind nur zwei von vielen Ansätzen in beiden Gruppen. Außerdem lernst du, wie du skalierbare Vektorgrafiken (SVGs), wie zum Beispiel ein Logo oder Icons, in deine React-Anwendung integrierst.
+Wir fangen mit allgemeinem CSS an und sehen uns dann fortgeschrittene Alternativen an: **CSS-in-CSS** (**CSS Modules**) und **CSS-in-JS** (**Styled Components**). Dies sind nur zwei von vielen Strategien/Ansätzen. Außerdem lernst du, wie du skalierbare Vektorgrafiken (SVGs) in deine React-Anwendung integrierst, zum Beispiel ein Logo oder Icons.
 
-Wenn du planst allgemeine UI-Komponenten (z. B. Schaltfläche, Dialog, Dropdown) nicht selbst einzufügen, ist es möglich, eine [beliebte React-Bibliothek für React] auszuwählen(https://www.robinwieruch.de/react-libraries). Du befindest dich aber auf einer soliden Basis, wenn du React lernst und diese Komponenten selbst erstellst, bevor du eine vorgefertigte Lösung verwendst. Daher werden wir hier im Buch keine der UI-Komponentenbibliotheken nutzen.
+Wähle eine [beliebte React-Bibliothek für React](https://www.robinwieruch.de/react-libraries), wenn du planst allgemeine UI-Komponenten (beispielsweise eine Schaltfläche, ein Dialog oder ein Auswahlfeld) nicht selbst einzufügen. Bedenke dabei aber: Du befindest dich auf einer soliden Basis, wenn du React lernst und diese Komponenten eigenhändig erstellst. Daher werden wir hier im Buch keine der UI-Komponentenbibliotheken nutzen.
 
-Die nachfolgenden Ansätze für das Styling sind in der `create-react-app` vorkonfiguriert. Wenn du die Build-Tools (beispielsweise Webpack) selbst verwaltest, sind unter Umständen Konfigurationsschritte auf deiner Seite erforderlich. Da wir die `create-react-app` verwenden, nutzen wir alles als Assets.
+Die nachfolgenden Ansätze für das Styling sind in der `create-react-app` vorkonfiguriert. Wenn du die Build-Tools (beispielsweise Webpack) selbst verwaltest, sind unter Umständen weitere Konfigurationsschritte erforderlich. Da wir die `create-react-app` verwenden, nutzen wir alles als Assets.
 
 ## CSS in React
 
-Allgemeines CSS in React ähnelt dem Standard-CSS, das du gelernt hast. Jede Webanwendung gibt HTML-Elementen ein Attribut `class` (in React ist es `className`), das später in einer CSS-Datei mit Eigenschaften konkretisiert wird.
+Allgemeines CSS in React ähnelt dem Standard-CSS. Jede Standard-Webanwendung gibt HTML-Elementen ein Attribut `class` (in React ist es `className`), das später in einer CSS-Datei mit Eigenschaften konkretisiert wird.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -53,7 +53,7 @@ import './App.css';
 # leanpub-end-insert
 ~~~~~~~
 
-This CSS file will define the two (and more) CSS classes we used in the App component. In your *src/App.css* file, define them like the following:
+Diese CSS-Datei definiert die CSS-Klassen, die wir in der App-Komponente verwenden. Definiere sie in deiner *src/App.css*-Datei wie folgt:
 
 {title="src/App.css",lang="css"}
 ~~~~~~~
@@ -74,7 +74,7 @@ This CSS file will define the two (and more) CSS classes we used in the App comp
 }
 ~~~~~~~
 
-You should see the first stylings taking effect in your application when you start it again. Next, we will head over to the Item component. Some of its elements receive the `className` attribute too, however, we are also using a new styling technique here:
+Du siehst die ersten Stile in deiner Anwendung, wenn du sie erneut startest. Als Nächstes stylen wir die Item-Komponente. Einige ihrer Elemente erhalten das Attribut `className`. Wir verwenden hier eine neue Styling-Technik:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -105,9 +105,9 @@ const Item = ({ item, onRemoveItem }) => (
 );
 ~~~~~~~
 
-As you can see, we can also use the native `style` attribute for HTML elements. In JSX, style can be passed as an inline JavaScript object to these attributes. This way we can define dynamic style properties in JavaScript files rather than mostly static CSS files. This approach is called **inline style**, which is useful for quick prototyping and dynamic style definitions. Inline style should be used sparingly, however, as a separate style definition keeps the JSX more concise.
+Wie du siehst, ist es möglich, das style Attribut für HTML-Elemente zu verwenden. JSX übergibt den Stil als Inline-JavaScript-Objekt. So definieren wir dynamische Stileigenschaften in JavaScript-Dateien anstatt in statischen CSS-Dateien. Dieser Ansatz wird als **Inline-Stil** bezeichnet. Verwende den Inline-Stil sparsam, da eine separate Stildefinition dein JSX präziser hält.
 
-In your *src/App.css* file, define the new CSS classes. Basic CSS features are used. Advanced CSS features (e.g. nesting) from CSS extensions (e.g. Sass) are not included in this example, as they are [optional configurations](https://create-react-app.dev/docs/adding-a-sass-stylesheet/).
+Definiere in der Datei *src/App.css* die neuen CSS-Klassen. Erweiterte CSS-Funktionen (zum Beispiel Verschachtelung) von CSS-Erweiterungen (beispielsweise Sass) sind in diesem Beispiel nicht enthalten, da es sich um [optionale Konfigurationen](https://create-react-app.dev/docs/adding-a-sass-stylesheet/) handelt. 
 
 {title="src/App.css",lang="css"}
 ~~~~~~~
