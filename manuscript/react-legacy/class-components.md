@@ -2,7 +2,7 @@
 
 React hat sich seit 2013 weiterentwickelt. Die Art und Weise, wie Anwendungen geschrieben werden, hat sich geändert – und sogar die Komponenten selbst. In der Vergangenheit wurden viele Anwendungen anhand des damals gültigen Entwicklungsstandes erstellt. Diese entsprechen verständlicherweise nicht dem aktuellen Status Quo. Hier sehen wir uns jetzt historisch gewachsene React-Anwendungen an.
 
-Ich werde nicht alles behandeln, was in React als Vermächtnis angesehen wird. Einige Funktionen wurden mehr als einmal überarbeitet.
+Ich werde nicht alles behandeln, was in React als Vermächtnis angesehen wird. Dies ist nicht sinnvoll, einige Funktionen wurden mehr als einmal überarbeitet. Mein Ziel ist, dir ein generelles Verständnis für die Entwicklung von React zu vermitteln.
 
 In diesem Abschnitt werden wir eine [moderne React-Anwendung](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/react-modern-final) mit einer [Legacy-Version](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/react-legacy) vergleichen. Wir werden feststellen, dass die meisten Unterschiede zwischen modernen und älteren React-Anwendungen in Klassenkomponenten und Funktionskomponenten zu finden sind.
 
