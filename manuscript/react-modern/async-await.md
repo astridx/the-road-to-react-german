@@ -64,5 +64,5 @@ Mithilfe von `try` und `catch` haben wir am Ende die Fehlerbehandlung integriert
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Async-Await-in-React).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Third-Party-Libraries-in-React...hs/Async-Await-in-React?expand=1).
-* Lese mehr zum Thema [data fetching in React](https://www.robinwieruch.de/react-hooks-fetch-data).
+* Lese mehr zum Thema [Data-Fetching in React](https://www.robinwieruch.de/react-hooks-fetch-data).
 * Lese mehr zum Thema [Async/Await in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function).
