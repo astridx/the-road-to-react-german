@@ -21,7 +21,7 @@ import axios from 'axios';
 ...
 ~~~~~~~
 
-Jetzt ist es dir möglich, `axios` anstelle der `Fetch-API` zu verwenden. Die Anwendung ist ähnlich wie zuvor. Axios nimmt die URL als Argument entgegen und gibt ein Promise-Objekt zurück. Es ist nicht mehr erforderlich, die zurückgegebene Antwort in JSON umzuwandeln, da `axios` das Ergebnis in ein JavaScript-Objekt einschließt. Passen wir den Beispielcode im nächsten Schritt an die zurückgegebene Datenstruktur an:
+Jetzt ist es dir möglich, `axios` anstelle der `Fetch-API` zu verwenden. Die Anwendung ist ähnlich wie zuvor. Axios nimmt die URL als Argument entgegen und gibt ein Promise-Objekt zurück. Es ist nicht mehr erforderlich, die zurückgegebene Antwort in JSON umzuwandeln, da `axios` das Ergebnis in ein JavaScript-Objekt einschließt. Passen wir den Beispielcode im nächsten Schritt an die Verwendung von `axios` und die zurückgegebene Datenstruktur an:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -54,6 +54,26 @@ const App = () => {
 
 In diesem Code rufen wir `axios.get()` für eine explizite [HTTP-GET-Anforderung](https://developer.mozilla.org/de/docs/Web/HTTP/Methods/GET) auf. Es handelt sich um dieselbe HTTP-Methode, die wir standardmäßig mit der nativen `Fetch-API` des Browsers verwendet haben. `axios` ist intuitiv aufgebaut: Für eine [HTTP-POST-Anforderung](https://developer.mozilla.org/de/docs/Web/HTTP/Methods/POST) verwendest du `axios.post()`.
 
+Sieh dir die von `axios` zurückgegeben Daten in der Konsole deines Browsers an, indem du die temporär nachfolgende Zeile im Code ergänzt:
+
+{title="src/App.js",lang="javascript"}
+~~~~~~~
+const App = () => {
+  ...
+
+    axios
+      .get(url)
+      .then(result => {
+# leanpub-start-insert
+          console.log(result.data.hits);
+# leanpub-end-insert
+        dispatchStories({
+          type: 'STORIES_FETCH_SUCCESS',
+
+  ...
+};
+~~~~~~~
+
 Wie du sieht: `axios` ist eine leistungsstarke Bibliothek zum Zugriff auf Remote-APIs. Ich empfehle dir diese anstelle der native Abruf-API, wenn deine Anforderungen komplex sind, es dir wichtig ist, älteren Browser zu unterstützen und/oder du ein Framework zum Testen verwendest.
 
 ### Übungen:
@@ -62,4 +82,4 @@ Wie du sieht: `axios` ist eine leistungsstarke Bibliothek zum Zugriff auf Remote
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Explicit-Data-Fetching-with-React...hs/Third-Party-Libraries-in-React?expand=1).
 * Informiere dich über [beliebte Bibliotheken in React](https://www.robinwieruch.de/react-libraries).
 * Lese [warum Frameworks unerlässlich sind](https://www.robinwieruch.de/why-frameworks-matter).
-* Lese mehr zum Thema [axios](https://github.com/axios/axios).
+* Lese mehr zum Thema [axios](https://github.com/axios/axios). 
