@@ -1,6 +1,6 @@
-## CSS Modules in React
+## CSS-Module in React
 
-CSS Modules are an advanced **CSS-in-CSS** approach. The CSS file stays the same, where you could apply CSS extensions like Sass, but its use in React components changes. To enable CSS modules in create-react-app, rename the *src/App.css* file to *src/App.module.css*. This action is performed in the command line from your project's directory:
+CSS-Module sind ein fortschrittlicherer **CSS-in-CSS**-Ansatz. Die CSS-Datei bleibt unverändert. Trotzdem hast du die Möglichkeit Techniken wie Sass zu nutzen. Im nachvollgenden erkläre ich dir, wie du CSS-Module zusammen mit React-Komponenten verwendest. Benenne als erstes die Datei *src/App.css* in *src/App.module.css* um. So aktivierst du CSS-Module in der create-react-app. Öffne dazu das Projekt-Verzeichnis in der Befehlszeile des Betriebssystems. Wenn du Linux verwendest, führst du folgende Anweisung aus, passe andernfalls den Befehl an deine Arbeitsumgebung an:
 
 {title="Command Line",lang="text"}
 ~~~~~~~
@@ -252,5 +252,5 @@ Again, CSS Modules--like any other CSS-in-CSS approach--can use Sass for more ad
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-Modules-in-React).
-  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-Modules-in-React?expand=1).
+  * Bestätige die [Änderungen](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-Modules-in-React?expand=1).
 * Lese mehr zum Thema [CSS Modules in create-react-app](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet).
