@@ -10,7 +10,7 @@ Die nachfolgenden Ansätze für das Styling sind in der `create-react-app` vorko
 
 ## CSS in React
 
-Allgemeines CSS in React ähnelt dem Standard-CSS. Jede Standard-Webanwendung gibt HTML-Elementen ein Attribut `class` (in React ist es `className`), das später in einer CSS-Datei mit Eigenschaften konkretisiert wird.
+CSS in React ähnelt dem Standard-CSS. Jede Webanwendung gibt HTML-Elementen ein Attribut `class` (in React ist es `className`), welches später in einer CSS-Datei mit Eigenschaften konkretisiert wird.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -41,7 +41,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Das HTML-Element `<hr />` wurde entfernt, da CSS sich zukünftig um die Randbereich kümmern wird. Wir importieren die CSS-Datei mithilfe von `create-react-app`:
+Das HTML-Element `<hr />` haben ich entfernt, da CSS sich zukünftig um den Randbereich kümmern wird. In der Vergangenheit wurden Inhalte aus semantischen (bedeutungsmäßigen) und gestalterischen Gründen mittels [`<hr />`](https://wiki.selfhtml.org/index.php?title=HTML/Textstrukturierung/hr&oldid=55963) getrennt. Heute dienen HTML-Element ausschließlich er [semantischen Strukturierung](https://wiki.selfhtml.org/index.php?title=HTML&oldid=61624). Verwende immer CSS, um zwei Bereiche aus gestalterischen Gründen zu trennen. Importieren die CSS-Datei mithilfe von `create-react-app`:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -53,7 +53,7 @@ import './App.css';
 # leanpub-end-insert
 ~~~~~~~
 
-Diese CSS-Datei definiert die CSS-Klassen, die wir in der App-Komponente verwenden. Definiere sie in deiner *src/App.css*-Datei wie folgt:
+In der *src/App.css*-Datei definieren wir die CSS-Klassen, die wir in der App-Komponente verwenden:
 
 {title="src/App.css",lang="css"}
 ~~~~~~~
@@ -74,7 +74,7 @@ Diese CSS-Datei definiert die CSS-Klassen, die wir in der App-Komponente verwend
 }
 ~~~~~~~
 
-Du siehst die ersten Stile in deiner Anwendung, wenn du sie erneut startest. Als Nächstes stylen wir die Item-Komponente. Einige ihrer Elemente erhalten das Attribut `className`. Wir verwenden hier eine neue Styling-Technik:
+Öffne deine Anwendung im Browser und sieh dir an, wie die ersten Stile die Ausgabe verändern. Als Nächstes stylen wir die Item-Komponente. Einige ihrer Elemente erhalten das Attribut `className`. Beachte: Wir verwenden hier eine neue Styling-Technik:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -105,7 +105,7 @@ const Item = ({ item, onRemoveItem }) => (
 );
 ~~~~~~~
 
-Wie du siehst, ist es möglich, das style Attribut für HTML-Elemente zu verwenden. JSX übergibt den Stil als Inline-JavaScript-Objekt. So definieren wir dynamische Stileigenschaften in JavaScript-Dateien anstatt in statischen CSS-Dateien. Dieser Ansatz wird als **Inline-Stil** bezeichnet. Verwende den Inline-Stil sparsam, da eine separate Stildefinition dein JSX präziser hält.
+Wie du siehst, ist es möglich, das `style`-Attribut direkt bei einem HTML-Elemente einzufügen. JSX übergibt den Stil als Inline-Objekt. So definieren wir dynamisch Stileigenschaften in JavaScript-Dateien anstatt statische in CSS-Dateien. Dieser Ansatz wird als **Inline-Stil** bezeichnet. Verwende den Inline-Stil sparsam, da eine separate Stildefinition dein JSX präziser hält. Außerdem ist die Trennung von [Inhalt und Design](https://wiki.selfhtml.org/index.php?title=HTML/Tutorials/Trennung_von_Inhalt,_Pr%C3%A4sentation_und_Verhalten&oldid=64476) sauberer.
 
 Definiere in der Datei *src/App.css* die neuen CSS-Klassen. Erweiterte CSS-Funktionen (zum Beispiel Verschachtelung) von CSS-Erweiterungen (beispielsweise Sass) sind in diesem Beispiel nicht enthalten, da es sich um [optionale Konfigurationen](https://create-react-app.dev/docs/adding-a-sass-stylesheet/) handelt. 
 
@@ -130,7 +130,7 @@ Definiere in der Datei *src/App.css* die neuen CSS-Klassen. Erweiterte CSS-Funkt
 }
 ~~~~~~~
 
-The button style from the previous component is still missing, so we'll define a base button style and two more specific specific button styles (small and large). One of the button specifications has been used, the other will be used in the next steps.
+Der Stil für die Schaltflächen fehlt. Daher definieren wir einen Basisstil und zwei spezifische Stile (small und large). Einen verwenden wir im nächsten Schritt, den andere heben wir uns für später auf:
 
 {title="src/App.css",lang="css"}
 ~~~~~~~
@@ -157,7 +157,7 @@ The button style from the previous component is still missing, so we'll define a
 }
 ~~~~~~~
 
-Apart from styling approaches in React, naming conventions ([CSS guidelines](https://developer.mozilla.org/en-US/docs/MDN/Contribute/Guidelines/Code_guidelines/CSS)) are a whole other topic. The last CSS snippet followed BEM rules by defining modifications of a class with an underscore (`_`). Choose whatever naming convention suits you and your team. Without further ado, we will style the next React component:
+Neben den Styling-Ansätzen in React sind Namenskonventionen ([CSS-Richtlinien](https://developer.mozilla.org/de/docs/MDN/Contribute/Guidelines/Code_guidelines/CSS)) ein Thema. Das letzte CSS-Snippet folgte den [BEM](http://getbem.com/naming/)-Regeln. Dies erkennst du an den Unterstrichen (`_`). Wähle für dich die Namenskonvention, die zu dir und deinem Team passt. Weil dies subjektiv und individuell ist, werde ich hier nicht weiter auf das Thema eingehen. Stylen wir die nächste React-Komponente:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -182,7 +182,7 @@ const SearchForm = ({ ... }) => (
 );
 ~~~~~~~
 
-We can also pass the `className` attribute as a prop to React components. For example, we can use this option to pass the SearchForm component a flexible style with a `className` prop from a range of predefined classes from a CSS file. Lastly, style the InputWithLabel component:
+Es ist möglich das Attribut `className` als Eigenschaft (props) an eine React-Komponenten zu übergeben, wie du im nächsten Beispiel siehst. Auf diese Art übergibst du der SearchForm-Komponente beispielsweise einen flexiblen Stil mithilfe einer `className`-Eigenschaft. Wähle dabei aus einer Anzahl von Klassen, die in einer CSS-Datei vordefiniert sind. Abschließend formatieren wir die InputWithLabel-Komponente:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -212,7 +212,7 @@ const InputWithLabel = ({ ... }) => {
 };
 ~~~~~~~
 
-In your *src/App.css* file, add the remaining classes:
+Ergänze die restlichen Klassen in der *src/App.css*-Datei:
 
 {title="src/App.css",lang="css"}
 ~~~~~~~
@@ -238,14 +238,14 @@ In your *src/App.css* file, add the remaining classes:
 }
 ~~~~~~~
 
-For simplicity, we styled elements like label and input individually in the *src/App.css* file. However, in a real application it may be better to define these elements once in the *src/index.css* file globally. As React components are split into multiple files, sharing style becomes a necessity.
+Der Einfachheit halber haben wir Elemente wie Beschriftung und Eingabe einzeln in die Datei *src/App.css* gestylt. In einer realen Anwendung ist es besser, diese Elemente einmal global in der Datei *src/index.css* zu definieren. Da React-Komponenten normalerweise in mehrere Dateien aufgeteilt sind, erleichtert eine überlegte und strukturierte gemeinsame Verwendung von Stilen die Verwaltung der Website.
 
-This is the basic CSS most of us have already learned, written with an inline style that is more dynamic. Without CSS extensions like Sass (Syntactically Awesome Style Sheets) inline styles can become burdensome, though, because features like CSS nesting are not available in native CSS.
+Soweit zum grundlegenden CSS, das die meisten von uns kennen und das ich hier mit einem dynamischeren Inline-Stil kombiniert habe. Aus eigener Erfahrung weiß ich, dass die Arbeit mit komplexen Websites ohne erweiterte Techniken wie [Sass](https://sass-lang.com/) (Syntactically Awesome Style Sheets) aufwendig ist, da pures CSS Vereinfachungen wie Verschachtelung nicht unterstützt. Im folgenden gehe ich deshalb auf diese Techniken ein.
 
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-in-React).
-  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-in-React?expand=1).
-* Lese mehr zum Thema [CSS stylesheets in create-react-app](https://create-react-app.dev/docs/adding-a-stylesheet).
-* Lese mehr zum Thema [Sass in create-react-app](https://create-react-app.dev/docs/adding-a-sass-stylesheet) for taking advantage of more advanced CSS features like nesting.
-* Try to pass `className` prop from App to SearchForm component, either with the value `button_small` or `button_large` and use this as `className` for the button element.
+  * Bestätige die [Änderungen](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-in-React?expand=1).
+* Lese mehr zum Thema [CSS-Stylesheets in der create-react-app](https://create-react-app.dev/docs/adding-a-stylesheet).
+* Lese mehr zu [Sass in der create-react-app](https://create-react-app.dev/docs/adding-a-sass-stylesheet) um erweiterte CSS-Funktionen wie das Verschachteln zu nutzen.
+* Versuche, die Eigenschaft `className` von der App an die SearchForm-Komponente zu übergeben, entweder mit dem Wert `button_small` oder `button_large`, und verwende diese als `className` für die Schaltfläche.
