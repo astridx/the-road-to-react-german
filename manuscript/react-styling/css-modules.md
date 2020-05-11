@@ -177,7 +177,7 @@ const SearchForm = ({ ... }) => (
 );
 ~~~~~~~
 
-Der SearchForm-Komponente ordnen wir ebenfalls zwei CSS-Klassen zu. Wie du siehst, ist es umständlich, zwei Stile in einem Element über Template-Strings zu verwenden. Eine praktischer alternative bietet die Bibliothek [classnames](https://github.com/JedWatson/classnames), mit der CSS-Klassen sogar [dynamisch und bedingt](https://github.com/JedWatson/classnames#usage-with-reactjs) zuordenbar sind. Installiere die Bibliothek im nächsten Schritt über die Befehlszeile als Projektabhängigkeit:
+Der SearchForm-Komponente ordnen wir ebenfalls zwei CSS-Klassen zu. Wie du siehst, ist es umständlich, zwei Stile in einem Element über Template-Strings zu verwenden. Eine praktischer alternative bietet die Bibliothek [classnames](https://github.com/JedWatson/classnames), mit der CSS-Klassen sogar [dynamisch und bedingt](https://github.com/JedWatson/classnames#usage-with-reactjs) zuordenbar sind. Installiere die Bibliothek im nächsten Schritt über die Befehlszeile als Projektabhängigkeit und verwende sie, um der Schaltfläche die CSS-Klassen zuzuordnen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -188,7 +188,7 @@ import cs from 'classnames';
 className={cs(styles.button, styles.buttonLarge)}
 ~~~~~~~
 
-Fahre abschließend mit der InputWithLabel-Komponente fort:
+Fahre abschließend mit der InputWithLabel-Komponente fort. Verwende die Bibliothek **classnames**, um dieser das `className`-Attribut zuzuordnen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -244,9 +244,9 @@ Ergänze abschließend die fehlenden Stile in der Datei *src/App.module.css*:
 }
 ~~~~~~~
 
-The same caution applies as  the last section: some of these styles like `input` and `label` might be more efficient in a global *src/index.css* file without CSS modules.
+Einiges von dem, was ich im vorhergehenden Kapitel geschrieben hatte, trifft ebenfalls auf CSS-Module zu: Beispielsweise: Stile wie `input` und `label` sind in einer globalen *src/index.css*-Datei unter Umständen effizienter zu verwenden. 
 
-Again, CSS Modules--like any other CSS-in-CSS approach--can use Sass for more advanced CSS features like nesting. The advantage of CSS modules is that we receive an error in the  JavaScript each time a style isn't defined. In the standard CSS approach, unmatched styles in the JavaScript and CSS files might go unnoticed.
+Wie jeder andere CSS-in-CSS-Ansatz unterstützen CSS-Module Sass, um CSS-Funktionen wie das Verschachteln zu verwenden. Nutze dies zur Strukturierung deiner Stile, ich habe dies hier im Abschnitt außen vor gelassen. Mein Ziel war es, dir die Anwendung von CSS-Modulen näher zu bringen, denn diese habe im Gegensatz zu purem CSS einen weiteren Vorteil: Jedes Mal, wenn ein verwendeter Stil nicht definiert ist, wird ein Fehler über die Konsole deines Browsers ausgegeben. Beim Standard-CSS-Ansatz bleibt ein solcher Tippfehler in der Regel unbemerkt und führt nicht selten einige Zeit später zu unerwartetem Verhalten und einer langwierigen Fehlersuche.
 
 ### Übungen:
 
