@@ -1,10 +1,10 @@
 ## SVGs in React
 
-To create a modern React application, we'll likely need to use SVGs. Instead of giving every button element text, for example, we might want to make it lightweight with an icon. In this section, we'll use a scalable vector graphic (SVG) as an icon in one of our React components.
+In einer modernen React-Anwendung sind SVG-Dateien heutzutage unumgänglich. Viele Elemente gestaltest du intuitiver mithilfe eines Symbols. Vorteil des SVG-Formates gegenüber anderen Grafikformaten sind die geringe Dateigröße, die Flexibilität und die Skalierbarkeit ohne Qualitätsverlust. In diesem Abschnitt verwenden wir eine [Vektorgrafik](https://de.wikipedia.org/wiki/Scalable_Vector_Graphics) (SVG) als Symbol in einer unserer Komponenten.
 
-This section builds on the "CSS in React" we covered earlier, to give the SVG icon a good look and feel right away. It's acceptable to use a different styling approach, or no styling at all, though the SVG might look off without it.
+Wir nutzen hier den im Abschnitt **Styling in React** erstellten Code als Ausgangsbasis. So ist unsere Anwendung schon zu Beginn mit Styles gestaltet. 
 
-This icon as SVG is taken from [Flaticon's Freepick](https://www.flaticon.com/authors/freepik). Many of the SVGs on this website are free to use, though they require you to mention the author. You can download the icon from [here](https://www.flaticon.com/free-icon/check_109748) as SVG and put it in your project as *src/check.svg*. Downloading the file is the recommended way, however, for the sake of completion, this is the verbose SVG definition:
+Das Symbol, welches wir hier verwenden, stammt von [Flaticons Freepick](https://www.flaticon.com/authors/freepik). Viele der SVGs auf dieser Website sind frei verwendbar, wenn der Autor angeben wird. Downloade das Symbol von [hier](https://www.flaticon.com/free-icon/check_109748) als SVG und füge es unter dem Namen *src/check.svg* in dein Projekt ein. Ich empfehle dir, die Datei selbst herunterzuladen und alle Schritte nachzuvollziehen. Der Vollständigkeit halber gebe ich dir nachfolgend zusätzlich die SVG-Definition:
 
 {title="Code Playground",lang="html"}
 ~~~~~~~
@@ -23,7 +23,7 @@ This icon as SVG is taken from [Flaticon's Freepick](https://www.flaticon.com/au
 </svg>
 ~~~~~~~
 
-Because we're using create-react-app again , we can  import SVGs (similar to CSS) as React components right away. In *src/App.js*, use the following syntax for importing the SVG:
+Da wir die **create-react-app** App verwenden, ist es möglich, SVGs (ähnlich wie CSS) als React-Komponenten zu importieren. Füge hierzu in die Datei *src/App.js* die folgende Anweisung ein:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -36,7 +36,7 @@ import { ReactComponent as Check } from './check.svg';
 # leanpub-end-insert
 ~~~~~~~
 
-We are importing an SVG, and this works for many different uses for SVGs (e.g. logo, background). Instead of a button text, pass the SVG component as a `height` and `width` attribute:
+Eine importierte SVG-Datei ist für viele verschiedene Zwecke (beispielsweise Logo oder Hintergrund) verwendbar. Wir nutzen sie für unsere Schaltfläche. Übergebe anstelle eines Textes die SVG-Komponente zusammen mit den Attributen `height` und `width`:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -63,7 +63,7 @@ const Item = ({ item, onRemoveItem }) => (
 );
 ~~~~~~~
 
-Regardless of the styling approach you are using, you can give your SVG icon in the button a hover effect too. In the basic CSS approach, it would look like the following in the *src/App.css* file:
+Unabhängig davon, welchen Styling-Ansatz du verwendest, ist es möglich dem SVG-Symbol einen Hover-Effekt zuzuweisen. Im normalen CSS würde dies in der Datei *src/App.css* wie folgt aussehen:
 
 {title="src/App.css",lang="css"}
 ~~~~~~~
@@ -73,12 +73,12 @@ Regardless of the styling approach you are using, you can give your SVG icon in 
 }
 ~~~~~~~
 
-The create-react-app project makes using SVGs straightforward, with no extra configuration needed. This is different if you create a React project from scratch with build tools like Webpack, because you have to take care of it yourself. Anyway, SVGs make your application more approachable, so use them whenever it suits you.
+Die **create-react-app**-App unterstützt dich bei der Verwendung von SVGs. Alles Notwendige ist in der App vorkonfiguriert. Wenn du ein React-Projekt mit Build-Tools wie Webpack von Grund auf selbst erstellst, hast du Mehraufwand. In jedem Fall werten SVGs deine Anwendung auf, da sie klein, flexibel und ohne Qualitätsverlust skalierbar sind. Verwenden dieses Format, wann immer es möglich ist.
 
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-in-React-SVG).
-  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/CSS-in-React...hs/CSS-in-React-SVG?expand=1).
+  * Bestätige die [Änderungen gegenüber dem Abschnitt **Styling in React**](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/CSS-in-React...hs/CSS-in-React-SVG?expand=1).
 * Lese mehr zum Thema [SVGs in create-react-app](https://create-react-app.dev/docs/adding-images-fonts-and-files).
 * Lese mehr zum Thema [SVG background patterns in React](https://www.robinwieruch.de/react-svg-patterns).
 * Add another SVG icon in your application.
