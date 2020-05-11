@@ -1,13 +1,13 @@
 ## Styled Components in React
 
-With the previous approaches from CSS-in-CSS, Styled Components is one of several approaches for **CSS-in-JS**. I picked Styled Components because it's the most popular. It comes as a JavaScript dependency, so we must install it on the command line:
+Zusammen mit **CSS-in-CSS** ist **Styled Components** einer von mehreren Ansätzen für **CSS-in-JS**. Die Bibliothek erfreut sich großer Beliebtheit unter React Entwicklern, deshalb habe ich sie ausgewählt. Es handelt sich um ein externes Werkzeug und wird über die Befehlszeile installiert:
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 npm install styled-components
 ~~~~~~~
 
-Then import it in your *src/App.js* file:
+Importiere **Styled Components** nach der Installation in deine Anwendung. Füge die Anweisung hierzu in die *src/App.js*-Datei ein:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -18,7 +18,7 @@ import styled from 'styled-components';
 # leanpub-end-insert
 ~~~~~~~
 
-As the name suggests, CSS-in-JS happens in your JavaScript file. In your *src/App.js* file, define your first styled components:
+Wie die Bezeichnung CSS-in-JS vermuten lässt, erstellst du **Styled Components** innerhalb von JavaScript. Definiere deine ersten gestalteten Komponenten in der Datei * src / App.js *:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -39,7 +39,7 @@ const StyledHeadlinePrimary = styled.h1`
 `;
 ~~~~~~~
 
-When using Styled Components, you are using the JavaScript template literals the same way as JavaScript functions. Everything between the backticks can be seen as an argument and the `styled` object gives you access to all the necessary HTML elements (e.g. div, h1) as functions. Once a function is called with the style, it returns a React component that can be used in your App component:
+Wenn du gestaltete Komponenten einsetzt, verwendest du [Template-Strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings) genauso wie [Funktionen](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Function). Alles zwischen den Backticks ist ein Argument, und das `styled`-Objekt gibt dir Zugriff auf alle erforderlichen HTML-Elemente (beispielsweise div, h1). Sobald eine Funktion mit dem Stil aufgerufen wird, gibt sie eine React-Komponente zurück, die in der App-Komponente verwendbar ist:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -72,7 +72,7 @@ const App = () => {
 };
 ~~~~~~~
 
-This kind of React component follows the same rules as a common React component. Everything passed between its element tags is passed automatically as React `children` prop. For the Item component, we are not using inline styles this time, but defining a dedicated styled component for it. `StyledColumn` receives its styles dynamically using a React prop:
+**Styled Components** folgen denselben Regeln wie gewöhnliche. Alles, was zwischen den Element-Tags eingefügt ist, wird als `children`-Eigenschaft (props) übergeben. Für die Item-Komponente verwenden wir diesmal keine Inline-Styles, sondern definieren eine gestaltete Komponente. `StyledColumn` erhält seine Stile dynamisch mithilfe einer Eigenschaft (props):
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -102,7 +102,7 @@ const Item = ({ item, onRemoveItem }) => (
 );
 ~~~~~~~
 
-The flexible `width` prop is accessible in the styled component's template literal as an argument of an inline function. The return value from the function is applied there as a string. Since we can use immediate returns when omitting the arrow function's body, it becomes a concise inline function:
+Die flexible `width`-Eigenschaft (props) ist über den Template String der gestalteten Komponente als Argument einer Inline-Funktion zugreifbar. Der Rückgabewert der Funktion ist ein String. Wir benötigen keine explizite Rückgabe-Anweisung. Deshalb überarbeiten wir die Pfeilfunktion zu einer knappen und prägnanten Inline-Funktion:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -127,7 +127,7 @@ const StyledColumn = styled.span`
 `;
 ~~~~~~~
 
-Advanced features like CSS nesting are available in Styled Components by default. Nested elements are accessible and the current element can be selected with the `&` CSS operator:
+Erweiterte Funktionen wie die CSS-Verschachtelung sind standardmäßig in gestalteten Komponenten verfügbar. Greife auf verschachtelte Elemente zu und wähle das aktuelle mit dem CSS-Operator `&` aus:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -146,7 +146,8 @@ const StyledButton = styled.button`
 `;
 ~~~~~~~
 
-You can also create specialized versions of styled components by passing another component to the library's function. The specialized button receives all the base styles from the previously defined StyledButton component:
+Erstelle spezielle Versionen von gestalteten Komponenten, indem du eine andere an die Funktion `styled` übergibst. StyledButtonSmall und StyledButtonLarge übernehmen alle Stile der zuvor definierten StyledButton-Komponente:
+
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -165,7 +166,7 @@ const StyledSearchForm = styled.form`
 `;
 ~~~~~~~
 
-When we use a styled component like StyledSearchForm, its underlying elements (`form`, `button`) are used in the real HTML output. We can continue using the native HTML attributes (`onSubmit`, `type`, `disabled`) there:
+Wenn wir eine gestaltete Komponente wie StyledSearchForm verwenden, werden die zugrunde liegenden Elemente (`form`,` button`) in der realen HTML-Ausgabe verwendet. So ist es möglich, weiterhin die nativen HTML-Attribute (`onSubmit`,` type`, `disabled`) zu verwenden:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -193,7 +194,7 @@ const SearchForm = ({ ... }) => (
 );
 ~~~~~~~
 
-Finally, the InputWithLabel decorated with its yet undefined styled components:
+Zuletzt integrieren wir die bisher nicht definierten Komponenten StyledLabel und StyledInput in InputWithLabel:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -220,7 +221,7 @@ const InputWithLabel = ({ ... }) => {
 };
 ~~~~~~~
 
-And its matching styled components are defined in the same file:
+Die Komponenten StyledLabel und StyledInput definieren wir in derselben Datei:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -240,11 +241,11 @@ const StyledInput = styled.input`
 `;
 ~~~~~~~
 
-CSS-in-JS with styled components shifts the focus of defining styles to actual React components. Styled Components are style defined as React components without the intermediate CSS file. If a styled component isn't used in a JavaScript, your IDE/editor will tell you. Styled Components are bundled next to other JavaScript assets in JavaScript files for a production-ready application. There are no extra CSS files, but only JavaScript when using the CSS-in-JS strategy. Both strategies, CSS-in-JS and CSS-in-CSS, and their approaches (e.g. Styled Components and CSS Modules) are popular among React developers. Use what suits you and your team best.
+Wenn du CSS-in-JS mit **Styled Components** nutzt, definierst du Stile hauptsächlich in React-Komponenten. Gestaltete Komponenten sind im Grunde genommen Styles --- in Form von React-Komponenten ohne CSS-Zwischendatei. Wenn eine solche in JavaScript definiert ist aber nicht verwendet wird, erkennt eine [integrierte Entwicklungsumgebung](https://de.wikipedia.org/w/index.php?title=Integrierte_Entwicklungsumgebung&oldid=197630316) (IDE) dies und gibt dir einen Hinweis. Beide Methoden, CSS-in-JS und CSS-in-CSS, und ihre Ansätze (zum Beispiel gestaltete Komponenten und CSS-Module) sind bei React-Entwicklern beliebt. Deshalb war es mir wichtig, sie dir hier vorzustellen. Du bist aber völlig frei: Verwende an Werkzeugen ausschließlich das, was am besten zu dir und deinem Team passt.
 
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Styled-Components-in-React).
   * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/Styled-Components-in-React?expand=1).
 * Lese mehr zum Thema [Styled Components in React](https://www.robinwieruch.de/react-styled-components).
-  * Usually there is no *src/index.css* file for global styles when using Styled Components. Find out how to use global styles when using Styled Components.
+  * Normalerweise gibt es keine *src/index.css*-Datei für globale Stile, wenn **Styled Components** verwendet werden. Finde heraus, ob und wie es möglich ist, globale Stile in Kombination mit gestalteten Komponenten zu verwenden.
