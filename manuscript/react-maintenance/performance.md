@@ -1,16 +1,16 @@
-# React Maintenance
+# Wartung in React
 
-Once a React application grows, maintenance becomes a priority. To prepare for this eventuality, we'll cover performance optimization, type safety, testing, and project structure.  Each can strengthen your app to take on more functionality without losing quality.
+Ist die Anwendung fertig eingerichtet und kommen mehr und mehr Nutzer hinzu, spielt die Wartung eine immer größere Rolle. Um den laufend Aufwand so klein wie möglich zu halten, werden wir uns mit Leistungsoptimierung, Typensicherheit, Tests und Projektstruktur befassen. Lese in diesem Kapitel, wie du die Grundlagen für eine pflegeleichte Anwendung legst, ohne dabei Qualitätseinbußen in Kauf zu nehmen.
 
-Performance optimization prevents applications from slowing down by assuring efficient use of available resource.  Typed programming languages like TypeScript detect bugs earlier in the feedback loop.  Testing gives us more explicit feedback than typed programming, and provides a way to understand which actions can break the application. Lastly, project structure supports the organized management of assets into folders and files, which is especially useful in scenarios where team members work in different domains.
+Die Leistungsoptimierung verhindert, dass Anwendungen langsamer werden, indem eine effiziente Nutzung der verfügbaren Ressourcen sichergestellt wird. Typisierte Programmiersprachen wie TypeScript erkennen Fehler früherzeitig. Automatische Tests geben uns bei Änderungen Sicherheit, dass der ursprüngliche Code weiterhin funktioniert. Und, last but not least unterstützt die Projektstruktur eine organisierte Verwaltung, was in Szenarien nützlich ist, in denen unterschiedliche Teams aus verschiedenen Bereichen zusammen arbeiten.
 
-## Performance in React (Advanced)
+## Performanz in React (Fortgeschrittene Anleitung)
 
-This section is just here for the sake of learning about performance improvements in React. We wouldn't need optimizations in most React applications, as React is fast out of the box. While more sophisticated tools exist for performance measurements in JavaScript and React, we will stick to a simple `console.log()` and our browser's developer tools for the logging output.
+In diesem Abschnitt zeige ich dir, wie du dir einen Überblick über die Performance deiner Applikation verschaffst. Du wirst feststellen: React-Anwendungen sind von Hause aus leistungsstark. Es gibt eine Vielzahl unterschiedlicher Monitoring und Reporting-Tools. Ich habe mich dazu entschieden, dir ein grundlegendendes Werkzeug zu zeigen: `console.log()` in Verbindung mit den Entwicklertools deines Browsers.
 
-### Don't run on first render
+### Das erste Rendern
 
-Previously we covered React's useEffect Hook, which is used for side-effects. It runs the first time a component renders (mounting), and then every re-render (updating). By passing an empty dependency array to it as a second argument, we can tell the hook to run on the first render only. Out of the box, there is no way to tell the hook to run only on every re-render (update) and not on the first render (mount). For example, examine this custom hook for state management with React's useState Hook and its semi persistent state with local storage using React's useEffect Hook:
+Wir haben uns bereits mit Reacts useEffect Hook befasst, der für Seiteneffekte verwendet wird. Dieser wird beim ersten Rendern (Mounten) einer Komponente und dann bei jedem Aktualisieren aufgerufen. Indem wir ihm als zweites Argument ein leeres Abhängigkeitsarray übergeben, wird der Hook nur beim ersten Rendern ausgelöst. Standardmäßig gibt es keine Möglichkeit, den Hook so einzustellen, dass er bei jedem Aktualisieren aber nicht beim ersten Rendern (Mounten) aufgerufen wird. Sieh dir dies beispielsweise für die Statusverwaltung an. Wir verwalten den Status mit dem `useState`-Hook. Das dieser semi-persistenten ist erreichen wir, indem wir mithilfe des `useEffect`-Hook den aktuellen Wert im lokalen Speicher des Browsers ablegen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -30,9 +30,9 @@ const useSemiPersistentState = (key, initialState) => {
 };
 ~~~~~~~
 
-With a closer look at the developer's tools, we can see the log for a first time render of the component using this custom hook. It doesn't make sense to run the side-effect for the initial rendering of the component, because there is nothing to store in the local storage except the initial value. It's a redundant function invocation, and should only run for every update (re-rendering) of the component.
+Nutze die Anweisung console.log(‚A‘); um dir über die Konsole der Entwicklertools des Browsers anzusehen, wann der Status in den lokalen Speicher gespeichert wird. Erstmals geschieht dies, wenn die Komponente das erste Mal gerendert wird. Dies ist nicht sinnvoll, da zu diesem Zeitpunkt der Anfangswert aktiv ist. Erforderlich ist das Speichern nur bei einem erneuten Rendern der Komponente – nur dann ist es möglich, dass der Wert sich geändert hat.
 
-As mentioned, there is no React Hook that runs on every re-render, and there is no way to tell the `useEffect` hook in a React idiomatic way to call its function only on every re-render. However, by using React's useRef Hook which keeps its `ref.current` property intact over re-renders, we can keep a *made up state* (without re-rendering the component on state updates) of our component's lifecycle:
+Wie erwähnt, gibt es keinen React-Hook, der bei jedem Rendern aufgerufen wird, den ersten Aufruf aber auslässt. Durch die Verwendung des `useRef`-Hooks, bei dem die Eigenschaft `ref.current` beim erneuten Rendern erhalten bleibt, erstellen wir uns diese Lösung selbst.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -62,15 +62,15 @@ const useSemiPersistentState = (key, initialState) => {
 };
 ~~~~~~~
 
-We are exploiting the `ref` and its mutable `current` property for imperative state management that doesn't trigger a re-render. Once the hook is called from its component for the first time (component render), the ref's `current` is initialized with a `false` boolean called `isMounted`. As a result, the side-effect function in `useEffect` isn't called; only the boolean flag for `isMounted` is toggled to `true` in the side-effect. Whenever the hook runs again (component re-render), the boolean flag is evaluated in the side-effect. Since it's `true`, the side-effect function runs. Over the lifetime of the component, the `isMounted` boolean will remain`true`. It was there to avoid calling the side-effect function for the first time render that uses our custom hook.
+Wir nutzen `ref` und seine veränderbare `current`-Eigenschaft für die imperative Zustandsverwaltung, die kein erneutes Rendern auslöst. Sobald der Hook zum ersten Mal von seiner Komponente aufgerufen wird, wird `current` mit einem Booleschen Wert namens `isMounted` initialisiert, der mit `false` belegt ist. So wird der Seiteneffekt in `useEffect` nicht ausgelöst. Nur das boolesche Flag für `isMounted` wird auf `true` umgeschaltet. Bei jedem erneuten Aufruf wird das Flag im Seiteneffekt ausgewertet. Da es `true` ist, wird der Status im lokalen Speicher gespeichert. Während der Lebensdauer der Komponente bleibt `isMounted` mit `true` belegt. So wird vermieden, dass die Nebenwirkung ausgelöst wird, wenn unser benutzerdefinierter Hook verwendet wird.
 
-The above was only about preventing the invocation of one simple function for a component rendering for the first time. But imagine you have an expensive computation in your side-effect, or the custom hook is used frequently in the application. It's more practical to deploy this technique to avoid unnecessary function invocations.
+Dieses Beispiel ist nicht verhältnismäßig. Der Aufwand lohnt sich nicht, für die kleine Optimierung. Bedenke aber: Es gibt React-Anwendungen, mit komplizierten Berechnungen, in ihren Seiteneffekten. Dann ist es praktischer, diese Technik einzusetzen, um unnötige Funktionsaufrufe zu vermeiden.
 
-*Note: This technique isn't only used for performance optimizations, but for the sake of having a side-effect run only when a component re-renders. I used it several times, and I suspect you'll stumble on one or the other use case for it eventually.*
+*Hinweis: Diese Technik wird nicht nur zur Leistungsoptimierung verwendet, sondern, um einen Nebeneffekt nur dann auszuführen, wenn eine Komponente erneut gerendert wird. Ich habe es mehrmals benutzt und ich vermute, dass du irgendwann auf den einen oder anderen Anwendungsfall stoßen wirst.*
 
 ### Don't re-render if not needed
 
-Earlier, we explored React's re-rendering mechanism. We'll repeat this exercise for the App and List components. For both components, add a logging statement.
+Zuvor haben wir den Re-Rendering-Mechanismus von React untersucht. Wiederhole dies für die App- und List-Komponente. Füge für beide eine Protokollierungsanweisung hinzu, um in der Konsole deines Browsers die Ausführung zu mitzuverfolgen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -97,7 +97,7 @@ const List = ({ list, onRemoveItem }) =>
   ));
 ~~~~~~~
 
-Because the List component has no function body, and developers are lazy folks who don't want to refactor the component for a simple logging statement, the List component uses the `||` operator instead. This is a neat trick for adding a logging statement to a function component without a function body. Since the `console.log()` on the left hand side of the operator always evaluates to false, the right hand side of the operator gets always executed.
+Da die List-Komponente keinen Funktionskörper hat, verwendet die List-Komponente stattdessen den Operator `||`. Dies ist ein Trick, um einer Funktionskomponente ohne Funktionskörper eine Protokollierungsanweisung hinzuzufügen. Da die Datei `console.log()` auf der linken Seite des Operators als falsch ausgewertet wird, wird die rechte immer aufgerufen:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -114,7 +114,7 @@ console.log(getTheTruth());
 // false
 ~~~~~~~
 
-Let's focus on the actual logging in the browser's developer tools. You should see a similar output. First the App component renders, followed by its child components (e.g. List component).
+Konzentrieren wir uns auf die Protokollierung unserer Anwendung in den Entwicklertools des Browsers. Zuerst wird die App-Komponente gerendert, gefolgt von ihren untergeordneten Komponenten (beispielsweise der List-Komponente).
 
 {title="Visualization",lang="text"}
 ~~~~~~~
@@ -124,6 +124,8 @@ B:App
 B:App
 B:List
 ~~~~~~~
+
+Da ein Seiteneffekt das Abrufen von Daten nach dem ersten Rendern auslöst, wird nur die App-Komponente gerendert, da die List-Komponente in einem bedingten Rendering durch einen Ladeindikator ersetzt wird. Sobald die Daten eintreffen, werden beide erneut gerendert.
 
 Since a side-effect triggers data fetching after the first render, only the App component renders, because the List component is replaced by a loading indicator in a conditional rendering. Once the data arrives, both components render again.
 
@@ -141,7 +143,7 @@ B:App
 B:List
 ~~~~~~~
 
-So far, this behavior is acceptable, since everything renders on time. Now we'll take this experiment a step further, by typing into the SearchForm component's input field. You should see the changes with every character entered into the element:
+Bisher ist dieses Verhalten in Ordnung. Alles wird zum passenden Zeitpunkt gerendert. Jetzt erweitern wir unsere Protokollierung, wir nehmen das Eingabefeld der SearchForm-Komponente hinzu. In der Konsole siehst du daraufhin einen Eintrag für jedes Zeichen, welches du in das Suchfeld eingibst:
 
 {title="Visualization",lang="text"}
 ~~~~~~~
@@ -276,7 +278,7 @@ Now, after we went through these scenarios for `useMemo`, `useCallback`, and `me
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Performance-in-React).
-  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/Performance-in-React?expand=1).
+  * Bestätige die [Änderungen](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/Performance-in-React?expand=1).
 * Lese mehr zum Thema [React's memo API](https://reactjs.org/docs/react-api.html#reactmemo).
 * Lese mehr zum Thema [React's useCallback Hook](https://reactjs.org/docs/hooks-reference.html#usecallback).
 * Download *React Developer Tools* as an extension for your browser. Open it for your application in the browser via the browser's developer tools and try its various features. For example, you can use it to visualize React's component tree and its updating components.
