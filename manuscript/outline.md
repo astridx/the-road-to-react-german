@@ -28,7 +28,7 @@ Nachdem du die Grundlagen beherrschst, empfehle ich dir das Folgende um deine An
 
 Last but not least lade ich dich ein, meine [Website](https://www.robinwieruch.de) zu besuchen, um weitere Informationen zu aktuellen Themen im Bereich Webentwicklung und Softwareentwicklung zu lesen. Abonniere gerne meinen [Newsletter](https://www.getrevue.co/profile/rwieruch) oder folge mir auf [Twitter](https://twitter.com/rwieruch), um Updates zu Artikeln, Büchern und Kursen zu erhalten.
 
-Und last but not least dank ich dafür, dass du mein Buch gelesen hast.
+Vielen Dank dafür, dass du mein Buch gelesen hast.
 
 Viele Grüße,
 
