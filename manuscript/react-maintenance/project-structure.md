@@ -1,12 +1,12 @@
 ## Projektstruktur
 
-Wenn du schon länger programmierst, fragst du dich gewiss, warum wir bisher alle Komponenten in der Datei *src/App.js* implementierten. Denkbar ist es, denn Programmcode aufzuteilen. Wir haben diese Möglichkeit bisher nicht genutzt, weil es zum Lernen praktischer ist, alle Inhalte kompakt an einem Ort zu bearbeiten. In der Realität hat es sich dagegen bewährt, eine Anwendung übersichtlich in mehrere Module aufzuteilen. In diesem Abschnitt zeige ich dir eine etablierte Methode, um dein Projekt zu strukturieren.
+Wenn du schon länger programmierst, fragst du dich gewiss, warum wir bisher alle Komponenten in der Datei *src/App.js* implementierten. Denkbar ist es, denn Programmcode aufzuteilen. Wir haben diese Möglichkeit bisher nicht genutzt, weil es zum Lernen praktischer ist, alle Inhalte kompakt in einer Datei zu bearbeiten. In der Realität hat es sich dagegen bewährt, eine Anwendung übersichtlich in mehrere Module aufzuteilen. In diesem Abschnitt zeige ich dir eine etablierte Methode, um dein Projekt zu strukturieren.
 
-Vergegenwärtige dir die [Import- und Exportanweisungen in JavaScript](https://www.robinwieruch.de/javascript-import-export), bevor du mit dem Umstrukturieren beginnst. Das Importieren und Exportieren von Dateien ist ein grundlegendes Konzept in JavaScript. Da das in React eine große Rolle spielt, ist es wichtig, dass du es beherrschst. In diesem Kapitel zeige ich dir anhand der Beispielanleitung exemplarisch, wie du eine Anwendung strukturierst. Vieles von dem dem was ich hier schreibe, ist nicht in Stein gemeißelt. Jedes Projekt ist individuell und deshalb ist eine Struktur nicht fix vorgegeben. Sie ergibt sich im Laufe der Entwicklung quasi von selbst. 
+Vergegenwärtige dir die [Import- und Exportanweisungen in JavaScript](https://www.robinwieruch.de/javascript-import-export), bevor du mit dem Umstrukturieren beginnst. Das Importieren und Exportieren von Dateien ist ein grundlegendes Konzept in JavaScript. Da das in React eine große Rolle spielt, ist es wichtig, dass du es beherrschst. In diesem Kapitel zeige ich dir anhand der Beispielanleitung exemplarisch, wie du eine Anwendung strukturierst. Vieles von dem was ich hier schreibe, ist nicht in Stein gemeißelt. Jedes Projekt ist individuell und deshalb ist eine Struktur nicht fix vorgegeben. Sie ergibt sich im Laufe der Entwicklung quasi von selbst. 
 
-Überarbeiten wir die Ordner-/Dateistruktur des Projekts, um erste Erfahrungen im Strukturierungsprozess zu sammeln. Danach teile ich mir dir meinen Erfahrungshintergrund und Best Practice bei der Umstrukturierung von React-Projekten. Im Weiteren werden wir die Beispielanwendung *src/App.js* weiterentwickeln. So bleiben die Erklärungen hier im Buch kompakt. Dir steht es frei, mit dem umstrukturierten Projekt fortfahren.
+Überarbeiten wir die Ordner-/Dateistruktur des Projekts, um erste Erfahrungen im Strukturierungsprozess zu sammeln. Danach teile ich mit dir meinen Erfahrungshintergrund und Best Practices bei der Umstrukturierung von React-Projekten. Im Weiteren werden wir die Beispielanwendung allein in der Datei *src/App.js* weiterentwickeln. So bleiben die Erklärungen hier im Buch kompakt. Dir steht es frei, mit dem umstrukturierten Projekt fortfahren.
 
-Öffne über die Befehlszeile den Ordner  *src/* im Rootverzeichnis des Beispielprojektes und erstellen drei Komponentendateien:
+Öffne über die Befehlszeile den Ordner *src/* im Rootverzeichnis des Beispielprojektes und erstelle drei Dateien:
 
 {title="Command Line",lang="text"}
 ~~~~~~~
@@ -192,7 +192,7 @@ A project's requirements evolve over time and so should its structure. If keepin
 ### Übungen:
 
 * Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Folder-Structure).
-  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/React-Folder-Structure?expand=1).
+  * Bestätige die [Änderungen Änderungen gegenüber dem Stand am Ende des ersten Kapitels](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/React-Folder-Structure?expand=1).
 * Lese mehr zum Thema [JavaScript's import and export statements](https://www.robinwieruch.de/javascript-import-export).
 * Lese mehr zum Thema [React Folder Structures](https://www.robinwieruch.de/react-folder-structure).
 * Keep the current folder structure if you feel confident. The ongoing sections will omit it, only using the *src/App.js* file.
