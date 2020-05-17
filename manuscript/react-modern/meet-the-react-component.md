@@ -1,6 +1,6 @@
-## Meet the React Component
+## Erste Schritte mit der React-Komponente
 
-Our first React component is in the *src/App.js* file, which should look similar to the example below. The file might differ slightly, because create-react-app will sometimes update the default component's structure.
+Unsere erste React-Komponente findest du in der Datei *src/App.js*. Der Code weicht unter Umständen geringfügig ab, da die [Create-React-App](https://github.com/facebook/create-react-app) von Zeit zu Zeit die Struktur der Standardkomponente aktualisiert.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -32,7 +32,7 @@ function App() {
 export default App;
 ~~~~~~~
 
-This file will be our focus throughout this tutorial, unless otherwise specified. Let's start by reducing the component to a more lightweight version for getting you started without too much boilerplate code from create-react-app.
+Sofern nicht anders angegeben, dreht sich hier alles um die Datei *src/App.js*. Als Erstes vereinfachen wir die Komponente. So baust du dein Projekt ohne unnötigen Boilerplate-Code aus der [Create-React-App](https://github.com/facebook/create-react-app) auf.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -51,9 +51,9 @@ export default App;
 # leanpub-end-insert
 ~~~~~~~
 
-First, this React component, called App component, is just a JavaScript function. It's commonly called **function component**, because there are other variations of React components  (see **component types** later). Second, the App component doesn't receive any parameters in its function signature yet (see **props** later). And third, the App component returns code that resembles HTML which is called JSX (see **JSX** later).
+Bemerkenswert sind drei Punkte: Zum einen ist diese React-Komponente, die als App-Komponente bezeichnet wird, nichts anderes als eine JavaScript-Funktion. Sie wird allgemein **Funktionskomponente** genannt, da es andersartig Variationen von React-Komponenten gibt (siehe **Komponententypen**). Zweitens enthält die App-Komponente keine Parameter in ihrer Funktionssignatur (siehe **Eigenschaften**). Und drittens gibt die App-Komponente Code zurück, der HTML ähnelt und JSX heißt (siehe Kapitel **JSX**).
 
-The function component possess implementation details like any other JavaScript function. You will see this in practice in action throughout your React journey:
+Die Funktionskomponente verfügt über Implementierungsdetails, wie jede andere JavaScript-Funktion. Du wirst diese während deines gesamten Ausflugs in die React-Welt praktisch anwenden:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -74,7 +74,7 @@ function App() {
 export default App;
 ~~~~~~~
 
-Variables defined in the function's body will be re-defined each time this function runs, like all JavaScript functions:
+Wie bei allen JavaScript-Funktionen, werden im Funktionskörper festlegte Variablen bei jeder Ausführung neu definiert:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -95,7 +95,7 @@ function App() {
 export default App;
 ~~~~~~~
 
-Since we don't need anything from within the App component used for this variable -- e.g. parameters coming from the function signature -- we can define the variable outside of the App component as well:
+Da wir innerhalb der für diese Variable verwendeten App-Komponente nichts benötigen --- zum Beispiel Parameter der Funktionssignatur --- definieren wir sie außerhalb:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -116,12 +116,12 @@ function App() {
 export default App;
 ~~~~~~~
 
-Let's use this variable in the next section.
+Im nächsten Abschnitt verwenden wir diese Variable.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Meet-the-React-Component).
-* If you are unsure when to use `const`, `let` or `var` in JavaScript (or React) for variable declarations, make sure to [read more about their differences](https://www.robinwieruch.de/const-let-var).
-  * Read more about [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const).
-  * Read more about [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let).
-* Think about ways to display the `title` variable in your App component's returned HTML. In the next section, we'll put this variable to use.
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Meet-the-React-Component).
+* Wenn du nicht sicher bist, wann du `const`, `let` oder `var` in JavaScript (oder React) für Variablendeklarationen verwendest, lese [mehr meinen Text zu diesem Thema](https://www.robinwieruch.de/const-let-var).
+  * Lese mehr zum [Schlüsselwort const](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Statements/const).
+  * Lese mehr zum [Schlüsselwort let](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Statements/let).
+* Überlege dir, wie du die Variable `title` im zurückgegebenen HTML-Code der App-Komponente anzeigst.
