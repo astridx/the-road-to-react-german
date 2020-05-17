@@ -1,22 +1,22 @@
-## Requirements
+## Voraussetzungen
 
-To follow this book you'll need to be familiar with the basics of web development, i.e how to use HTML, CSS, and JavaScript. It also helps to understand [APIs](https://www.robinwieruch.de/what-is-an-api-javascript/), as they will be covered thoroughly.
+Um diesem Buch geistig zu folgen, ist es ideal, wenn du mit den Grundlagen der Webentwicklung vertraut bist, damit meine ich HTML, CSS und JavaScript. Es ist hilfreich, [APIs](https://www.robinwieruch.de/what-is-an-api-javascript/) zu verstehen, da sie ausführlich behandelt werden.
 
 ### Editor and Terminal
 
-I have provided [a setup guide](https://www.robinwieruch.de/developer-setup/) to get you started with general web development. For this learning experience, you will need a text editor (e.g. Sublime Text) and a command line tool (e.g. iTerm) or an IDE (e.g. Visual Studio Code). I recommend Visual Studio Code (also called VS Code) for beginners, as it's an all-in-one solution that provides an advanced editor with an integrated command line tool, and because it's a popular choice among web developers.
+Ich habe [eine Anleitung](https://www.robinwieruch.de/developer-setup/) auf meiner Website veröffentlicht, um dir den Einstieg in die allgemeine Webentwicklung zu erleichtern. Für die Bearbeitung der Inhalte dieses Buches benötigst du einen Texteditor (Sublime Text) und ein Befehlszeilenprogramm (iTerm) oder eine IDE (Visual Studio Code,  VS Code). Ich empfehle dir Letzteres, da dieses Programm eine praktische Kombi-Lösung darstellt, die einen erweiterten Editor mit einem integrierten Befehlszeilentool vereint. VS Code ist bei Webentwicklern beliebt.
 
-Throughout this learning experience I will use the term *command line*, which will be used synonymously for the terms *command line tool*, *terminal*, and *integrated terminal*. The same applies for the terms *editor*, *text editor*, and *IDE*, depending on what you decided to use for your setup.
+Hier im Buch werde ich den Begriff *Befehlszeile* verwenden, der synonym für *Befehlszeilentool*, *Terminal*, *Kommandozeile* und *integriertes Terminal* verwendet wird. Gleiches gilt für die Begriffe *Editor*, *Texteditor* und *IDE*, je nachdem, welche Programme du verwendest.
 
-Optionally, I recommend managing projects in GitHub while we conduct the exercises in this book, and I've provided a [short guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. Github has excellent version control, so you can see what changes were made if you make a mistake or just want a more direct way to follow along. It's also a great way to share your code later with other people.
+Optional empfehle ich dir, deine Projekte mit GitHub zu verwalten. Ich habe eine [Kurzanleitung](https://www.robinwieruch.de/git-essential-commands/) erstellt, die dir den Einstieg in dieses Werkzeug erleichtert. Github bietet dir eine Versionskontrolle. So hast du immer den Überblick über Änderungen und es ist unkompliziert auf einen Stand zurück zu wechseln. Github ist nebenbei die ideale Möglichkeit, deinen Code später mit anderen Personen zu teilen.
 
-If you don't want to set up the editor/terminal combination or IDE on your local machine, [CodeSandbox](https://codesandbox.io/), an online editor, is also a viable alternative. While CodeSandbox is a great tool for sharing code online, a local machine setup is a better tool for learning the different ways to create a web application. Also, if you want to develop applications professionally, a local setup will be required.
+Eine Alternative zur lokalen Installation stellt der Online-Editor [Codesandbox](https://codesandbox.io/) dar. Während Codesandbox ein ausgezeichnetes Tool zum Online-Teilen von Code ist, ist ein lokales Computer-Setup ein besseres Tool zum Erlernen der verschiedenen Möglichkeiten. Wenn du planst, Anwendungen professionell zu entwickeln, ist ein lokales Setup unumgänglich.
 
-### Node and NPM
+### Node.js and NPM
 
-Before we can begin, we'll need to have [node and npm](https://nodejs.org/en/) installed. Both are used to manage libraries (node packages) you will need along the way. These node packages can be libraries or whole frameworks. We'll install external node packages via npm (node package manager).
+Um mit React zu arbeiten, benötigst du [Node.js](https://nodejs.org/de/) und [npm](https://www.npmjs.com/). Beide Programme werden zum Verwalten von Bibliotheken verwendet, die wir in der Beispielanwendung benötigen. Bei diesen handelt es sich um Node-Pakete in Form von kleinen Codeeinheiten oder oder ganzen Frameworks. Wir installieren sie mithilfe von `npm` (Node Package Manager).
 
-You can verify node and npm versions in the command line using the `node --version` command. If you don't receive output in the terminal indicating which version is installed, you need to install node and npm:
+Überprüfe ob und in welcher Version `Node.js` und `npm` auf deinem Rechner installiert sind. Verwende dazu die Befehlszeile und die Befehle `node --Version` und `npm --Version`.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
@@ -26,4 +26,6 @@ npm --version
 *vXX.YY.ZZ
 ~~~~~~~
 
-If you have already installed Node and npm, make sure that your installation is the most recent version. If you're new to npm or need a refresher, this [npm crash course](https://www.robinwieruch.de/npm-crash-course) I created will get you up to speed.
+Wird dir im Terminal angezeigt, welche Version installiert ist? Andernfalls installiere die Programme. 
+
+Stelle sicher, dass du immer über aktuelle Versionen verfügst. Kennst du die Programme bisher nicht oder wünschst du dir einen kurzen Überblick? Sieh dir meinen [npm-Crashkurs](https://www.robinwieruch.de/npm-crash-course) an.
