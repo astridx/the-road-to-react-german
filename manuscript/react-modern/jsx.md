@@ -1,6 +1,6 @@
-## React JSX
+## JSX (JavaScript XML)
 
-Recall that I mentioned the returned output of the App component resembles HTML. This output is called JSX, which mixes HTML and JavaScript. Let's see how this works for displaying the variable:
+Erinnerst du dich: Ich hatte erwähnt, dass die Ausgabe der App-Komponente der Syntax von HTML ähnelt. Diese Abwandlung heißt JSX und mischt hier JavaScript-Logik, HTML und CSS. Mal sehen, wie das für die Anzeige der Variablen genau funktioniert:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -21,9 +21,9 @@ function App() {
 export default App;
 ~~~~~~~
 
-Start your application with `npm start` again, and look for the rendered variable in browser, which should read: "Hello React".
+Führe deine Anwendung erneut mit `npm start` aus und sieh dir die Anzeige im Browser an. Du siehst die gerendert Variable, die Ausgabe laute: „Hello React“.
 
-Let's focus on the HTML, which is expressed almost the same in JSX. An input field with a label can be defined as follows:
+Richten wir die Aufmerksamkeit als Nächstes auf den HTML-Code, der in JSX fast gleich beschrieben wird. Ein Eingabefeld mit einer Bezeichnung wir wie folgt definiert:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -47,9 +47,9 @@ function App() {
 export default App;
 ~~~~~~~
 
-We specified three HTML attributes here: `htmlFor`, `id`, and `type`. Where `id` and `type` should be familiar from native HTML, `htmlFor` might be new. The `htmlFor` reflects the `for` attribute in HTML. JSX replaces a handful of internal HTML attributes, but you can find all the [supported HTML attributes](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes) in React's documentation, which follow the camelCase naming convention. Expect to come across more JSX-specific attributes like `className` and `onClick` instead of `class` and `onclick`, as you learn more about React.
+Wir haben hier drei HTML-Attribute angegeben: `htmlFor`, `id`, und `type`. `id`, `type` kennst du aus nativem HTML – `htmlFor` ist gegebenenfalls neu für dich. `htmlFor` spiegelt das` for` Attribut in HTML wider. JSX ersetzt eine Handvoll interner HTML-Attribute, aber du findest alle [unterstützten HTML-Attribute](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes) in der React-Dokumentation, die camelCase als Namenskonvention verwendet. Je weiter du dich in React vorarbeitest, desto mehr JSX-spezifische Attribute wie `className` und `onClick` anstelle von `class` und `onclick` werden dir auf deinem Weg begegnen.
 
-We will revisit the HTML input field for implementation details later; for now, let's return to JavaScript in JSX. We have defined a string primitive to be displayed in the App component, and the same can be done with a JavaScript object:
+Wir werden das HTML-Eingabefeld später erneut ansehen und dabei Details zur Implementierung behandeln. Jetzt kehren wir zunächst zu JavaScript in JSX zurück. Wir haben im vorhergehenden Beispiel einen String in einer Konstante für die Ausgabe definiert, dasselbe erledigen wir im nächsten Schritt mit einem JavaScript-Objekt:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -80,7 +80,7 @@ function App() {
 export default App;
 ~~~~~~~
 
-Remember, everything in curly braces in JSX can be used for JavaScript expressions (e.g. function execution):
+Erinnerst du dich: In JSX ist es möglich, geschweifte Klammern für JavaScript-Ausdrücke zu verwenden – zum Beispiel für die Ausführung einer Funktion:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -108,12 +108,21 @@ function App() {
 export default App;
 ~~~~~~~
 
-JSX was initially invented for React, but it became useful for other modern libraries and frameworks after it gained popularity. It is one of my favorite things about React. Without any extra templating syntax (except for the curly braces), we are now able to use JavaScript in HTML.
+JSX wurde ursprünglich für React entwickelt, nach und nach haben andere die Vorzüge der Sprache erkannt. So wurde JSX später in weitere moderne Bibliotheken und Frameworks integriert. Es ist eines meiner Lieblingsfeatures in React. Ohne zusätzliche Syntax oder Templates ist es möglich, JavaScript in HTML zu verwenden. Einzig und allein geschweiften Klammern sind erforderlich.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-JSX).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Meet-the-React-Component...hs/React-JSX?expand=1).
-* Read more about [React's JSX](https://reactjs.org/docs/introducing-jsx.html).
-* Define more primitive and complex JavaScript data types and render them in JSX.
-* Try to render a JavaScript array in JSX. If it's too complicated, don't worry, because you will learn more about this in the next section.
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-JSX).
+  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Meet-the-React-Component...hs/React-JSX?expand=1).
+* Lese mehr zum Thema [React’s JSX](https://de.reactjs.org/docs/introducing-jsx.html).
+* Definiere eigene Variablen und zeige diese mithilfe von JSX im Frontend deiner Anwendung an.
+* Versuche, die Daten eines Arrays mithilfe von JSX im Frontend anzuzeigen. Sorge dich nicht, falls es nicht sofort klappt. Im nächsten Kapitel werden wir diese Fragestellung gemeinsam angehen.
+
+
+
+
+
+
+
+
+
