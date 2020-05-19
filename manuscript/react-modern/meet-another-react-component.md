@@ -1,6 +1,6 @@
-## Meet another React Component
+## Lerne eine andere React-Komponente kennen
 
-So far we've only been using the App component to create our applications. We used the App component in the last section to express everything needed to render our list in JSX, and it should scale with your needs and eventually handle more complex tasks. To help with this, we'll split some of its responsibilities into a standalone List component:
+Bisher haben wir ausschließlich die App-Komponente zum Erstellen unserer Anwendungen genutzt. Du hast die App im letzten Abschnitt verwendet, um alles durchzuführen, was zum Rendern einer Liste in JSX erforderlich ist. Vorgesehen war es, dass die App mit Ihren Anforderungen wächst. Damit die App bei komplexeren Aufgaben übersichtlich bleibt, teilen wir die Hauptkomponente in Unterkomponenten auf. Wir erstellen eine eigenständige Listenkomponente:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -26,7 +26,7 @@ function List() {
 # leanpub-end-insert
 ~~~~~~~
 
-Optional: If this component looks odd, because the outermost part of the returned JSX starts with JavaScript. We could use it with a wrapping HTML element as well, but we'll continue with the previous version.
+Optional: Verwende ein umgebendes HTML-Element, wenn die Komponente seltsam auf dich wirkt, weil der äußerste Teil des zurückgegebenen JSX JavaScript-Syntax ähnelt. Im weiteren Verlauf werde ich dessen ungeachtet die vorherige Version nutzen.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -45,7 +45,7 @@ function List() {
 }
 ~~~~~~~
 
-Now the new List component can be used in the App component:
+Verwende jetzt die neue List-Komponente in der App-Komponente:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -67,14 +67,14 @@ function App() {
 }
 ~~~~~~~
 
-You've just created your first React component! With this example, we can see how components that encapsulate meaningful tasks can work for larger React applications.
+Voilà! Du hast deine erste React-Komponente erstellt! Das Beispiel gibt dir einen kleinen Einblick wie diese komplexe Aufgaben in größeren React-Anwendungen übernehmen.
 
-Larger React applications have **component hierarchies** (also called **component trees**). There is usually one uppermost **entry point component** (e.g. App) that spans a tree of components below it. The App is the **parent component** of the List, so the List is a **child component** of the App. In a component tree, the App is the **root component**, and the components that don't render any other components are called **leaf components** (e.g. List). The App can have multiple children, as can the List. If the App has another child component, the additional child component is called a **sibling component** of the List.
+Komplexe React-Anwendungen verfügen über **Komponentenhierarchien** oder **Komponentenbäume**. Es gibt normalerweise eine **Einstiegspunktkomponente** (zum Beispiel App), die einen Baum darunter überspannt. Die App ist die **übergeordnete Komponente** der Liste. Andersherum ist die Liste eine **untergeordnete Komponente** der App. In einem Komponentenbaum ist die App normalerweise die **Stammkomponente**. Die Komponenten, die keine anderen rendern, werden als **Blattkomponenten** (zum Beispiel Liste) bezeichnet. Es ist möglich, dass die App mehrere Komponenten unter sich hat. Wenn die App eine andere untergeordnete Komponente hat, bezeichnen wir diese als **Geschwisterkomponente** der Liste.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Meet-another-React-Component).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Lists-in-React...hs/Meet-another-React-Component?expand=1).
-* Draw your components -- the App component and List component -- as a component tree on a sheet of paper. Extend this component tree with other possible components (e.g. extracted Search component for the input field and label in the App component). Try to figure out which other parts can be extracted as standalone components.
-* If a Search component is used in the App component, would the Search component be a sibling, parent, or child component for the List component?
-* Ask yourself what problems could arise if we keep treating the `list` variable as global variable. We will cover how to handle these problems in the upcoming sections.
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Meet-another-React-Component).
+  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Lists-in-React...hs/Meet-another-React-Component?expand=1).
+* Stelle die Komponenten der Beispielanwendung grafisch dar. Zeichnen die App und die Listenkomponente als Baum auf ein Blatt Papier. Erweitere diesen Komponentenbaum mit möglichen Komponenten (beispielsweise einer Suchkomponente für das Eingabefeld und das Label). Versuche herauszufinden, welche anderen Teile als eigenständige Komponenten integrierbar sind.
+* Wenn eine Suchkomponente in der App verwendet wird, wäre diese eine Geschwister-, Eltern- oder Kindkomponente für die Listenkomponente?
+* Frage dich, welche Probleme auftreten, wenn wir `list` weiterhin als globale Variable behandeln. Wie wir mit diesem umgehen ist Thema in den nächsten Kapiteln.
