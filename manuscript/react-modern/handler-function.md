@@ -1,6 +1,6 @@
-## Handler Function in JSX
+## Handler in JSX
 
-The App component still has the input field and label, which we haven't used. In HTML outside of JSX, input fields have an [onchange handler](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onchange). We're going to discover how to use onchange handlers with a React component's JSX. First, refactor the App component from a concise body to a block body so we can add implementation details.
+Unsere App-Komponente verfügt nach wie vor über das Eingabefeld inklusive Label, das wir bisher nur angezeigt und nicht weiter verwendet haben. In HTML verfügen Eingabefelder über einen [onchange-Handler](https://developer.mozilla.org/de/docs/Web/API/GlobalEventHandlers/onchange). Ein solcher Handler wäre in JSX ebenfalls hilfreich. Deshalb erarbeiten wir als Nächstes, wie ein onchange-Handler mit JSX in einer React-Komponente anwendbar ist. Überarbeite zunächst die App. Nutze anstelle des [knappen Körpers einen gewöhnlichen Blockkörper](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Functions/Pfeilfunktionen#Funktionsk%C3%B6rper), um dann im nächsten Schritt weitere Implementierungsdetails hinzufügen.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -26,7 +26,7 @@ const App = () => {
 # leanpub-end-insert
 ~~~~~~~
 
-Next, define a function -- which can be normal or arrow -- for the change event of the input field. In React, this function is called an **(event) handler**. Now the function can be passed to the `onChange` attribute (JSX named attribute) of the input field.
+Definiere jetzt eine Funktion, die aufgerufen wird, wenn sich der Wert im Eingabefeld ändert – ergo: wenn das Änderungsereignis ausgelöst wird. Verwende eine normale oder eine Arrow-Funktion – je nachdem welche Variante du bevorzugst. In React wird eine solche Funktion als **(Ereignis-)Handler** bezeichnet. Übergib diese im nächsten Schritt an das Attribut `onChange` des Eingabefelds. Beachte: Bei `onChange` handelt es sich um ein JSX-Attribut. Dies erkennst du insbesondere an der Schreibweise in Camel-Case.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -54,7 +54,7 @@ const App = () => {
 };
 ~~~~~~~
 
-After opening your application in a web browser, open the browser's developer tools to see logging occur after you type into the input field. This is called a **synthetic event** defined by a JavaScript object. Through this object, we can access the emitted value of the input field:
+Öffne jetzt zunächst deine Anwendung in einem Webbrowser und danach wechsele in die Entwicklertools deines Browsers. Gib daraufhin ein paar Zeichen in das Eingabefeld ein und prüfe, ob deine Eingaben mitprotokolliert werden. Dies wird als **synthetisches Ereignis** bezeichnet, welches vom JavaScript-Objekt definiert wird. Über dieses Objekt greifen wir auf den Wert des Eingabefelds zu:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -69,13 +69,13 @@ const App = () => {
 };
 ~~~~~~~
 
-The synthetic event is essentially a wrapper around the [browser's native event](https://developer.mozilla.org/en-US/docs/Web/Events), with more functions that are useful to prevent native browser behavior (e.g. refreshing a page after the user clicks a form's submit button). Sometimes you will use the event, sometimes you won't need it.
+Das [synthetische Ereignis](https://de.reactjs.org/docs/events.html) ist ein browserübergreifender Wrapper für das [native Eventobjekt des Browsers](https://developer.mozilla.org/de/docs/Web/Events). Es beinhaltet weitere Funktionen, die nützlich sind, um das Standardverhalten des nativen Browsers zu verhindern – zum Beispiel das Aktualisieren einer Seite, nachdem der Benutzer auf die Schaltfläche zum Senden eines Formulars geklickt hat. Du wirst dieses Ereignis nicht immer nutzen. Andere Male ist es sinnvoll.
 
-This is how we give HTML elements in JSX handler functions to respond to user interaction. Always pass functions to these handlers, not the return value of the function, except when the return value is a function:
+Auf diese Weise erreichen wir es, dass HTML-Elemente über JSX-Handlerfunktionen auf Benutzerinteraktionen reagieren. Übergib immer die Funktion selbst an einen Handler und nicht den Rückgabewert – es sei denn, bei diesem handelt es sich um eine Funktion:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
-// don't do this
+// Bitte nicht so.
 <input
   id="search"
   type="text"
@@ -84,7 +84,7 @@ This is how we give HTML elements in JSX handler functions to respond to user in
 # leanpub-end-insert
 />
 
-// do this instead
+// Stattdessen
 <input
   id="search"
   type="text"
@@ -94,12 +94,12 @@ This is how we give HTML elements in JSX handler functions to respond to user in
 />
 ~~~~~~~
 
-HTML and JavaScript work well together in JSX. JavaScript in HTML can display objects, can pass JavaScript primitives to HTML attributes (e.g. `href` to `<a>`), and can pass functions to an element's attributes for handling events.
+HTML und JavaScript arbeiten in JSX zielführend zusammen. Javascript zeigt Objekte mithilfe von HTML im Browser an, übergibt Grundelemente (zum Beispiel `<a>`) an HTML-Attribute (zum Beispiel `href`) und Funktionen an die Attribute eines Elements, um Ereignisse zu behandeln.
 
-I prefer using arrow functions because of their concision as event handlers, however, in a larger React component I see myself using the function statements too, because it gives them more visibility in contrast to other variable declarations within a component's body.
+Ich bevorzuge Pfeilfunktionen aufgrund ihrer Prägnanz als Ereignishandler. In einer größeren React-Komponente verwende ich teilweise normale Funktionsanweisungen, da diese im Gegensatz zu anderen Variablendeklarationen im Hauptteil einer Komponente sichtbarer sind.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Handler-Function-in-JSX).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Component-Definition...hs/Handler-Function-in-JSX?expand=1).
-* Read more about [React's events](https://reactjs.org/docs/events.html).
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Handler-Function-in-JSX).
+  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Component-Definition...hs/Handler-Function-in-JSX?expand=1).
+* Lese mehr zum Thema [React's events](https://reactjs.org/docs/events.html).
