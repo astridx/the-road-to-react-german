@@ -1,8 +1,8 @@
-## React Component Definition (Advanced)
+## Komponentendefinition in React (Fortgeschrittene Anleitung)
 
-The following refactorings are optional recommendations to explain the different JavaScript/React patterns. You can build complete React applications without these advanced patterns, so don't be discouraged if they seem too complicated.
+Die folgenden Überarbeitungen sind optionale Empfehlungen von mir. Erstelle deine Anwendung ohne diese erweiterten Muster, wenn du dies bevorzugst. Lasse dich nicht entmutigen, wenn das Kapitel dir zunächst zu kompliziert erscheint.
 
-All components in the *src/App.js* file are function component. JavaScript has multiple ways to declare functions. So far, we have used the function statement, though arrow functions can be used more concisely:
+Alle Komponenten in der Datei *src/App.js* sind Funktionskomponenten. JavaScript bietet dir mehrere Möglichkeiten, Funktionen zu deklarieren. Bisher haben wir die Funktionsanweisung genutzt, obwohl Pfeilfunktionen präziser und knapper sind:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -147,9 +147,9 @@ const App = () => {
 
 Be sure to understand this refactoring concept, because we'll move quickly from arrow function components with and without block bodies as we go. Which one we use will depend on the requirements of the component.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Component-Definition).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Meet-another-React-Component...hs/React-Component-Definition?expand=1).
-* Read more about [JavaScript arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Component-Definition).
+  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Meet-another-React-Component...hs/React-Component-Definition?expand=1).
+* Lese mehr zum Thema [JavaScript arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
 * Familiarize yourself with arrow functions with block body and return, and concise body without return.
