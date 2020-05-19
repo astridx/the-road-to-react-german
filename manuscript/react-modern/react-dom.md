@@ -1,6 +1,6 @@
 ## React DOM
 
-Now that we've learned about component definitions and their instantiation, we can move to the App component's instantiation. It has been in our application from the start, in the *src/index.js* file:
+Nachdem wir die Komponentendefinitionen und das Instanziieren kennengelernt haben, wenden wir das Wissen auf die App-Komponente an. Dies war von Anfang an ein Bestandteil unserer Anwendung. Den Code findest du in der Datei *src/index.js*:
 
 {title="src/index.js",lang="javascript"}
 ~~~~~~~
@@ -15,7 +15,7 @@ ReactDOM.render(
 );
 ~~~~~~~
 
-Next to React, there is another imported library called `react-dom`, in which a `ReactDOM.render()` function uses an HTML node to replace it with JSX. The process integrates React into HTML. `ReactDOM.render()` expects two arguments; the first is to render the JSX. It creates an instance of your App component, though it can also pass simple JSX without any component instantiation.
+Neben React gibt es eine weitere importierte Bibliothek namens `react-dom`. In dieser nutzt die Funktion `ReactDOM.render()` einen HTML-Knoten und ersetzt ihn mit JSX. Der Prozess integriert React in HTML. `ReactDOM.render ()` erwartet zwei Argumente: Das erste ist die Grundlage für das Rendern von JSX. Meist wird eine Instanz der App-Komponente verwendet. Das ist nicht zwingend. Das Übergeben von JSX ohne Komponenteninstanziierung ist völlig ausreichend.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -25,10 +25,10 @@ ReactDOM.render(
 );
 ~~~~~~~
 
-The second argument specifies where the React application enters your HTML. It expects an element with an `id='root'`, found in the *public/index.html* file. This is a basic HTML file.
+Das zweite Argument legt fest, wo die React-Anwendung den fertigen HTML-Code einfügt. Erwartet wird ein Element, mit `id='root'`, welches in der Datei *public/index.html* vorhanden ist. Hierbei handelt es sich um eine normale HTML-Datei.
 
-### Exercises:
+### Übungen:
 
-* Open the *public/index.html* to see where the React application enters your HTML.
-* Consider how we can include a React application in an external web application that uses HTML.
-* Read more about [rendering elements in React](https://reactjs.org/docs/rendering-elements.html).
+* Öffnen die Datei *public/index.html* und finde heraus, wo die React-Anwendung deinen HTML-Code einfügt.
+* Überlege, wie du eine React-Anwendung in eine externe HTML-Webanwendung integrierst.
+* Lese mehr zum Thema [Rendern von Elementen in React](https://de.reactjs.org/docs/rendering-elements.html).
