@@ -1,16 +1,16 @@
-# React Maintenance
+# Wartung in React
 
-Once a React application grows, maintenance becomes a priority. To prepare for this eventuality, we'll cover performance optimization, type safety, testing, and project structure.  Each can strengthen your app to take on more functionality without losing quality.
+Ist die Anwendung fertig eingerichtet und kommen mehr und mehr Nutzer hinzu, spielt die Wartung eine immer größere Rolle. Um den laufend Aufwand so klein wie möglich zu halten, werden wir uns mit Leistungsoptimierung, Typensicherheit, Tests und Projektstruktur befassen. Lese in diesem Kapitel, wie du die Grundlagen für eine pflegeleichte Anwendung legst, ohne dabei Qualitätseinbußen in Kauf zu nehmen.
 
-Performance optimization prevents applications from slowing down by assuring efficient use of available resource.  Typed programming languages like TypeScript detect bugs earlier in the feedback loop.  Testing gives us more explicit feedback than typed programming, and provides a way to understand which actions can break the application. Lastly, project structure supports the organized management of assets into folders and files, which is especially useful in scenarios where team members work in different domains.
+Die Leistungsoptimierung verhindert, dass Anwendungen langsamer werden, indem eine effiziente Nutzung der verfügbaren Ressourcen sichergestellt wird. Typisierte Programmiersprachen wie TypeScript erkennen Fehler früherzeitig. Automatische Tests geben uns bei Änderungen Sicherheit, dass der ursprüngliche Code weiterhin funktioniert. Und, last but not least unterstützt die Projektstruktur eine organisierte Verwaltung, was in Szenarien nützlich ist, in denen unterschiedliche Teams aus verschiedenen Bereichen zusammen arbeiten.
 
-## Performance in React (Advanced)
+## Performanz in React (Fortgeschrittene Anleitung)
 
-This section is just here for the sake of learning about performance improvements in React. We wouldn't need optimizations in most React applications, as React is fast out of the box. While more sophisticated tools exist for performance measurements in JavaScript and React, we will stick to a simple `console.log()` and our browser's developer tools for the logging output.
+In diesem Abschnitt zeige ich dir, wie du dir einen Überblick über die Performance deiner Applikation verschaffst. Du wirst feststellen: React-Anwendungen sind von Hause aus leistungsstark. Es gibt eine Vielzahl unterschiedlicher Monitoring und Reporting-Tools. Ich habe mich dazu entschieden, dir ein grundlegendendes Werkzeug zu zeigen: `console.log()` in Verbindung mit den Entwicklertools deines Browsers.
 
-### Don't run on first render
+### Das erste Rendern
 
-Previously we covered React's useEffect Hook, which is used for side-effects. It runs the first time a component renders (mounting), and then every re-render (updating). By passing an empty dependency array to it as a second argument, we can tell the hook to run on the first render only. Out of the box, there is no way to tell the hook to run only on every re-render (update) and not on the first render (mount). For example, examine this custom hook for state management with React's useState Hook and its semi persistent state with local storage using React's useEffect Hook:
+Wir haben uns bereits mit Reacts useEffect Hook befasst, der für Seiteneffekte verwendet wird. Dieser wird beim ersten Rendern (Mounten) einer Komponente und dann bei jedem Aktualisieren aufgerufen. Indem wir ihm als zweites Argument ein leeres Abhängigkeitsarray übergeben, wird der Hook nur beim ersten Rendern ausgelöst. Standardmäßig gibt es keine Möglichkeit, den Hook so einzustellen, dass er bei jedem Aktualisieren aber nicht beim ersten Rendern (Mounten) aufgerufen wird. Sieh dir dies beispielsweise für die Statusverwaltung an. Wir verwalten den Status mit dem `useState`-Hook. Das dieser semi-persistenten ist erreichen wir, indem wir mithilfe des `useEffect`-Hook den aktuellen Wert im lokalen Speicher des Browsers ablegen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -30,9 +30,9 @@ const useSemiPersistentState = (key, initialState) => {
 };
 ~~~~~~~
 
-With a closer look at the developer's tools, we can see the log for a first time render of the component using this custom hook. It doesn't make sense to run the side-effect for the initial rendering of the component, because there is nothing to store in the local storage except the initial value. It's a redundant function invocation, and should only run for every update (re-rendering) of the component.
+Nutze die Anweisung console.log(‚A‘); um dir über die Konsole der Entwicklertools des Browsers anzusehen, wann der Status in den lokalen Speicher gespeichert wird. Erstmals geschieht dies, wenn die Komponente das erste Mal gerendert wird. Dies ist nicht sinnvoll, da zu diesem Zeitpunkt der Anfangswert aktiv ist. Erforderlich ist das Speichern nur bei einem erneuten Rendern der Komponente – nur dann ist es möglich, dass der Wert sich geändert hat.
 
-As mentioned, there is no React Hook that runs on every re-render, and there is no way to tell the `useEffect` hook in a React idiomatic way to call its function only on every re-render. However, by using React's useRef Hook which keeps its `ref.current` property intact over re-renders, we can keep a *made up state* (without re-rendering the component on state updates) of our component's lifecycle:
+Wie erwähnt, gibt es keinen React-Hook, der bei jedem Rendern aufgerufen wird, den ersten Aufruf aber auslässt. Durch die Verwendung des `useRef`-Hooks, bei dem die Eigenschaft `ref.current` beim erneuten Rendern erhalten bleibt, erstellen wir uns diese Lösung selbst.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -62,15 +62,15 @@ const useSemiPersistentState = (key, initialState) => {
 };
 ~~~~~~~
 
-We are exploiting the `ref` and its mutable `current` property for imperative state management that doesn't trigger a re-render. Once the hook is called from its component for the first time (component render), the ref's `current` is initialized with a `false` boolean called `isMounted`. As a result, the side-effect function in `useEffect` isn't called; only the boolean flag for `isMounted` is toggled to `true` in the side-effect. Whenever the hook runs again (component re-render), the boolean flag is evaluated in the side-effect. Since it's `true`, the side-effect function runs. Over the lifetime of the component, the `isMounted` boolean will remain`true`. It was there to avoid calling the side-effect function for the first time render that uses our custom hook.
+Wir nutzen `ref` und seine veränderbare `current`-Eigenschaft für die imperative Zustandsverwaltung, die kein erneutes Rendern auslöst. Sobald der Hook zum ersten Mal von seiner Komponente aufgerufen wird, wird `current` mit einem Booleschen Wert namens `isMounted` initialisiert, der mit `false` belegt ist. So wird der Seiteneffekt in `useEffect` nicht ausgelöst. Nur das boolesche Flag für `isMounted` wird auf `true` umgeschaltet. Bei jedem erneuten Aufruf wird das Flag im Seiteneffekt ausgewertet. Da es `true` ist, wird der Status im lokalen Speicher gespeichert. Während der Lebensdauer der Komponente bleibt `isMounted` mit `true` belegt. So wird vermieden, dass die Nebenwirkung ausgelöst wird, wenn unser benutzerdefinierter Hook verwendet wird.
 
-The above was only about preventing the invocation of one simple function for a component rendering for the first time. But imagine you have an expensive computation in your side-effect, or the custom hook is used frequently in the application. It's more practical to deploy this technique to avoid unnecessary function invocations.
+Dieses Beispiel ist nicht verhältnismäßig. Der Aufwand lohnt sich nicht, für die kleine Optimierung. Bedenke aber: Es gibt React-Anwendungen, mit komplizierten Berechnungen, in ihren Seiteneffekten. Dann ist es praktischer, diese Technik einzusetzen, um unnötige Funktionsaufrufe zu vermeiden.
 
-*Note: This technique isn't only used for performance optimizations, but for the sake of having a side-effect run only when a component re-renders. I used it several times, and I suspect you'll stumble on one or the other use case for it eventually.*
+*Hinweis: Diese Technik wird nicht nur zur Leistungsoptimierung verwendet, sondern, um einen Nebeneffekt nur dann auszuführen, wenn eine Komponente erneut gerendert wird. Ich habe es mehrmals benutzt und ich vermute, dass du irgendwann auf den einen oder anderen Anwendungsfall stoßen wirst.*
 
 ### Don't re-render if not needed
 
-Earlier, we explored React's re-rendering mechanism. We'll repeat this exercise for the App and List components. For both components, add a logging statement.
+Zuvor haben wir den Re-Rendering-Mechanismus von React untersucht. Wiederhole dies für die App- und List-Komponente. Füge für beide eine Protokollierungsanweisung hinzu, um in der Konsole deines Browsers die Ausführung zu mitzuverfolgen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -97,7 +97,7 @@ const List = ({ list, onRemoveItem }) =>
   ));
 ~~~~~~~
 
-Because the List component has no function body, and developers are lazy folks who don't want to refactor the component for a simple logging statement, the List component uses the `||` operator instead. This is a neat trick for adding a logging statement to a function component without a function body. Since the `console.log()` on the left hand side of the operator always evaluates to false, the right hand side of the operator gets always executed.
+Da die List-Komponente keinen Funktionskörper hat, verwendet die List-Komponente stattdessen den Operator `||`. Dies ist ein Trick, um einer Funktionskomponente ohne Funktionskörper eine Protokollierungsanweisung hinzuzufügen. Da die Datei `console.log()` auf der linken Seite des Operators als falsch ausgewertet wird, wird die rechte immer aufgerufen:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -114,7 +114,7 @@ console.log(getTheTruth());
 // false
 ~~~~~~~
 
-Let's focus on the actual logging in the browser's developer tools. You should see a similar output. First the App component renders, followed by its child components (e.g. List component).
+Konzentrieren wir uns auf die Protokollierung unserer Anwendung in den Entwicklertools des Browsers. Zuerst wird die App-Komponente gerendert, gefolgt von ihren untergeordneten Komponenten (beispielsweise der List-Komponente).
 
 {title="Visualization",lang="text"}
 ~~~~~~~
@@ -124,6 +124,8 @@ B:App
 B:App
 B:List
 ~~~~~~~
+
+Da ein Seiteneffekt das Abrufen von Daten nach dem ersten Rendern auslöst, wird nur die App-Komponente gerendert, da die List-Komponente in einem bedingten Rendering durch einen Ladeindikator ersetzt wird. Sobald die Daten eintreffen, werden beide erneut gerendert.
 
 Since a side-effect triggers data fetching after the first render, only the App component renders, because the List component is replaced by a loading indicator in a conditional rendering. Once the data arrives, both components render again.
 
@@ -141,7 +143,7 @@ B:App
 B:List
 ~~~~~~~
 
-So far, this behavior is acceptable, since everything renders on time. Now we'll take this experiment a step further, by typing into the SearchForm component's input field. You should see the changes with every character entered into the element:
+Soweit ist dieses Verhalten in Ordnung. Alles wird zum passenden Zeitpunkt gerendert. Jetzt erweitern wir unseren Test, indem wir Zeichen in das Suchfeld eingeben. Wenn du mir in diesem Beispiel folgst, dann siehst du in der Konsole neue Einträge, wann immer du etwas im Feld einfügst:
 
 {title="Visualization",lang="text"}
 ~~~~~~~
@@ -149,11 +151,11 @@ B:App
 B:List
 ~~~~~~~
 
-But the List component shouldn't re-render. The search feature isn't executed via its button, so the `list` passed to the List component should remain the same. This is React's default behavior, which surprises many people.
+Das erneute Rendern der List-Komponente ist bei genauerem Überlegen nicht erforderlich. Die Suchfunktion wird nicht beim Ändern des Suchwortes aufgerufen, sondern über die Schaltfläche. Daher ist es unnötige, dass die an die Listenkomponente übergebene `list` neu gerendert wird – sie bleibt gleich. Hier erlebst du das Standardverhalten in React, über das viele Entwickler stolpern.
 
-If a parent component re-renders, its child components re-render as well. React does this by default, because preventing a re-render of child components could lead to bugs, and the re-rendering mechanism of React is still fast.
+Wenn eine übergeordnete Komponente erneut gerendert wird, werden die untergeordneten ebenfalls aktualisiert. React hat hierbei Gutes im Sinne: In der Regel ist es korrekt, dass nachfolgende Komponenten neu gerendert werden. Wird dies vergessen, führt dies zu Fehlern.
 
-Sometimes we want to prevent re-rendering, however. For example, huge data sets displayed in a table shouldn't re-render if they are not affected by an update. It's more efficient to perform an equality check if something changed for the component. Therefore, we can use React's memo API to make this equality check for the props:
+Manchmal ist es besser, dass ein erneutes Rendern von untergeordneten Komponenten verhindert wird. Beispielsweise wenn große Datenmengen in einer Tabelle angezeigt werden und die Daten sich nicht ändern. In dem Fall ist es effizienter, vorher zu prüfen, ob sich etwas geändert hat. Für diesen Zweck biete React die Memo-API:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -174,7 +176,7 @@ const List = React.memo(
 # leanpub-end-insert
 ~~~~~~~
 
-However, the output stays the same when typing into the SearchForm's input field:
+Das war nicht ausreichend. Die Ausgabe in der Konsole bleibt gleich, wenn du den Text im Eingabefeld des Suchformulares veränderst:
 
 {title="Visualization",lang="text"}
 ~~~~~~~
@@ -182,7 +184,9 @@ B:App
 B:List
 ~~~~~~~
 
-The `list` passed to the List component is the same, but the `onRemoveItem` callback handler isn't. If the App component re-renders, it always creates a new version of this callback handler. Earlier, we used React's useCallback Hook to prevent this behavior, by creating a function only on a re-render (if one of its dependencies has changed).
+Sehen wir und dies genauer an: Die an die List-Komponente übergebene `list` ist dieselbe, der `onRemoveItem`-Callback-Handler aber nicht. Wenn die App erneut gerendert wird, wird immer eine neue Version des Handlers erstellt. Zuvor haben wir den `useCallback`-Hook verwendet, um dieses Verhalten zu verhindern, indem wir eine Funktion nur bei einem erneuten Rendern erstellten (wenn sich eine ihrer Abhängigkeiten geändert hat). Ergänzen wir dies jetzt bei `handleRemoveStory`:
+
+The `list` passed to the List component is the same, but the `onRemoveItem` callback handler isn't. If the App component re-renders, it always creates a new version of this callback handler. Earlier, we used React's useCallacbk Hook to prevent this behavior, by creating a function only on a re-render (if one of its dependencies has changed).
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -208,15 +212,15 @@ const App = () => {
 };
 ~~~~~~~
 
-Since the callback handler gets the `item` passed as an argument in its function signature, it doesn't have any dependencies and is declared only once when the App component initially renders. None of the props passed to the List component should change now. Try it with the combination of `memo` and `useCallback`, to search via the SearchForm's input field. The "B:List" output disappears, and only the App component re-renders with its "B:App" output.
+Das passt jetzt! Der Callback-Handler hat keinerlei Abhängigkeiten und wird nur einmal deklariert, wenn die App zum ersten Mal gerendert wird. Keine der an die List-Komponente übergebenen Eigenschaften (props) ändert sich. Erweitere deine Anwendung um die Kombination von `memo` und `useCallback`, wie hier beschrieben. Die Ausgabe "B:List" ist nicht weiter in deiner Konsole zu sehen, wenn du im Suchfeld etwas änderst. Nur die App-Komponente wird neu gerendert, deshalb siehst du die Ausgabe "B:App" weiterhin bei Änderungen des Suchworts.
 
-While all props passed to a component stay the same, the component renders again if its parent component is forced to re-render. That's React's default behavior, which works most of the time because the re-rendering mechanism is fast enough. However, if re-rendering decreases the performance of a React application, `memo` helps prevent re-rendering.
+Während alle an eine Komponente übergebenen Eigenschaften (props) gleich bleiben, wird diese erneut gerendert, wenn eine ihr übergeordnete aktualisiert wird. Dies ist das Standardverhalten von React, welches die meiste Zeit gewollt ist. Der Mechanismus ist schnell und vermeidet Fehler. Wenn das erneute Rendern die Leistung einer React-Anwendung verringert, ist `memo` hilfreich.
 
-Sometimes `memo` alone doesn't help, though. Callback handlers are re-defined each time in the parent component and passed as *changed* props to the component, which causes another re-render. In that case, `useCallback` is used for making the callback handler only change when its dependencies change.
+Manchmal hilft `memo` allein nicht. Callback-Handler werden jedes Mal in der übergeordneten Komponente neu definiert und als *geänderte* Eigenschaften (props) übergeben, was zu einem erneuten Rendern führt. In diesem Fall verwenden wir `useCallback`, um den Callback-Handler nur dann neu aufzurufen, wenn sich seine Abhängigkeiten ändern.
 
-### Don't rerun expensive computations
+### Verhindere den erneuten Aufruf von aufwendigen Berechnungen
 
-Sometimes we'll have performance-intensive computations in our React components -- between a component's function signature and return block -- which run on every render. For this scenario, we must create a use case in our current application first.
+Manchmal kommen leistungsintensive Berechnungen in einer React-Komponenten vor --- zwischen der Funktionssignatur einer Komponente und dem Rückgabeblock. Diese werden bei jedem Rendering aufgerufen. Erstellen wir ein Szenario, um diesen Anwendungsfall praktisch nachzuvollziehen.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -250,9 +254,9 @@ const App = () => {
 };
 ~~~~~~~
 
-If all arguments are passed to a function, it's acceptable to have it outside the component. It prevents creating the function on every render, so the `useCallback` hook becomes unnecessary. The function still computes the value of summed comments on every render, which becomes a problem for more expensive computations.
+Wenn alle Argumente an eine Funktion übergeben werden, ist es akzeptabel, sie außerhalb der Komponente zu verlegen. Es verhindert, dass diese bei jedem Rendern erstellt wird, sodass der Hook `useCallback` nicht mehr erforderlich ist. Die Funktion berechnet weiterhin den Wert der summierten Kommentare für jedes Rendering, was bei aufwendigen Berechnungen zu einem Problem wird.
 
-Each time text is typed in the input field of the SearchForm component, this computation runs again with an output of "C". This may be fine for a non-heavy computation like this one, but imagine this computation would take more than 500ms. It would give the re-rendering a delay, because everything in the component has to wait for this computation. We can tell React to only run a function if one of its dependencies has changed. If no dependency changed, the result of the function stays the same. React's useMemo Hook helps us here:
+Jedes Mal, wenn du Text in das Eingabefeld der SearchForm-Komponente eingibst, wird diese Berechnung erneut aufgerufen und du siehst "C" in der Konsole deines Browsers. Dies ist für eine kleine Aufgabe in Ordnung. Im Falle von aufwendigen Berechnungen ist es wichtig, dass du dich darum kümmerst. Denn, dies verzögert das erneute Rendern. Deshalb ist es sinnvoll, eine Funktion nur auszuführen, wenn sich eine ihrer Abhängigkeiten geändert hat. Wenn sich keine ändert, bleibt das Ergebnis der Funktion gleich. Der `useMemo`-Hook hilft dir:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -269,17 +273,17 @@ const App = () => {
 };
 ~~~~~~~
 
-For every time someone types in the SearchForm, the computation shouldn't run again. It only runs if the dependency array, here `stories`, has changed. After all, this should only be used for cost expensive computations which could lead to a delay of a (re-)rendering of a component.
+Es ist nicht erforderlich die Liste bei jedem Ändern des Suchwortes neu zu berechnen. Dies ist nur wichtig, wenn sich das Abhängigkeitsarray, hier `stories`, ändert. Solchen Szenarien führen im Falle von aufwenigen Berechnungen zu Problemen.
 
-Now, after we went through these scenarios for `useMemo`, `useCallback`, and `memo`, remember that these shouldn't necessarily be used by default. Apply these performance optimization only if you run into a performance bottlenecks. Most of the time this shouldn't happen, because React's rendering mechanism is pretty efficient by default. Sometimes the check for utilities like `memo` can be more expensive than the re-rendering itself.
+Nachdem du `useMemo`, `useCallback`, und `memo` kennengelernt hast, optimiere deine Anwendung mit bedacht. Verwende die Funktionen nicht nach dem Gießkannenprinzip. Eine Leistungsoptimierung ist sinnvoll, wenn du auf Leistungsengpässe störst. In React wird dir das nicht oft passieren, da der Rendering-Mechanismus von Hause aus effizient ist. In manchen Fällen ist eine Optimierung aufwendiger, als das erneute Rendern selbst.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Performance-in-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/Performance-in-React?expand=1).
-* Read more about [React's memo API](https://reactjs.org/docs/react-api.html#reactmemo).
-* Read more about [React's useCallback Hook](https://reactjs.org/docs/hooks-reference.html#usecallback).
-* Download *React Developer Tools* as an extension for your browser. Open it for your application in the browser via the browser's developer tools and try its various features. For example, you can use it to visualize React's component tree and its updating components.
-* Does the SearchForm re-render when removing an item from the List with the "Dismiss" button? If it's the case, apply performance optimization techniques to prevent re-rendering.
-* Does each Item re-render when removing an item from the List with the "Dismiss" button? If it's the case, apply performance optimization techniques to prevent re-rendering.
-* Remove all performance optimizations to keep the application simple. Our current application doesn't suffer from any performance bottlenecks. Try to avoid [premature optimzations](https://en.wikipedia.org/wiki/Program_optimization). Use this section as reference, in case you run into performance problems.
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Performance-in-React).
+  * Bestätige die [Änderungen](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/Performance-in-React?expand=1).
+* Lese mehr zu [Reacts Memo API](https://de.reactjs.org/docs/react-api.html#reactmemo).
+* Lese mehr zum Thema [Reacts useCallback-Hook](https://de.reactjs.org/docs/hooks-reference.html#usecallback).
+* Lade die *React Developer Tools* als Erweiterung für deinen Browser herunter. Öffne das Werkzeug über die Entwicklertools und probiere die verschiedenen Funktionen aus. Visualisiere beispielsweise den Komponentenbaum deiner Anwendung.
+* Wird das Suchformular erneut gerendert, wenn ein Element mit der Schaltfläche "Dismiss" aus der Liste entfernt wird? Wende in diesem Fall Techniken zur Leistungsoptimierung an, um ein erneutes Rendern zu verhindern.
+* Wird jedes Item neu gerendert, wenn ein Element mit der Schaltfläche "Dismiss" aus der Liste entfernt wird? Wende in diesem Fall Techniken zur Leistungsoptimierung an, um ein erneutes Rendern zu verhindern.
+* Unsere aktuelle Anwendung weist keine Leistungsengpässe auf. Entferne deshalb alle Maßnahmen zur Leistungsoptimierung. Vermeide [vorzeitige Optimierungen](https://en.wikipedia.org/wiki/Program_optimization). Verwende diesen Abschnitt als Referenz zum Nachschlagen, falls du einmal auf Leistungsprobleme stößt.

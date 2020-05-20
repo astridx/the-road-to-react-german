@@ -1,18 +1,18 @@
-## Unit Testing to Integration Testing
+## React Anwendungen testen
 
-Testing source code is essential to programming, and should be seen as a mandatory exercise for serious developers. We want to verify our source code's quality and functionality before using it in production. The [testing pyramid](https://martinfowler.com/articles/practical-test-pyramid.html) will serve as our guide.
+Das Testen des Quellcodes wird oft vernachlässigt. Dabei ist es wesentlich und als  zwingend erforderlich anzusehen. Es ist unentbehrlich, die Qualität und Funktionalität des Quellcodes automatisch zu überprüfen, bevor dieser im Echtsystem angewendet wird. Die [Testpyramide](https://martinfowler.com/articles/practical-test-pyramid.html) dient als Grundregel.
 
-The testing pyramid includes end-to-end tests, integration tests, and unit tests. Unit tests are used for small, isolated blocks of code, such as a single function or component. Integration tests help us figure out if these units work well together. An end-to-end test simulates a real-life scenario, such as the login flow in a web application. Unit tests are quick and easy to write and maintain; end-to-end tests are the opposite.
+Die Testpyramide umfasst End-to-End-Tests, Integrationstests und Komponententests. Unit-Tests werden für kleine, isolierte Codeblöcke verwendet, z. B. eine einzelne Funktion oder Komponente. Integrationstests helfen uns, herauszufinden, ob diese Einheiten zusammenarbeiten. Ein End-to-End-Test simuliert ein reales Szenario, beispielsweise den Anmeldevorgang in einer Webanwendung. Unit-Tests sind unkompliziert zu schreiben und zu warten. Man betrachtet hierbei einen Teilaspekt herausgelöst. Auf End-to-End-Tests trifft das Gegenteil zu.
 
-We want to have many unit tests covering our functions and components. After that, we can use several integration tests to make sure the most important functions and components work together as expected. Finally, we may need a few end-to-end tests to simulate critical scenarios. In this learning experience, we will cover **unit and integration tests**, along with a component specific testing technique called **snapshot tests**. **E2E tests** will be part of the exercise.
+Scheiben wir zuerst Unit-Tests, die unsere Funktionen und Komponenten abdecken. Danach verwenden wir Integrationstests, um sicherzustellen, dass die einzelnen mit den Unit-Tests unabhängig geprüften Einheiten, wie erwartet zusammenarbeiten. Am Ende benötigen wir einige End-to-End-Tests, um kritische Szenarien zu simulieren. In diesem Kapitel behandeln wir **Unit und Integrationstests** sowie eine komponentenspezifische Testtechnik namens **Schnappschusstests** oder **Snapshot Tests**. **E2E-Tests** werden Teil der Übungen sein.
 
-Since there are [many testing libraries](https://www.robinwieruch.de/react-testing-tutorial), it can be challenging to choose one as a beginner to React. We will use [Jest](https://jestjs.io/) by Facebook as a testing framework to avoid making this tutorial too opinionated. Most of the other testing libraries for React use Jest as foundation, so it's a good introduction.
+Da es viele [Test-Bibliotheken](https://www.robinwieruch.de/react-testing-tutorial) gibt, ist es als Anfänger schwierig, die passende auszuwählen. Wir werden [Jest](https://jestjs.io/) von Facebook als Test-Framework verwenden. Die meisten React Entwickler nutzten Jest als Grundlage. Wir befinden uns in guter Gesellschaft. So ist dies eine geeignete Einführung, denn du lernst Dinge, mit denen du in jedem Fall konfrontiert wirst, wenn du länger mit React arbeitest.
 
-### Unit to Integration Testing
+### Unit Tests und Integrationstests
 
-Often the lines between unit and integration tests are unclear. Testing the List component with its Item component could be considered an integration test, but it could also be a unit test for two tightly coupled components. In this section, we start with unit testing and move towards integration testing. Everything in between is a spectrum between both.
+Oft sind die Grenzen zwischen Unit- und Integrationstests unklar. Die List-Komponente mit ihrer Item-Komponente ist ein Beispiel dafür. Testet man diese, handelt es sich um einen Integrationstest oder einen Unit Test für zwei eng gekoppelte Komponenten. Diese Einordnung ist meiner Meinung nach nebensächlich. Wichtig ist, dass du im vorherigen Abschnitt verstanden hast, warum Unit Tests und Integrationstests unterschieden werden. In diesem Abschnitt behandeln wir erst Unit-Tests und später Integrationstests. 
 
-Let's start with a pseudo test in your *src/App.test.js* file:
+Wir wagen uns langsam an die Materie heran. Als Erstes schreiben wir einen Pseudotest, den wir in die Datei *src/App.test.js*-Datei einfügen:
 
 {title="src/App.test.js",lang="javascript"}
 ~~~~~~~
@@ -23,14 +23,14 @@ describe('something truthy', () => {
 });
 ~~~~~~~
 
-Fortunately, create-react-app comes with Jest. You can run the test using the interactive create-react-app test script on the command line. The output for all test cases will be presented in your command line interface.
+Glücklicherweise ist *Jest* in die **create-react-App** integriert. Rufe den Test über die Befehlszeile auf. Die Ausgabe für alle Testfälle wird dir unmittelbar danach angezeigt.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 npm test
 ~~~~~~~
 
-Jest matches all files with a *test.js* suffix in its filename when its command is run. Successful tests are displayed in green; failed tests are displayed in red:
+*Jest* sucht in alle Dateien mit dem Suffix *test.js* im Dateinamen nach Testmethoden. Erfolgreiche Tests werden grün angezeigt. Fehlgeschlagene in roter Farbe ausgegeben:
 
 {title="src/App.test.js",lang="javascript"}
 ~~~~~~~
@@ -41,7 +41,7 @@ describe('something truthy', () => {
 });
 ~~~~~~~
 
-Tests in Jest consist of **test suites** (`describe`), which are comprised of **test cases** (`it`), which have **assertions** (`expect`) that turn out green or red:
+Tests in *Jest* bestehen aus **Testsuiten** (`describe` - `beschreiben`), die aus **Testfällen** (`it`) zusammengesetzt sind, die wiederum **Behauptungen** (`expect` - `erwarten`) aufstellen, die sich als wahr (grün) oder falsch (rot) herausstellen:
 
 {title="src/App.test.js",lang="javascript"}
 ~~~~~~~
@@ -61,7 +61,7 @@ describe('truthy and falsy', () => {
 });
 ~~~~~~~
 
-The "it"-block describes one test case. It comes with a test description that returns success or failure. We can also wrap this block into a "describe"-block that defines our test suite with many "it"-blocks for one specific component. Both blocks are used to organize your test cases. Note that the `it` function is known in the JavaScript community as a single-test case function; in Jest, however, `it` is often used as an alias `test` function.
+Der "it"-Block beschreibt einen Testfall. Er besteht aus einer Testbeschreibung. Der Test ist erfolgreich oder er schlägt fehl. Binde diesen Block in einen "describe"-Block ein, der die Testsuite zusammen mit anderen "it"-Blöcken für eine Komponente definiert. Beide Arten werden verwendet, um Testfälle zu organisieren. Beachte, dass die Funktion `it` in der JavaScript-Community als Einzeltestfallfunktion bekannt ist. In Jest wird `it` häufig als Alias `test`-Funktion verwendet:
 
 {title="src/App.test.js",lang="javascript"}
 ~~~~~~~
@@ -74,14 +74,14 @@ describe('something truthy', () => {
 });
 ~~~~~~~
 
-To use React components in Jest, we require a utility library for rendering components in a test environment:
+Um React-Komponenten in *Jest* zu verwenden, benötigen wir eine Bibibliothek zum Rendern von Komponenten in einer Testumgebung. Deshalb installieren wir **react-test-renderer** über die Befehlszeile:
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 npm install react-test-renderer --save-dev
 ~~~~~~~
 
-Also, before you can test your first components, you have to export them from your *src/App.js* file:
+Bevor du deine ersten Komponenten testest, ist es erforderlich, dass du diese aus deiner *src/App.js*-Datei exportierst:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -94,7 +94,7 @@ export { SearchForm, InputWithLabel, List, Item };
 # leanpub-end-insert
 ~~~~~~~
 
-Import them along with the previously installed utility library in the *src/App.test.js* file:
+Importiere die Komponente dann zusammen mit der zuvor installierten Bibliothek **react-test-renderer** in die Datei *src/App.test.js*:
 
 {title="src/App.test.js",lang="javascript"}
 ~~~~~~~
@@ -106,7 +106,7 @@ import App, { Item, List, SearchForm, InputWithLabel } from './App';
 # leanpub-end-insert
 ~~~~~~~
 
-Write your first component test for the Item component. The test case renders the component with a given `item` using the utility library:
+Jetzt endlich: Schreibe deinen ersten Komponententest. Wähle dazu die Item-Komponente. Der Testfall rendert diese mit einem `item` unter Verwendung der Bibliothek **react-test-renderer**:
 
 {title="src/App.test.js",lang="javascript"}
 ~~~~~~~
@@ -137,7 +137,9 @@ describe('Item', () => {
 # leanpub-end-insert
 ~~~~~~~
 
-Information about a component's or element's attributes are available via the `props` property. In the test assertion, we find the anchor tag (`a`) and its `href` attribute, and perform an equality check. If the test turns out green, we can be sure the anchor tag's `href` attribute is set to the correct `url` property of the `item`. In the same test case, we can add more test assertions for the other item's properties:
+Informationen zu den Attributen einer Komponente oder eines Elements sind über die Eigenschaft `props` verfügbar. In der zu testenden Annahme befindet sich das Ankertag (`a`) und sein Attribut `href`. Wir führen eine Gleichheitsprüfung durch. Wenn der Test grün ausfällt, sind wir sicher, dass `href` auf die korrekte Eigenschaft `url` des Elements `item` gesetzt ist.
+
+Im selben Testfall ergänzen wir eine weitere Testannahme:
 
 {title="src/App.test.js",lang="javascript"}
 ~~~~~~~
@@ -167,7 +169,9 @@ describe('Item', () => {
 });
 ~~~~~~~
 
-Since there are multiple `span` elements, we find all of them and select the second one (index is `1` , because we count from `0`) and compare its React `children` prop to the item's `author`. This test isn't thorough enough, though. Once the order of `span` elements in the Item component changes, the test fails. Avoid this flaw by changing the assertion to:
+Da es mehrere `span`-Elemente gibt, suchen wir nach allen, wählen das zweite aus (Index ist `1`, da wir bei `0` zu zählen beginnen) und vergleichen dessen `children`-Eigenschaft mit der `author`-Eigenschaft des Test-Item. Dieser Test ist nicht zukunftssicher. Sobald sich die Reihenfolge der `span`-Elemente in der Item-Komponente ändert, schlägt er fehl. 
+
+Vermeide Tests mit einem solchen Unsicherheitsfaktor. Das bringt auf lange Sicht nur Probleme. Ändere die Test-Behauptung beispielsweise wie folgt:
 
 {title="src/App.test.js",lang="javascript"}
 ~~~~~~~
@@ -187,9 +191,9 @@ describe('Item', () => {
 });
 ~~~~~~~
 
-The test assertion isn't as specific anymore. It just tests whether there is one element with the item's `author` property. You can apply this technique for all the other properties of the item yourself. Otherwise, leave it for later as exercise.
+Die Testbehauptung ist nach der Änderung allgemeiner. Es wird getestet, ob es ein Test-Item mit irgendeiner Eigenschaft gibt, die mit *Jordan Walke* belegt ist. Diese Vorgehensweise ist nicht 100% sicher, mit ihr werden aber viele mögliche Probleme aufgedeckt. Die Besonderheit, dass die `author`-Eigenschaft gar nicht vorkommt dafür eine `titel`-Eigenschaft mit dem Wert *Jordan Walke* vorhanden ist, würde uns mit diesem Test durchgehen. Aber, wie überall im Leben ist der gesunde Mittelweg die beste Herangehensweise. Wende die Technik für alle anderen Eigenschaften selbst an oder hebe dir dies als Übung für später auf, wenn du es bevorzugst erst einmal weiter zu lesen.
 
-We tested whether the Item component renders as text or HTML attributes (`href`), but we didn't test the callback handler. The following test case makes this assertion by simulating a click event via the `button` element's `onClick` attribute:
+Wir haben mit einem Test sichergestellt, dass die Item-Komponente als Text- oder HTML-Attribut (`href`) gerendert wird, aber wir haben den Callback-Handler bisher nicht getestet. Der folgende Testfall stellt für diesen eine Behauptung auf, indem er ein Klickereignis über das Attribut `onClick` des `button`-Elements simuliert:
 
 {title="src/App.test.js",lang="javascript"}
 ~~~~~~~
@@ -219,9 +223,9 @@ describe('Item', () => {
 });
 ~~~~~~~
 
-Jest lets us pass a test-specific function to the Item component as prop. These test specific functions are called **spy**, **stub**, or **mock**; each is used for different test scenarios. The `jest.fn()` returns us a *mock* for the actual function, which lets us capture when it's called. As a result, we can use Jest assertions like `toHaveBeenCalledTimes`, which lets us assert a number of times the function has been called; and `toHaveBeenCalledWith`, to verify arguments that are passed to it.
+Mit *Jest* übergeben wir testspezifische Funktionen als Eigenschaft an die Item-Komponente. Diese heißen **spy**, **stub** oder **mock**; Jede wird für verschiedene Testszenarien verwendet. `jest.fn()` gibt uns ein *mock* für die eigentliche Funktion zurück, mit dem wir erfassen können, wann sie aufgerufen wird. So verwenden wir Testannahmen in *Jest* wie `toHaveBeenCalledTimes`, mit denen wir die Anzahl der Aufrufe der Funktion bestätigen und `toHaveBeenCalledWith`, um die an ihn übergebenen Argumente zu überprüfen.
 
-Item component's unit test is complete, because we tested input (`item`) and output (`onRemoveItem`). The two shouldn't be confused with input (arguments) and output (JSX) of the function component, which were also tested as. One last improvement makes the test suite for the Item component more concise by giving it a shared setup function:
+Der Komponententest der Item-Komponente ist abgeschlossen, da wir die Eingabe (`item`) und die Ausgabe (`onRemoveItem`) getestet haben. Verwechsele die beiden nicht mit Eingabe (Argumente) und Ausgabe (JSX) der Funktionskomponente, die ebenfalls getestet wurden. Eine letzte Verbesserung macht die Testsuite für die Item-Komponente präziser, indem sie eine gemeinsame Setup-Funktion integriert:
 
 {title="src/App.test.js",lang="javascript"}
 ~~~~~~~
@@ -585,12 +589,12 @@ Run your tests again and observe how they succeed or fail. Once we change the ou
 
 Jest stores snapshots in a folder so it can validate the difference against future snapshot tests. Users can share these snapshots across teams for version control (e.g. git). Running a snapshot test for the first time creates the snapshot file in your project's folder. When the test is run again, the snapshot is expected to match the version from the latest test run. This is how we make sure the DOM stays the same.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/react-testing).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/react-testing?expand=1).
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/react-testing).
+  * Bestätige die [Änderungen gegenüber dem Stand der Anwendung am Ende des ersten Kapitels](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/react-testing?expand=1).
 * Add one snapshot test for each of all the other components.
-* Read more about [testing React components](https://www.robinwieruch.de/react-testing-tutorial).
-  * Read more about [Jest](https://jestjs.io/) and [Jest for React](https://www.robinwieruch.de/react-testing-jest/) for unit, integration and snapshot tests.
-* Read more about [E2E tests in React](https://www.robinwieruch.de/react-testing-cypress).
+* Lese mehr zum Thema [testing React components](https://www.robinwieruch.de/react-testing-tutorial).
+  * Lese mehr zum Thema [Jest](https://jestjs.io/) and [Jest for React](https://www.robinwieruch.de/react-testing-jest/) for unit, integration and snapshot tests.
+* Lese mehr zum Thema [E2E tests in React](https://www.robinwieruch.de/react-testing-cypress).
 * While you continue with the learning experience in the upcoming sections, keep your tests green and add new tests whenever you feel the need for it.
