@@ -1,6 +1,6 @@
-## Async/Await in React (Advanced)
+## Async/Await in React (Fortgeschrittene Anleitung)
 
-You'll work with asynchronous data often in React, so it's good to know alternative syntax for handling promises: async/await. The following refactoring of the `handleFetchStories` function without error handling shows how:
+Du wirst in React häufig mit asynchronen Daten arbeiten. Daher ist es hilfreich, wenn du die alternative Syntax für die Behandlung von Promise-Objekten kennst: async/await. Aus diesem Grund habe ich die Funktion `handleFetchStories` in unserem Beispiel überarbeitet. Mein Refactoring zeigt dir, wie du idealerweise vorgehst. Eine Fehlerbehandlung lasse ich im ersten Schritt der Übersicht halber außen vor:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -28,7 +28,7 @@ const App = () => {
 };
 ~~~~~~~
 
-To use async/await, our function requires the `async` keyword. Once you start using the `await` keyword, everything reads like synchronous code. Actions after the `await` keyword are not executed until promise resolves, meaning the code will wait.
+Unsere Funktion verwendet das Schlüsselwort `async`. Dies schafft die Grundlage für die Verwendung von async/await. Sobald du `await` einsetzt, verhält sich alles analog zu synchronem Code. Die Anweisungen, die hinter `await` steht, werden erst aufgerufen, wenn das (in axios gekapselte) Promise-Objekt aufgelöst wurde und somit sein Ergebnis vorliegt. Dies bedeutet, dass der Code wartet – wie das Wort `await` vermuten lässt.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -58,11 +58,11 @@ const App = () => {
 };
 ~~~~~~~
 
-To include error handling as before, the `try` and `catch` blocks are there to help. If something goes wrong in the `try` block,  the code will jump into the `catch` block to handle the error. `then`/`catch` blocks and async/await with `try`/`catch` blocks are both valid for handling asynchronous data in JavaScript and React.
+Mithilfe von `try` und `catch` haben wir am Ende die Fehlerbehandlung integriert. Wenn im `try`-Block etwas nicht korrekt abläuft, springt der Code in den` catch`-Block, um den Fehler zu behandeln. Neben [async/await mit `try`/`catch`-Blöcken](https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Kontrollfluss_und_Fehlerbehandlung#try-catch) ist [die then()-Methode](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) für die Behandlung von Fehlern in asynchronen Daten möglich.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Async-Await-in-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Third-Party-Libraries-in-React...hs/Async-Await-in-React?expand=1).
-* Read more about [data fetching in React](https://www.robinwieruch.de/react-hooks-fetch-data).
-* Read more about [async/await in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function).
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Async-Await-in-React).
+  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Third-Party-Libraries-in-React...hs/Async-Await-in-React?expand=1).
+* Lese mehr zum Thema [Data-Fetching in React](https://www.robinwieruch.de/react-hooks-fetch-data).
+* Lese mehr zum Thema [Async/Await in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function).
