@@ -1,13 +1,13 @@
-## Imperative React
+## Reacts Legacy: Imperative
 
-In a React function component, React's useRef Hook is used mostly for imperative programming. Throughout React's history, the *ref* and its usage had a few versions:
+In eine Funktionskomponente verwendet man hauptsächlich Reacts `useRef`-Hook für die imperative Programmierung. `Refs` und ihre Anwendung wurden im Laufe der Zeit einige Male überarbeitet:
 
-* String Refs (deprecated)
+* String Refs (veraltet)
 * Callback Refs
-* createRef Refs (exclusive for Class Components)
-* useRef Hook Refs (exclusive for Function Components)
+* `createRef ` Refs (exklusiv für Klassenkomponenten)
+* `useRef ` Hook Refs (exklusiv für Funktionskomponenten)
 
-The React team introduced **React's createRef** with version 16.3 as the latest equivalent to a function component's useRef hook which has been integrated with React Hooks in 16.8:
+Mit React 16.3 hat das React-Team die Funktion `createRef` eingeführt. Diese ist ein Äquivalent zum `useRef`-Hook einer Funktionskomponente, welcher mit Version 16.7 in React integriert wurde:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -49,10 +49,10 @@ class InputWithLabel extends React.Component {
 }
 ~~~~~~~
 
-With the helper function, the ref is created in the class' constructor, applied in the JSX for the `ref` attributed, and here used in a lifecycle method. The ref can also be used elsewhere, like focusing the input field on a button click.
+Die Referenz `this.inputRef` wird im Konstruktor der Klasse erstellt und in einer Lebenszyklusmethode verwendet. Der Verweis ist an anderen Stelle verwendbar, beispielsweise um das Eingabefeld aufgrund eines Schaltflächenklick zu fokussieren.
 
-Where createRef is used in React's class components, React's useRef Hook is used in React function components. As React shifts towards function components, today its common practice to use the useRef hook exclusively to manage refs and apply imperative programming principles.
+Während `createRef` in den Klassenkomponenten von React verwendet wird, wird der `useRef`-Hook in Funktionskomponenten genutzt. Da Letztere vermehrt eingesetzt werden, ist der `useRef`-Hook heutzutage die gängige Funktion zum Verwalten von Referenzen.
 
-### Exercises:
+### Übungen:
 
-* Read more about [the different ref techniques in React](https://reactjs.org/docs/refs-and-the-dom.html).
+* Lese mehr zu den [verschiedenen Ref-Techniken in React](https://de.reactjs.org/docs/refs-and-the-dom.html).
