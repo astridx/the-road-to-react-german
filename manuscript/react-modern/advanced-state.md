@@ -1,8 +1,8 @@
-## React Advanced State
+## React Status (Fortgeschrittene Anleitung)
 
-All state management in this application makes heavy use of React's useState Hook. More sophisticated state management gives you **React's useReducer Hook**, though. Since the concept of reducers in JavaScript splits the community in half, we won't cover it extensively here, but the exercises at the end of this section should give you plenty of practice.
+Das gesamte Statusmanagement in unserer Anwendung verwendet den `useState` Hook von React. Eine ausgefeilte Statusverwaltung nutzt zusätzlich unter Umständen **Reacts useReducer Hook**. Da sich beim Konzept der Reduzierungen in JavaScript die Geister scheiden, werden ich hier nicht ausführlich darauf eingehen. Unbeachtet lasse ich das Thema aber ebenfalls nicht. Die Übungen am Ende dieses Abschnitts geben dir genug Material, um dir deine eigene Meinung zu bilden.
 
-We'll move the `stories` state management from the `useState` hook to a new `useReducer` hook. First, introduce a reducer function outside of your components. A reducer function always receives `state` and `action`. Based on these two arguments, a reducer always returns a new state:
+Wir werden die Statusverwaltung der `stories` vom `useState`-Hook in einen neuen `useReducer`-Hook verschieben. Führe zunächst eine Reduzier-Funktion außerhalb der App-Komponenten ein. Eine solche Funktion empfängt immer einen `state` und eine `action`. Basierend auf diesen beiden Argumenten gibt ein Reduzierer einen neuen Status zurück:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -17,9 +17,9 @@ const storiesReducer = (state, action) => {
 # leanpub-end-insert
 ~~~~~~~
 
-A reducer `action` is often associated with a `type`. If this type matches a condition in the reducer, do something. If it isn't covered by the reducer, throw an error to remind yourself the implementation isn't covered. The `storiesReducer` function covers one `type`, and then returns the `payload` of the incoming action without using the current state to compute the new state. The new state is simply the `payload`.
+Eine Reduzierer-Aktion wird oft mit einem Typ `type` assoziiert. Wenn dieser Typ einer Bedingung im Reduzierer entspricht, dann führe eine Aktion aus. Wenn dies nicht so ist, dann gib einen Fehler aus. So erinnerst du dich selbst daran, dass hier die Implementierung lückenhaft ist. Die Funktion `storiesReducer` deckt einen Typ `type` ab und gibt dann die Nutzdaten `payload` der eingehenden Aktion zurück, ohne den aktuellen Status zur Berechnung des neuen Status zu verwenden. Der neue Zustand ist `payload`.
 
-In the App component, exchange `useState` for `useReducer` for managing the `stories`. The new hook receives a reducer function and an initial state as arguments and returns an array with two items. The first item is the *current state*; the second item is the *state updater function* (also called *dispatch function*):
+Tausche in der App-Komponente `useState` gegen `useReducer` aus, um den Status von `stories` zu verwalten. Der neue Hook erhält eine Reduzierer-Funktion und einen Anfangszustand als Argumente und gibt ein Array mit zwei Elementen zurück. Das erste ist der *aktuelle Status*, beim zweiten handelt es sich um die *Statusaktualisierungsfunktion* (*Dispatcher*):
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -37,7 +37,7 @@ const App = () => {
 };
 ~~~~~~~
 
-The new dispatch function can be used instead of the `setStories` function, which was returned from `useState`. Instead of setting state explicitly with the state updater function from `useState`, the `useReducer` state updater function dispatches an action for the reducer. The action comes with a `type` and an optional payload:
+Nachfolgend verwenden wir die Dispatcher-Funktion `dispatchStories` anstelle der Funktion `setStories`, die bisher von `useState` zurückgegeben wurde. Anstatt den Status explizit mit der Statusaktualisierungsfunktion von `useState` festzulegen, löst die `useReducer` Statusaktualisierungsfunktion eine Aktion für den Reduzierer aus. Die Aktion beinhaltet einen Typ und die optionalen Nutzdaten `payload`:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -79,9 +79,9 @@ const App = () => {
 };
 ~~~~~~~
 
-The application appears the same in the browser, though a reducer and React's `useReducer` hook are managing the state for the stories now. Let's bring the concept of a reducer to a minimal version by handling more than one state transition.
+Wenn du die Anwendung im Browser öffnest, wirst du keinen Unterschied feststellen, obwohl ein Reduzierer und der `useReducer`-Hook von React jetzt den Status der Liste `stories` verwalten. Lass uns das Konzept eines Reduzierers auf eine minimale Version bringen, indem wir mehr als einen Zustandsübergang analysieren.
 
-So far, the `handleRemoveStory` handler computes the new stories. It's valid to move this logic into the reducer function and manage the reducer with an action, which is another case for moving from imperative to declarative programming. Instead of doing it ourselves by saying *how it should be done*, we are telling the reducer *what to do*. Everything else is hidden in the reducer.
+Bisher verwaltet der Handler `handleRemoveStory` unsere `stories`-Liste. Es ist möglich, diese Logik in die Reduzierer-Funktion zu verschieben und den Reduzierer mit einer Aktion zu verwalten. Dies ist ein weiteres Beispiel für den Wechsel von der imperativen zur deklarativen Programmierung. Anstatt den Code selbst zu schreiben und so dem Reduzierer genau zu beschreiben, *wie etwas zu erledigen ist*, teilen wir ihm mit *was zu erledigen ist*. Alle Implementierungsdetails sind im Reduzierer gekapselt.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -101,7 +101,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Now the reducer function has to cover this new case in a new conditional state transition. If the condition for removing a story is met, the reducer has all the implementation details needed to remove the story. The action gives all the necessary information, an item's identifier`, to remove the story from the current state and return a new list of filtered stories as state.
+Jetzt deckt die Reduzierer-Funktion diesen Fall in einem neuen bedingten Zustandsübergang ab. Wenn die Bedingung zum Entfernen eines Elementes erfüllt ist, verfügt der Reduzierer über alle notwendigen Implementierungsdetails. Die Aktion enthält alle Informationen, die Kennung eines Elements, um es aus dem aktuellen Status zu entfernen und eine neue Liste gefilterter Storys als Status zurückzugeben.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -120,7 +120,7 @@ const storiesReducer = (state, action) => {
 };
 ~~~~~~~
 
-All these if else statements will eventually clutter when adding more state transitions into one reducer function. Refactoring it to a switch statement for all the state transitions makes it more readable:
+Wenn du mehr Zustandsübergänge zur Reduzierer-Funktion hinzufügst, werden `if`-Anweisungen unübersichtlich. Verbessere die Lesbarkeit, indem du in deinen Code `switch`-Anweisung für alle Statusübergänge verwendest:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -140,13 +140,13 @@ const storiesReducer = (state, action) => {
 };
 ~~~~~~~
 
-What we've covered is a minimal version of a reducer in JavaScript. It covers two state transitions, shows how to compute current state and action into a new state, and uses some business logic (removal of a story). Now we can set a list of stories as state for the asynchronously arriving data, and remove a story from the list of stories, with just one state managing reducer and its associated `useReducer` hook.
+In diesem Abschnitt haben wir in das JavaScript Reduzierer-Konzept hineingeschnuppert. Wir implementierten zwei Zustandsübergängen und probierten aus, wie der aktuelle Zustand mithilfe einer Aktion in einen neuen umgewandelt wird. Neben der technischen Implementierung vernachlässigen wir die eigentliche Aufgabe unsere Anwendung nicht: das Verwalten der `stories`-Liste. Am Ende dieses Abschnitts legen wir eine `stories`-Liste als Status für die asynchron ankommenden Daten fest und entfernen ein Element aus dieser, wobei nur ein Status für den Reduzierer und den zugehörigen `useReducer`-Hook notwendig ist.
 
-To fully grasp the concept of reducers in JavaScript and the usage of React's useReducer Hook, visit the linked resources in the exercises.
+Sieh dir die in den Übungen verlinkten Websites an, um das Reduzierer-Konzept in JavaScript und die Verwendung von **Reacts useReducer Hook** vollends zu verstehen.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Advanced-State).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Conditional-Rendering...hs/React-Advanced-State?expand=1).
-* Read more about [reducers in JavaScript](https://www.robinwieruch.de/javascript-reducer).
-* Read more about reducers and useReducer in React ([0](https://www.robinwieruch.de/react-usereducer-hook), [1](https://reactjs.org/docs/hooks-reference.html#usereducer)).
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Advanced-State).
+  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt]( ).
+* Lese mehr zum Thema [reducers in JavaScript](https://www.robinwieruch.de/javascript-reducer).
+* Lese mehr zum Thema reducers and useReducer in React ([0](https://www.robinwieruch.de/react-usereducer-hook), [1](https://de.reactjs.org/docs/hooks-reference.html#usereducer)).
