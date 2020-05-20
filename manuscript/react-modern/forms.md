@@ -1,8 +1,8 @@
-## Forms in React
+## Formulare in React
 
-Earlier we introduced a new button to fetch data explicitly with a button click. We'll advance its use with a proper HTML form, which encapsulates the button and input field for the search term with its label.
+In unserem Beispiel gibt es eine Schaltfläche, mit der Daten per Klick abgerufen werden. Nachfolgend verbessern wir diese mithilfe eines HTML-Formulars, welches die Schaltfläche vom Eingabefeld für den Suchbegriff abkapselt.
 
-Forms aren't much different in React's JSX than in HTML. We'll implement it in two refactoring steps with some HTML/JavaScript. First, wrap the input field and button into an HTML form element:
+Formulare unterscheiden sich in Reacts JSX nicht wesentlich von denen in purem HTML. Wir implementieren in diesem Abschnitt alles Notwendige in zwei Schritten. Integrieren wir als erstes das Eingabefeld und die Schaltfläche in ein HTML-Formular:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -42,9 +42,9 @@ const App = () => {
 };
 ~~~~~~~
 
-Instead of passing the `handleSearchSubmit` handler to the button, it's used in the new form element. The button receives a new `type` attribute called `submit`, which indicates that the form element handles the click and not the button.
+Was ist anders? Wir übergeben die Funktion `handleSearchSubmit` an das neue Formularelement und nicht mehr direkt an die Schaltfläche. Die erhält dafür das, mit dem Wert `submit` belegte `type`-Attribut. Das verdeutlich zusätzlich, dass das Formular das Klickereignis verarbeitet und nicht die Schaltfläche.
 
-Since the handler is used for the form event, it executes `preventDefault` in React's synthetic event. This prevents the HTML form's native behavior, which leads to a browser reload.
+Da `handleSearchSubmit` für das Formularereignis verwendet wird, ergänzen wir `preventDefault`. Hiermit unterbinden wir das natürliche Verhalten des HTML-Formulars. Ohne `preventDefault` würde die Seite bei jedem Klick neu geladen.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -65,7 +65,7 @@ const App = () => {
 };
 ~~~~~~~
 
-Now we can execute the search feature with the keyboard's `Enter` key. In the next two steps, we will only separate the component into its standalone SearchForm component:
+Das war es schon: Führe jetzt die Suchfunktion mit der Eingabetaste der Tastatur aus. Die nächsten beiden Schritte dienen der Überarbeitung. Wir erstellen eine eigenständige Komponente für das Suchformular:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -93,7 +93,7 @@ const SearchForm = ({
 # leanpub-end-insert
 ~~~~~~~
 
-The new component is used by the App component. The App component still manages the state for the form, because the state is used in the App component to fetch data passed as props (`stories.data`) to the List component:
+Die neue Komponente wird von der App-Komponente verwendet. App verwaltet weiterhin den Status für das Formular. Dieser wird hier genutzt, um Daten abzurufen, die als Eigenschaften (props; `story.data`) an die List-Komponente übergeben werden:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -126,12 +126,12 @@ const App = () => {
 };
 ~~~~~~~
 
-Forms aren't much different in React than HTML. When we have input fields and a button to submit data from them, we can give our HTML more structure by wrapping it into a form element with a `onSubmit` handler. The button that executes the submission needs only the "submit" `type`.
+Wie gesagt: Formulare unterscheiden sich in React nicht wesentlich von denen in HTML. Wenn wir Formularfelder und eine Schaltfläche zum Übermitteln von Daten nutzen, verleihen wir unserem Dokument mehr Struktur, indem wir es in ein Formularelement einschließen. Die Schaltfläche, die die Übermittlung ausführt, benötigt ein `type`-Attribut, welches mit dem Wert `submit` belegt ist.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Forms-in-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Async-Await-in-React...hs/Forms-in-React?expand=1).
-* Try the code without `preventDefault`.
-* Read more about [preventDefault for Events in React](https://www.robinwieruch.de/react-preventdefault).
-* Read more about [React Component Composition](https://www.robinwieruch.de/react-component-composition).
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Forms-in-React).
+  * Bestätige die [Änderungen gegenüber dem letzten Abschnitt](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Async-Await-in-React...hs/Forms-in-React?expand=1).
+* Teste den Code ohne `preventDefault`.
+* Lese mehr zum Thema [`preventDefault` für Ereignisse in React](https://www.robinwieruch.de/react-preventdefault).
+* Lese mehr zum Thema [React Component Composition](https://www.robinwieruch.de/react-component-composition).
