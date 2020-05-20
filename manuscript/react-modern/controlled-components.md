@@ -2,7 +2,7 @@
 
 **Kontrollierte Komponenten** sind nicht zwingen React Komponenten, es handelt sich aber immer um HTML-Elemente. In diesem Abschnitt erfährst du, wie du die Suchkomponente und ihr Eingabefeld in eine kontrollierte Komponente verwandelst.
 
-Lass uns ein Szenario durchdenken, das dir zeigt, warum es sinnvoll ist, dass wir das Konzept der kontrollierten Komponenten in unserer gesamten Anwendung einsetzen. Erkennst du den Fehler, nachdem du die folgende Änderung vorgenommen hast, die dem „searchTerm“ einen Anfangszustand verleiht?
+Lass uns ein Szenario durchdenken, das dir zeigt, warum es sinnvoll ist, dass wir das Konzept der kontrollierten Komponenten in unserer gesamten Anwendung einsetzen. Erkennst du den Fehler, nachdem du die folgende Änderung vorgenommen hast, die dem `searchTerm` einen Anfangszustand verleiht?
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
