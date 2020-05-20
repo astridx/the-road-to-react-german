@@ -1,13 +1,13 @@
-## CSS Modules in React
+## CSS-Module in React
 
-CSS Modules are an advanced **CSS-in-CSS** approach. The CSS file stays the same, where you could apply CSS extensions like Sass, but its use in React components changes. To enable CSS modules in create-react-app, rename the *src/App.css* file to *src/App.module.css*. This action is performed in the command line from your project's directory:
+CSS-Module stellen einen fortschrittlicheren **CSS-in-CSS**-Ansatz dar. Die CSS-Datei bleibt grundsätzlich unverändert. Es kommen nur Funktion hinzu. Verwende sie, um normales CSS zu schreiben, oder nutze Techniken wie Sass. Im nachfolgenden erkläre ich dir, wie du CSS-Module zusammen mit React-Komponenten verwendest. Benenne als Erstes die Datei *src/App.css* in *src/App.module.css* um. So aktivierst du CSS-Module in der create-react-app. Öffne dazu das Projekt-Verzeichnis über die Befehlszeile des Betriebssystems. Führe folgende Anweisung aus, wenn du Linux verwendest, – passe andernfalls den Befehl an deine Arbeitsumgebung an:
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 mv src/App.css src/App.module.css
 ~~~~~~~
 
-In the renamed *src/App.module.css*, start with the first CSS class definitions, as before:
+In die umbenannte Datei *src/App.module.css* fügst du deine CSS-Klassendefinitionen ein, genauso wie vorher in die Datei *src/App.css*:
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -28,7 +28,7 @@ In the renamed *src/App.module.css*, start with the first CSS class definitions,
 }
 ~~~~~~~
 
-Import the *src/App.module.css* file with a relative path again. This time, import it as a JavaScript object where the name of the object (here `styles`) is up to you:
+Importiere die Datei *src/App.module.css* mithilfe eines relativen Pfades. Dieses Mal geschieht der Import als JavaScript-Objekt, wobei die Wahl des Names (hier `styles`) dir überlassen bleibt:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -40,7 +40,7 @@ import styles from './App.module.css';
 # leanpub-end-insert
 ~~~~~~~
 
-Instead of defining the `className` as a string mapped to a CSS file, access the CSS class directly from the `styles` object, and assign it with a JavaScript in JSX expression to your elements.
+Anstatt den `className` als eine Zeichenfolge zu definieren, die einer CSS-Datei zugeordnet ist, greifst du direkt über das Objekt `styles` auf die CSS-Klasse zu und weist diese deinem Element mit einem JavaScript im JSX-Ausdruck zu. Das hört sich kompliziert an. Hier siehst du, dass es unkompliziert ist:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -71,7 +71,7 @@ const App = () => {
 };
 ~~~~~~~
 
-There are various ways to add multiple CSS classes via the `styles` object to the element's single `className` attribute. Here, we use JavaScript template literals:
+Es gibt verschiedene Möglichkeiten, mehrere CSS-Klassen über das Objekt `styles` zum einzelnen `className`-Attribut des Elements hinzuzufügen. Hier verwenden wir Template-Strings:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -102,7 +102,7 @@ const Item = ({ item, onRemoveItem }) => (
 );
 ~~~~~~~
 
-We can also add inline styles as more dynamic styles in JSX again. It's also possible to add a CSS extension like Sass to enable advanced features like CSS nesting. We will stick to native CSS features though:
+Es ist möglich Inline-Stile als dynamischere Styles in JSX hinzufügen oder eine CSS-Erweiterung wie Sass hinzuzufügen, um erweiterte Funktionen wie CSS-Verschachtelung zu aktivieren. Hier verwenden wir natives CSS:
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -125,7 +125,7 @@ We can also add inline styles as more dynamic styles in JSX again. It's also pos
 }
 ~~~~~~~
 
-Then the button CSS classes in the *src/App.module.css* file:
+Dann implementieren wir die CSS-Klassen für die Schaltfläche in der Datei *src/App.module.css*:
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -152,7 +152,7 @@ Then the button CSS classes in the *src/App.module.css* file:
 }
 ~~~~~~~
 
-There is a shift toward pseudo BEM naming conventions here, in contrast to `button_small` and `button_large` from the previous section. If the previous naming convention holds true, we can only access the style with `styles['button_small']` which makes it more verbose because of  JavaScript's limitation with object underscores. The same shortcomings would apply for classes defined with a dash (`-`). In contrast, now we can use `styles.buttonSmall` instead (see: Item component):
+Im Gegensatz zu `button_small` und `button_large` aus dem vorherigen Kapitel nutzen wir hier eine Pseudo-BEM-Namenskonvention. Beim Import als CSS-Modul sind nicht alle CSS-Klassen in BEM-Namenskonvention gültige JavaScript-Bezeichner. Die Verwendung der [Klammernotation](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Property_Accessors#Klammernotation) wäre erforderlich: `styles['button_small']`. Das Gleiche gilt für CSS-Klassen, die mit einem Bindestrich (`-`) definiert sind. Deshalb verwenden wir jetzt zum Beispiel `buttonLarge` und greifen mit `styles.buttonLarge` auf den Stil zu. Beispielsweise in der Item-Komponente:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -177,7 +177,7 @@ const SearchForm = ({ ... }) => (
 );
 ~~~~~~~
 
-The SearchForm component receives the styles as well. It has to use string interpolation for using two styles in one element via JavaScript's template literals. One alternative way is the [classnames](https://github.com/JedWatson/classnames) library, which is installed via the command line as project dependency:
+Der SearchForm-Komponente ordnen wir ebenfalls zwei CSS-Klassen zu. Wie du siehst, ist es umständlich, zwei Stile in einem Element über Template-Strings zu verwenden. Eine praktischer alternative bietet die Bibliothek [classnames](https://github.com/JedWatson/classnames), mit der CSS-Klassen sogar [dynamisch und bedingt](https://github.com/JedWatson/classnames#usage-with-reactjs) zuordenbar sind. Installiere die Bibliothek im nächsten Schritt über die Befehlszeile als Projektabhängigkeit und verwende sie, um der Schaltfläche die CSS-Klassen zuzuordnen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -185,23 +185,10 @@ import cs from 'classnames';
 
 ...
 
-// somewhere in a className attribute
 className={cs(styles.button, styles.buttonLarge)}
 ~~~~~~~
 
-The library offers conditional styling too; whereas the left hand-side of the object's property must be used as a [computed property name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) and is only applied if the right hand-side evaluates to true:
-
-{title="src/App.js",lang="javascript"}
-~~~~~~~
-import cs from 'classnames';
-
-...
-
-// somewhere in a className attribute
-className={cs(styles.button, { [styles.buttonLarge]: isLarge })}
-~~~~~~~
-
-Finally, continue with the InputWithLabel component:
+Fahre abschließend mit der InputWithLabel-Komponente fort. Verwende die Bibliothek **classnames**, um dieser das `className`-Attribut zuzuordnen:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -231,7 +218,7 @@ const InputWithLabel = ({ ... }) => {
 };
 ~~~~~~~
 
-And finish up the remaining style in the *src/App.module.css* file:
+Ergänze abschließend die fehlenden Stile in der Datei *src/App.module.css*:
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -257,12 +244,12 @@ And finish up the remaining style in the *src/App.module.css* file:
 }
 ~~~~~~~
 
-The same caution applies as  the last section: some of these styles like `input` and `label` might be more efficient in a global *src/index.css* file without CSS modules.
+Einiges von dem, was ich im vorhergehenden Kapitel geschrieben hatte, trifft ebenfalls auf CSS-Module zu: Beispielsweise: Stile wie `input` und `label` sind in einer globalen *src/index.css*-Datei unter Umständen effizienter zu verwenden. 
 
-Again, CSS Modules--like any other CSS-in-CSS approach--can use Sass for more advanced CSS features like nesting. The advantage of CSS modules is that we receive an error in the  JavaScript each time a style isn't defined. In the standard CSS approach, unmatched styles in the JavaScript and CSS files might go unnoticed.
+Wie jeder andere CSS-in-CSS-Ansatz unterstützen CSS-Module Sass, um CSS-Funktionen wie das Verschachteln zu verwenden. Nutze dies zur Strukturierung deiner Stile, ich habe dies hier im Abschnitt außen vor gelassen. Mein Ziel war es, dir die Anwendung von CSS-Modulen näher zu bringen, denn diese habe im Gegensatz zu purem CSS einen weiteren Vorteil: Jedes Mal, wenn ein verwendeter Stil nicht definiert ist, wird ein Fehler über die Konsole deines Browsers ausgegeben. Beim Standard-CSS-Ansatz bleibt ein solcher Tippfehler in der Regel unbemerkt und führt nicht selten einige Zeit später zu unerwartetem Verhalten und einer langwierigen Fehlersuche.
 
-### Exercises:
+### Übungen:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-Modules-in-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-Modules-in-React?expand=1).
-* Read more about [CSS Modules in create-react-app](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet).
+* Begutachte den [Quellcode dieses Abschnittes](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-Modules-in-React).
+  * Bestätige die [Änderungen](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-Modules-in-React?expand=1).
+* Lese mehr zum Thema [CSS Modules in create-react-app](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet).
