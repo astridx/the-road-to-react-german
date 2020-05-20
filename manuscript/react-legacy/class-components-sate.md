@@ -1,6 +1,6 @@
-## React Class Components: State
+## Legacy-React Klassenkomponenten: Status
 
-Before React Hooks, class components were superior to function components because they could be stateful. With a class constructor, we can set an initial state for the component. Also, the component's instance (`this`) gives access to the current state (`this.state`) and the component's state updater method (`this.setState`):
+Vor der Einführung der React Hooks waren die Klassenkomponenten den Funktionskomponenten überlegen, da nur sie den Status verwalteten. Mit einem Klassenkonstruktor wird der Anfangszustand festgelegt. Außerdem gibt die Instanz der Komponente (`this`) jederzeit Zugriff auf den aktuellen Status (`this.state`) und die Statusaktualisierungsmethode der Komponente (`this.setState`):
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -38,10 +38,12 @@ class App extends React.Component {
 }
 ~~~~~~~
 
-If the state has more than one property in its state object, the `setState` method performs only a shallow update. Only the properties passed to `setState` are overwritten, and all other properties in the state object stay intact. Since state management is important for frontend applications, there was no way around class components without hooks for function components.
+Wenn der Status mehr als eine Eigenschaft in seinem Statusobjekt verwaltet, führt `setState` eine vereinfachte Aktualisierung durch. Nur die an `setState` übergebenen Eigenschaften werden aktualisiert. Alles andere bleibt, wie es ist. Für Frontend-Anwendungen ist die Statusverwaltung wichtig. Deshalb führte in der Vergangenheit ohne Hooks kein Weg an Klassenkomponenten vorbei.
+
+In einer React-Klassenkomponente gibt es zur Statusverwaltung zwei dedizierte APIs (`this.state` und `this.setState`). In einer Funktionskomponente übernehmen heute die Hooks `useState` und `useReducer` diese Aufgabe. Verwandte Elemente werden in einen Status-Hook gepackt, während eine Klassenkomponente eine allgemeine Status-API verwendet. Dies war einer der Hauptgründe, React Hooks einzuführen und sich von Klassenkomponenten zu verabschieden.
 
 In a React class component, there are two dedicated APIs (`this.state` and `this.setState`) to manage a component's state. In a function component, React's useState and useReducer hooks handle this. Related items are packed into one state hook, while a class component must use a general state API. This was one of the major reasons to introduce React Hooks, and move away from class components.
 
-### Exercises:
+### Übungen:
 
-* Write a stateful class component (e.g. Input).
+* Schreiben Sie eine statusbehaftete Klassenkomponente (beispielsweise ein Eingabefeld mit einem Label).
