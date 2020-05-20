@@ -42,8 +42,6 @@ Wenn der Status mehr als eine Eigenschaft in seinem Statusobjekt verwaltet, füh
 
 In einer React-Klassenkomponente gibt es zur Statusverwaltung zwei dedizierte APIs (`this.state` und `this.setState`). In einer Funktionskomponente übernehmen heute die Hooks `useState` und `useReducer` diese Aufgabe. Verwandte Elemente werden in einen Status-Hook gepackt, während eine Klassenkomponente eine allgemeine Status-API verwendet. Dies war einer der Hauptgründe, React Hooks einzuführen und sich von Klassenkomponenten zu verabschieden.
 
-In a React class component, there are two dedicated APIs (`this.state` and `this.setState`) to manage a component's state. In a function component, React's useState and useReducer hooks handle this. Related items are packed into one state hook, while a class component must use a general state API. This was one of the major reasons to introduce React Hooks, and move away from class components.
-
 ### Übungen:
 
-* Schreiben Sie eine statusbehaftete Klassenkomponente (beispielsweise ein Eingabefeld mit einem Label).
+* Erstelle eine statusbehaftete Klassenkomponente (beispielsweise ein Eingabefeld mit einem Label).
