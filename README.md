@@ -1,19 +1,26 @@
-# The Road to React [Book]
+# Der Weg zu React
 
-Official repository for [The Road to React](http://roadtoreact.com/). If you want to leave a review, please do it on [Amazon](https://amzn.to/2LHjxRB) or [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react).
+Offizielles Repository für die deutsche Version des Buches [The Road to React](http://roadtoreact.com/). Wenn du das Buch kaufen möchteste oder eine Bewertung abgeben möchtest, hast du mehrere Möglichkeiten:
 
-## Updates, Help and Support
+E-Book:
+- [Amazon](https://www.amazon.de/Weg-React-Deine-Reise-Grundlagen-ebook/dp/B08F3CZWW4/ref=tmm_kin_swatch_0?_encoding=UTF8&qid=1597432499&sr=1-1)
 
-* Get book updates via [E-Mail](https://www.getrevue.co/profile/rwieruch) or [Twitter](https://twitter.com/rwieruch)
-* Get help, while learning with the book or teach others, in the official [Slack Channel](https://courses.robinwieruch.de/community-join)
-* Find out how you can [support the Book](https://www.robinwieruch.de/about/)
+Printausgabe:
+- [Amazon](https://www.amazon.de/gp/offer-listing/3752979119/ref=olp_f_freeShipping?ie=UTF8&f_freeShipping=true&f_new=true) 
+- [ePubli Shop](https://www.epubli.de/shop/buch/Weg-zu-React-Astrid-G%C3%BCnther-9783752979114/101592)
+- [buchkatalog.de](https://shop.buchkatalog.de/webapp/wcs/stores/servlet//Product/3000003185510/167206/4099276460822233275/-3/Sach--und-Fachbuecher_Informatik-und-EDV/Astrid-Guenther/Der-Weg-zu-React/4099276460822241344/4099276460822241336/4099276460822241336)
+- [Thalia](https://www.thalia.de/shop/home/artikeldetails/ID149006890.html)
+- [Hugendubel](https://www.hugendubel.de/de/buch_kartoniert/astrid_guenther_robin_wieruch-der_weg_zu_react-39395432-produkt-details.html)
+- [Weltbild](https://www.weltbild.de/artikel/buch/der-weg-zu-react_28289567-1?rd=1)
 
-## Contribute
+## Updates, Hilfe and Support
 
-You can help to improve the book by opening Issues and Pull Requests (PR).
+* Lass dich über Aktualisierungen informieren, per [E-Mail](https://www.getrevue.co/profile/rwieruch) oder [Twitter](https://twitter.com/rwieruch)
+* Hole dir Hilfe, während du mit dem Buch lernst, im [Slack Channel](https://courses.robinwieruch.de/community-join)
+* Finde heraus, wie du [das Buch unterstützen kannst](https://www.robinwieruch.de/about/)
 
-You can open up any PR that corrects spelling or explains a certain lesson with more detail. When writing such a technical book, you get fast blind on what needs more explanation and on what is already explained well.
+## Beitragen
 
-In addition, you can open Issues when you run into problems. In order to make the fix for the Issue as easy as possible, please provide a couple of details such as error log, screenshot, which page of the book it happened, your node version (command line: `node -v`) and a link to your own repository. Not all of these details are mandatory, but most of them help to fix the Issue and to improve the book.
+Trage zur Verbesserung des Buches bei, indem du Issues und Pull Requests (PR) öffnest, wenn du einen Fehler findest oder einen Verbesserungsvorschlag hast.
 
-Thanks a lot for your help!
+Vielen dank für Deine Hilfe!
